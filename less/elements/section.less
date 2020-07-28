@@ -1,0 +1,25 @@
+section, article, footer {
+  width: 100%;
+  max-width: ~"calc(100vw - @{gutter})";
+  margin: 0 auto;
+  padding: @padding 0;
+
+  .clearfix();
+
+  .on-tablet({
+    width: @column-width;
+  });
+
+  .on-desktop({
+    width: @page-width;
+  });
+
+
+  // .on-tablet({
+  //   padding: @padding ~"calc((100% - @{column-width})/2)";
+  // });
+
+  // .on-desktop({
+  //   padding: @padding ~"calc((100% - @{page-width})/2)";
+  // });
+}

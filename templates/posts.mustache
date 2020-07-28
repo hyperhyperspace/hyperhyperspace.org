@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>rexriepe.com</title>
+  <meta name="description" content="Personal site of Rex Riepe">
+  <meta name="author" content="Rex Riepe">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>{{> css/index}}</style>
+</head>
+
+<body>
+
+  {{> templates/nav}}
+    <main role="main">
+        <section>
+            <h3>Essays, etc.</h3>
+            <p>Here's everything I've written so far for this iteration of rexriepe.com.</p>
+            
+            <hr class="short">
+            {{> templates/posts_list}}
+        </section>
+    </main>
+    {{> templates/footer}}
+</body>
+</html>

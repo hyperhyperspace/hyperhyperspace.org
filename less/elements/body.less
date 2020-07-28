@@ -1,0 +1,36 @@
+body {
+  @body-char: 31.334;
+  @body-char: 26.5; // why does this work?
+  // background-color: @background;
+  .colorize(@background);
+  // .blueprint(@background);
+  // .honeycomb(@background);
+  // .dots(@background);
+  .has(font-size);
+  // font-size: ~"calc((100vw - @{gutter})/@{body-char})";
+  .has(line-height);
+  //line-height: ~"calc((2)*(100vw - @{gutter})/@{body-char})";
+  // width: auto;
+  max-width: 100%;
+  // -webkit-overflow-scrolling: touch;
+  
+
+  background: @background;
+  padding: 0;
+  // padding-top: @nav-height + @padding;
+  margin: 0;
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    Courier,
+    monospace;
+
+  // .on-tablet({
+  //   font-size: @font-size;
+  //   font-weight: normal;
+  //   line-height: @line-height;
+  // });
+}

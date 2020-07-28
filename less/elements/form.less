@@ -1,0 +1,65 @@
+form {
+  padding: 0;
+  .has(max-width);
+}
+
+input, 
+// input[type="text"],
+// input[type="password"],
+// input[type="url"],
+// input[type="email"],
+// input[type="tel"],
+// input[type="search"],
+// input[type="number"],
+// input[type="date"],
+// input[type="month"],
+// input[type="week"],
+textarea {
+  width: 100%;
+  .has(padding);
+  .has(margin-bottom);
+  .has(line-height);
+  font-size: inherit;
+  font-family: inherit;
+  background: @background;
+  .contrast-text-against(@background; 9;);
+
+  @gray-breakpoint: 35%;
+
+  & when (luma(@background) >= @gray-breakpoint) {
+    border: 1px solid @gray-darker;
+  }
+
+  & when (luma(@background) < @gray-breakpoint) {
+    border: 1px solid @gray-lighter;
+  }
+
+  &::placeholder {
+    .contrast-text-against(@background; 7;)
+  }
+}
+
+input[type="color"] {
+  width: auto;
+  width: @padding;
+  height: @padding;
+}
+
+input, label {
+  margin-bottom: @padding/2;
+
+  // & + & {
+  //   margin-top: @margin;
+  // };
+}
+
+legend {
+  .has(margin-bottom);
+  font-weight: bold;
+}
+
+.semantic-classes({
+  input {
+    border: none;
+  }
+});
