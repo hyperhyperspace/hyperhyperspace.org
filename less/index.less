@@ -1,0 +1,313 @@
+@import (reference) "settings";
+@import (reference) "mixins";
+@import (reference) "colors";
+@import (reference) "patterns";
+@import (reference) "targets";
+
+@import "reset";
+
+@import "elements/body";
+@import "elements/nav";
+@import "elements/section";
+@import "elements/main";
+@import "elements/button";
+@import "elements/headline";
+@import "elements/p";
+@import "elements/img";
+@import "elements/span";
+@import "elements/form";
+@import "elements/aside";
+@import "elements/label";
+@import "elements/table";
+@import "elements/blockquote";
+@import "elements/etc";
+
+@import "utilities";
+
+.pull-right {
+    float: right;
+}
+
+.project-links {
+
+    @color: @warning;
+    
+    .has(padding);
+    min-height: 12rem;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    li {
+        margin-bottom: @padding;
+        padding-left: 0;
+        .has(line-height);
+
+        float: left; 
+        
+        .on-tablet({
+            float: none;
+        })
+        
+
+        // &:last-child {
+        //     .clearfix();
+        //     margin-bottom: 0;
+        // }
+    }
+
+    a {
+        @pj-background: lighten(@color, 16%);
+        display: inline-block;
+        .colorize(@color);
+        .on-desktop({
+            .colorize(@pj-background);
+        });
+        line-height: @line-height;
+        height: @line-height;
+        padding-left: 1rem;
+        padding-right: 2rem;
+        margin-right: 5rem;
+        text-decoration: none;
+        position: relative;
+
+        &:before {
+            @width: 2rem;
+            content:"";
+            display: block;
+            position: absolute;
+            top: 0;
+            right: -3rem;
+            width: @width;
+            height: @width;
+            background: @color;
+            text-indent: -9999px;
+
+            .on-desktop({
+                background: @pj-background;
+            });
+        }
+
+        &:after {
+            @width: 1rem;
+            content: "";
+            display: block;
+            background: @gray-lighter;
+            .on-desktop({
+                background: @color;
+            });
+            width: @width;
+            height: @width;
+            position: absolute;
+            top: 1rem;
+            right: -2rem;
+        }
+    }
+
+    .on-desktop({
+        .colorize(@color);
+    });
+}
+
+.block { 
+    margin-bottom: @margin;
+    padding: @padding;
+
+    .on-tablet({
+        padding: @padding*2;
+    });
+
+    .on-desktop({
+        
+        // margin-right: @gutter;
+        margin-bottom: 0;
+    });
+}
+
+.feature {
+    text-decoration: none;
+    float: left;
+    max-width: 100%;
+    display: block;
+    border: .5rem dashed white;
+    .contrast-border-against(@background);
+    // background: @background;
+    margin-bottom: @margin*2;
+    z-index: 100;
+    margin-top: @margin;
+
+
+    h1 {
+        .contrast-text-against(@background; @headline-contrast;);
+    }
+
+    a {
+        display: block;
+        width: 100%;
+        margin-bottom: 0;
+
+        .on-desktop({
+            display: inline;
+            width: auto;
+        });
+    }
+
+    footer {
+        text-align: center;
+        max-width: 100%;
+        padding: @padding*2;
+    }
+
+    .on-tablet({
+        max-width: @column-width;
+    });
+
+    .on-desktop({
+        border: 1rem dashed white;
+        max-width: @page-width;
+        p { max-width: @page-width;}
+
+    });
+}
+
+.triplicate {
+    font-size: 80%;
+
+    div {
+        margin-bottom: @margin;
+    }
+
+    .on-desktop({
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: @margin;
+    });
+}
+
+.splash {
+    .colorize(@action);
+    margin-top: @margin;
+    margin-bottom: @margin;
+    padding: @padding*2;
+
+    > * {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.dark {
+    background-color: average(#111, @gray-darker);
+}
+
+.empty {
+    @color: @gray-lighter;
+
+    .headline-elements({
+        .contrast-text-against(@color; @headline-contrast;);
+    });
+
+    border-top: .5rem solid @highlight;
+
+    z-index: 100;
+    .contrast-text-against(@color);
+    .dots(@color; @scale: 3;);
+    &:before, &:after {
+        background: transparent !important;
+    }
+}
+
+#parallax {
+    // parallax rules
+    perspective: 1px;
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.regular-group {
+    max-width: 100%;
+    position: relative;
+    margin: 0;
+    padding: (@padding + @nav-height) 0;
+
+}
+
+#parallax-group {
+    // this has some limits re: vertical height and overflow
+    // only works at the top of the page, maybe bottom too
+
+    .regular-group;
+    min-height: 100vh;
+    transform-style: preserve-3d;    
+
+    nav + & {
+        margin-top: -(@nav-height + @padding);
+    }
+  
+    &:before, &:after {
+        // the stars are in these pseudo-elements
+      content:"";
+      
+      transform: translateZ(0);
+      background-size: cover;
+      min-width: 100%;
+      min-height: 100%;
+    position: absolute;
+    top: 0;
+    //   right: 0;
+    //   bottom: 0;
+    left: 0;
+    display: block;
+      pointer-events: none;
+      z-index:-125;
+      // margin-top: -@margin;
+    }
+
+    @mag: .25;
+
+    &:before {
+        will-change: transform;
+      transform: translateZ(-1px) scale(2);
+      .starfield(@background; 2; .4;);
+    }
+    // &:after {
+    //     will-change: transform;
+    //   transform: translateZ(@mag*-1px) scale(2);
+    //   .starfield(@background; 2; .6;);
+    // }
+}
+
+#footer {
+
+    width: 100%;
+    max-width: 100%;
+    clear: both;
+
+    .colorize(@nav-background);
+    // .dots(@background);
+    .has(padding);
+    line-height: @line-height*.8;
+
+    .headline-elements({
+        .contrast-text-against(@nav-background; 18;);
+    });
+
+    height: 800px;
+    z-index: 1600;
+    font-weight: bold;
+
+    // .contrast-text-against(@background; 4.5;);
+    // margin-bottom: @margin;
+
+    p {
+        width: 100%;
+        max-width: 100%;
+    }
+}

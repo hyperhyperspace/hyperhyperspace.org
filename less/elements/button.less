@@ -1,0 +1,66 @@
+.button-elements({
+  font-family: inherit;
+  font-size: inherit;
+  // .has(font-size);
+  .has(line-height);
+  .has(margin-bottom);
+
+  display: inline; // buttons work like text
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  padding: 2rem 2rem !important;
+  
+  touch-action: manipulation;
+  cursor: pointer;
+  
+  background-image: none;
+  outline: none;
+  white-space: nowrap;
+  text-decoration: none;
+  .button-color(@action);
+  .make-buttons-for(@semantic-colors);
+  .no-user-select();
+
+  &::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+
+  .on-tablet({
+    width: auto;
+  });
+
+  &:disabled {
+    .button-color(@gray-lighter) !important;
+    opacity: .5;
+  }
+});
+
+.make-buttons-for(@colors) {
+  // make buttons for a list of color variable names
+  // buttons will use variable names as class names
+
+  @length: length(@colors);
+
+  .make-button();
+
+  .make-button(@index:1) when (@index <= @length) {
+    @color-name: extract(@colors, @index);
+    @color: @@color-name;
+
+    &.@{color-name} { .button-color(@color);}
+
+    .make-button(@index + 1);
+  }
+}
+
+.button-color(@color) {
+  // .invert-text-against(@button-bg; 3; true); // use this instead of contrast for white text
+  // .contrast-text-against(@button-bg; 3;);
+  .colorize(@color; 7;);
+
+  &:active {
+    .colorize(darken(@color, 10%); 3;);
+  }
+}
