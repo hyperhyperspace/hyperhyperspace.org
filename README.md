@@ -6,7 +6,7 @@ This is the public-facing site for HHS. It gives visitors a brief overview of wh
 
 From the project directory, run:
 
-`python -m SimpleServerHTTP`
+`python -m SimpleHTTPServer`
 
 You may need to install python.
 
