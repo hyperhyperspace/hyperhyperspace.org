@@ -1,3 +1,12 @@
 p {
-  margin-bottom: 1/@golden-ratio*1em;
+    @p-margin-bottom: 1em;
+    margin-bottom: @p-margin-bottom;
+
+    &.gutter-bottom {
+        margin-bottom: @p-margin-bottom * @golden-ratio;
+    }
+
+    &.gutter {
+        margin-bottom: @gutter;
+    }
 }

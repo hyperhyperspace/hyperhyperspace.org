@@ -1,0 +1,52 @@
+// width classes
+
+.character-width { width: 1ch;}
+
+.rem-width { width: 1rem;}
+
+.half-width {
+  width: 50%;
+}
+
+.third-width {
+  width: 33.33%;
+}
+
+.fourth-width {
+  width: 25%;
+}
+
+.fifth-width {
+  width: 20%;
+}
+
+.sixth-width {
+  width: 16.66%;
+}
+
+.golden-width { max-width: ~"calc(62% - @{gutter})";}
+.golden-width.force { width: ~"calc(62% - @{gutter})";}
+
+.golden-width.reverse { max-width: 38%;}
+
+.aside-width { 
+  max-width: @aside-width;
+}
+
+.text-width { 
+  // max-width: @text-width;
+
+  .on-tablet({
+    max-width: @text-width; 
+  });
+}
+
+.page-width { 
+  max-width: @page-width;
+
+  .page-width {
+    &:extend(.full-width);
+  }
+}
+
+.full-width { display: block; width: @full-width;}
