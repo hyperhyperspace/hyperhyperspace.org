@@ -4,7 +4,7 @@ This is the public-facing site for HHS. It gives visitors a brief overview of wh
 
 ## Running the site
 
-From the project directory, run:
+**From the project directory**, run:
 
 `python -m SimpleHTTPServer`
 
@@ -12,7 +12,7 @@ You may need to install python.
 
 ## Building the site
 
-From the project directory, run:
+**From the project directory**, run:
 
 `bash scripts/build.sh`
 

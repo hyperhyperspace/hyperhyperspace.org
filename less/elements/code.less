@@ -1,0 +1,17 @@
+code {
+    @code-background: @black;
+    @code-contrast-standard: 9;
+
+    &:extend(.monospace);
+    .contrast(color, @code-background);
+    background-color: @code-background;
+    padding: @text-padding;
+
+    &.terminal { 
+        &::before {
+            content: "$ ";
+        }
+    }
+}
+
+

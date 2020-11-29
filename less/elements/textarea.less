@@ -1,0 +1,15 @@
+textarea {
+    .default(font-size);
+    &:extend(.font-family);
+    .default(line-height);
+    .default(border);
+    .default(border-radius);
+    .default(margin-bottom);
+    &:extend(.white all);
+
+    padding: @text-padding;
+
+    &:focus {
+        box-shadow: 0 0 2px @info;
+    }
+}
