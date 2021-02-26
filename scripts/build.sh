@@ -4,7 +4,7 @@
 
 # compile css 
 
-lessc less/index.less | postcss | tee css/index.mustache
+lessc less/index.less | tee css/hhs.css
 
 # build templates
 
