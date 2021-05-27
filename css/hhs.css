@@ -26,9 +26,7 @@
     pointer-events: none;
     z-index: -125;
   }
-  .logo {
-    max-height: 25px;
-  }
+  
   #nav h1 {
     font-size: var(--font-size);
   }
@@ -36,7 +34,7 @@
     text-decoration: none;
     max-width: 100%;
     display: block;
-    border: 0.3rem dashed #f2fdff;
+    border: 0.15rem dashed #f2fdff;
   }
   .feature h1 {
     background: #061e23;
@@ -44,7 +42,7 @@
   }
   @media screen and (min-width: 61.904rem) {
     .feature {
-      border: 0.6rem dashed white;
+      border: 0.2rem dashed white;
     }
   }
   
