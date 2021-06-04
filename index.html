@@ -88,11 +88,21 @@
                 </div>
 
                 <div class="gutter-bottom">
+                  <style>
+                    #presentation-embed {
+                      height: 415px;
+                    }
+
+                    @media screen and (max-width: 440px) {
+                      #presentation-embed {
+                        height: 225px;
+                      }
+                    }
+                  </style>
                   
                   <iframe id="presentation-embed"
                           title="Inline Frame Example"
                           width="100%"
-                          height="415"
                           src="/presentation.html"
                           style="border: 0">
 
