@@ -20,8 +20,9 @@
           <h1 class="no-margin-top no-margin-bottom"><a href="/" class="no-underline"><img src="logos/HHS_Logo_small.png" alt="Hyper Hyper Space"></a></h1>
           <div class="absolute top right text-margin-top">
               <ul class="no-list-style">
-                  <li class="float-left margin-right"><a href="https://github.com/hyperhyperspace/hyperhyperspace">Contribute</a></li>
-                  <li class="float-left"><a href="https://github.com/hyperhyperspace/hyperhyperspace-core">Learn more</a></li>
+                <li class="float-left margin-right">Introduction</li>
+                  <li class="float-left margin-right"><a href="./learn.html">Learn More</a></li>
+                  <li class="float-left"><a href="https://github.com/hyperhyperspace/hyperhyperspace-core">Source Code</a></li>
               </ul>
           </div>
         </div>
@@ -50,12 +51,12 @@
                     </div>
                   </div>
                   <p class="gutter-top">
-                    From an end-user viewpoint, a <span class="yellow"><i>space</i></span> is a bit like a file, but designed for the Internet age.
+                    A <span class="base-color"><i>space</i></span> is a bit like a file, but designed for the Internet.
                     It can be opened simultaneously on several devices and its contents will be synchronized
                     automatically. Spaces can be looked up by using 3-word codes, and can also be embedded into websites.
                   </p>
                   <p class="gutter-bottom">
-                    The following chat room is an example of a space. While you visit this page, your <span class="yellow">browser is hosting it</span> and making it
+                    The following chat room is an example of a space. While you visit this page, your <span class="base-color">browser is hosting it</span> and making it
                     available to others:
                   </p>
                   <div class="margin">
@@ -69,57 +70,35 @@
   
                   </div>
                   <p class="gutter-top gutter-bottom">
-                    The 3-word code for the space above is <i>suburb suburb awake</i>. You can open the online ChatRoom space viewer
+                    The 3-word code for the space above is <i>suburb suburb awake</i>. Go on and open the 
+                    <a href="https://hyperhyper.space/chat-window" target="_blank">ChatRoom space viewer</a>
                     and look it up, or explore creating new rooms and sharing them:
                   </p>
-                  <footer class="gutter-top gutter-bottom text-center text-width tablet margin-auto">
+                  <footer class="gutter-top text-center text-width two-column tablet margin-auto">
                     <div>
-                      <a href="https://hyperhyper.space/chat-window" class="block full-width button red padding margin-bottom" target="_blank">Open Chat Room space viewer &#8594;</a>
+                      <a href="https://hyperhyper.space/chat-window" class="block full-width button red big padding margin-bottom" target="_blank">ChatRoom viewer &#8594;</a>
+                    </div>
+                    <div>
+                      <a href="./learn.html" class="block full-width button base-color big padding margin-bottom"> <!--bright warm teal-->Learn more</a> 
                     </div>
                   </footer>
 
-                  <p class="big text-center black gutter-top"> 
-                    How does this work?
-                  </p>
-
-                  <p>
-                    A space can be as simple as a few written notes synchronized over a person own devices, or it 
-                    may contain more complex structures (e.g. an entire discussion forum, with different topics and 
-                    message threads, accessed by any number of people using different roles: anonymous readers, 
-                    contributors, moderators, administrators, etc).
-                  </p>
-                  <p>
-                    The Hyper Hyper Space <span class="yellow">open source libraries</span> provide the building blocks to create new types of 
-                    spaces. Internally, a space is represented as an <span class="yellow">immutable append-only DAG</span>. This DAG is used
-                    to encode cryptographically secure commutative operations, that allow the space contents to change
-                    (an extension of the ideas used in CRDTs).
-                  </p>
-                  <p class="gutter-bottom">
-                    This enables all the synchronization protocols to work regardless of the type of the space. After
-                    creating HHS-valid datatypes, a <span class="yellow">peer-to-peer network overlay</span> will synchronize them automatically.
-                    The library can be run as a <span class="yellow">standalone program</span>, or <span class="yellow">inside a web browser</span> (using IndexedDB for
-                    storage and WebRTC and WebSockets as transports). Thus, a space can be opened just by visiting
-                    a static website, that becomes a full peer in Hyper Hyper Space.
-                  </p>
+                  
 
               </div>
-
-              <footer class="gutter-top text-center text-width tablet margin-auto">
-                <div>
-                  <a href="https://github.com/hyperhyperspace/hyperhyperspace-core" class="block full-width button base-color big padding margin-bottom" target="_blank"> <!--bright warm teal-->Get the code</a> 
-                </div>
-              </footer>
 
             </section>
 
               <section class="no-margin inner-page-width">
+                <p class="margin">
+                  A space can be as simple as a few written notes synchronized over a person own devices, or it 
+                  may contain more complex structures (e.g. an entire discussion forum, used by any number of 
+                  people).
+                </p>
 
-                <div class="inner-gutter">
-                  <p class="no-margin">
-                    For a quick intro, below are the slides from the Hyper Hyper Space lightning talk in the <a href="https://mailchi.mp/archive/this-wednesday-building-distributed-tech-is-not-enough-how-do-we-distribute-the-benefits" target="_blank">June 2021 DWeb meetup</a>:
-                  </p>
-
-                </div>
+                <p class="margin gutter-bottom">
+                  For a quick intro, below are the slides from the Hyper Hyper Space lightning talk in the <a href="https://mailchi.mp/archive/this-wednesday-building-distributed-tech-is-not-enough-how-do-we-distribute-the-benefits" target="_blank">June 2021 DWeb meetup</a>:
+                </p>
 
                 <div class="margin gutter-bottom">
                   <style>
@@ -137,7 +116,7 @@
                   <iframe id="presentation-embed"
                           title="Inline Frame Example"
                           width="100%"
-                          src="/presentation.html"
+                          src="./presentation.html"
                           style="border: 0">
 
                   </iframe>
@@ -171,26 +150,6 @@
               </section>
           </section>
         </div>
-
-        <section class="padding inner-page-width">
-          <div class="two-column golden tablet margin-bottom padding">
-            <div>
-              <h3 class="text-crunch">What happens when you enter hyperspace <em>from hyperspace</em>?</h2>
-              <p>We wouldn't know. HHS has nothing to do with space travel or science fiction. What we do know is that the world needs a better Internet.</p>
-              <p>We think a big part of this better Internet will be a <strong>versatile and secure distributed data layer</strong>.</p>
-              <p>Hyper Hyper Space is that layer.</p>
-            </div>
-      
-            <div class="vertical-center">
-              <aside class="project-links small">
-                <blockquote class="italic card-width small gutter">
-                  Traveling through hyperspace ain't like dusting crops, boy!
-                  <cite class="">&mdash; Han Solo</cite>
-              </blockquote>
-              </aside>
-            </div>
-          </div>
-        </section>
         
         <footer class="padding inner-page-width light warm black">
           <div class="three-column trailing desktop">

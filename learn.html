@@ -1,0 +1,112 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Hyper Hyper Space</title>
+  <meta name="description" content="Open-data p2p apps running inside a web browser.">
+  <meta name="author" content="Santiago Bazerque">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/cavepaint.css">
+  <link rel="stylesheet" href="css/hhs.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body class="black inner-gutter-top monospace starfield">
+
+      <nav id="nav" class="bar fixed top inner-page-width black padding no-padding-top no-padding-bottom gutter-bottom">
+        <div class="relative">
+          <h1 class="no-margin-top no-margin-bottom"><a href="/" class="no-underline"><img src="logos/HHS_Logo_small.png" alt="Hyper Hyper Space"></a></h1>
+          <div class="absolute top right text-margin-top">
+              <ul class="no-list-style">
+                <li class="float-left margin-right"><a href="./index.html">Introduction</a></li>
+                <li class="float-left margin-right">Learn More</li>
+                <li class="float-left"><a href="https://github.com/hyperhyperspace/hyperhyperspace-core">Source Code</a></li>
+              </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="nav placeholder gutter-bottom"></div>
+          <section class="padding gutter-top gutter-bottom inner-page-width">
+              <div class="no-padding-top gutter-bottom"> <!-- inner-gutter  -->
+                  <h1 class="text-center">Hyper Hyper Space 🚀</h1>
+                  <p class="big text-center black"> 
+                      How does all this work?
+                  </p>
+                  <section class="no-margin inner-page-width"></section>
+
+                  <p>
+                    A space can be as simple as a few written notes synchronized over a person own devices, or it 
+                    may contain more complex structures (e.g. an entire discussion forum, with different topics and 
+                    message threads, accessed by any number of people using different roles: anonymous readers, 
+                    contributors, moderators, administrators, etc).
+                  </p>
+                  <p>
+                    The Hyper Hyper Space <span class="yellow">open source libraries</span> provide the building blocks to create new types of 
+                    spaces. Internally, a space is represented as an <span class="yellow">immutable append-only DAG</span>. This DAG is used
+                    to encode cryptographically secure commutative operations, that allow the space contents to change
+                    (an extension of the ideas used in CRDTs).
+                  </p>
+                  <p class="gutter-bottom">
+                    This enables all the synchronization protocols to work regardless of the type of the space. After
+                    creating HHS-valid datatypes, a <span class="yellow">peer-to-peer network overlay</span> will synchronize them automatically.
+                    The library can be run as a <span class="yellow">standalone program</span>, or <span class="yellow">inside a web browser</span> (using IndexedDB for
+                    storage and WebRTC and WebSockets as transports). Thus, a space can be opened just by visiting
+                    a static website, that becomes a full peer in Hyper Hyper Space.
+                  </p>
+
+              </div>
+
+              <footer class="gutter-top text-center text-width tablet margin-auto">
+                <div>
+                  <a href="https://github.com/hyperhyperspace/hyperhyperspace-core" class="block full-width button base-color big padding margin-bottom" target="_blank"> <!--bright warm teal-->Get the code</a> 
+                </div>
+              </footer>
+
+            </section>
+
+              
+
+
+             
+          </section>
+        </div>
+
+        
+        
+        <footer class="padding inner-page-width light warm black">
+          <div class="three-column trailing desktop">
+            <div>
+              <h6>Contribute</h6>
+              <ul>
+                <li>
+                  <a href="https://github.com/hyperhyperspace/hyperhyperspace-core/">Core library</a>
+                </li>
+                <li>
+                  <a href="https://github.com/hyperhyperspace/">All HHS modules</a>
+                </li>
+                <li>
+                  <a href="https://github.com/hyperhyperspace/hyperhyperspace-core/issues">Open issues</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h6>Join HHS</h6>
+              <ul>
+                <li>
+                  <a href="https://hyperhyper.space/chat-window#/room/en/suburb-suburb-awake" target="_blank">Live chat</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p>HHS is committed to building a better internet for everyone.</p>
+              <p>Site built with <a href="https://cavepaint.github.io/cavepaintcss/">Cavepaint</a>.</p>
+            </div>
+          </div>
+          
+        </footer>
+      </div>
+      
+</body>
+</html>
