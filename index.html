@@ -2,212 +2,200 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+	<meta charset="utf-8">
 
-  <title>Hyper Hyper Space</title>
-  <meta name="description" content="Open-data p2p apps running inside a web browser.">
-  <meta name="author" content="Santiago Bazerque">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/cavepaint.css">
-  <link rel="stylesheet" href="css/hhs.css">
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+	<title>Hyper Hyper Space</title>
+	<meta name="description" content="Open-data p2p apps running inside a web browser.">
+	<meta name="author" content="Santiago Bazerque">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/cavepaint.css">
+	<link rel="stylesheet" href="css/hhs.css">
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
-<body class="black inner-gutter-top monospace starfield">
-
-      <nav id="nav" class="bar fixed top inner-page-width black padding no-padding-top no-padding-bottom gutter-bottom">
-        <div class="relative">
-          <h1 class="no-margin-top no-margin-bottom"><a href="/" class="no-underline"><img src="logos/HHS_Logo_small.png" alt="Hyper Hyper Space"></a></h1>
-          <div class="absolute top right text-margin-top">
-              <ul class="no-list-style">
-                <li class="float-left margin-right">Intro</li>
-                  <li class="float-left margin-right"><a href="./learn.html">Learn More</a></li>
-                  <li class="float-left"><a href="https://github.com/hyperhyperspace/hyperhyperspace-core">Code</a></li>
-              </ul>
-          </div>
-        </div>
-      </nav>
-      <div class="nav placeholder gutter-bottom"></div>
-          <section class="padding gutter-top gutter-bottom inner-page-width">
-              <div class="no-padding-top gutter-bottom"> <!-- inner-gutter  -->
-                  <br class="hide tablet">
-                  <h1 class="text-center no-margin-top">Hyper Hyper Space 🚀</h1>
-                  <p class="big text-center black gutter-bottom"> 
-                      A new way to collaborate online.
-                  </p>
-                  <br>
-
-                  <div class="two-column golden desktop">
-
-                    <section class="border thick dashed text-width margin-auto inner-gutter gutter-bottom" style="border-width: 4px;">
-                      <h3 class="no-margin-top"><span class="all-caps">Space</span> <small class="italic no-bold">noun</small></h3>
-                      <dl class="two-column reverse golden tablet margin-bottom">
-                        <dt class="">1. <strong>neologism</strong></dt>
-                        <dd class="small black">A distributed data structure used to represent information that is shared in real-time over the Internet. See also <em>file</em> and <em>website</em>.</dd>
-                        
-                      </dl>
-                      <dl class="two-column reverse golden tablet">
-  
-                        <dt class="">2. <strong>informal</strong></dt>
-                        <dd class="small black">A particular instance of a <em>space</em>: a chat room, a forum, an e-comerce storefront, a wiki, a blog, etc.</dd>
-                      </dl>
-                    </section>
-
-                    <div class="padding vertical-center text-width margin-auto">
-                      <a href="https://hyperhyper.space/chat-window" class="block button red padding gutter-bottom" target="_blank">See the chat demo</a>
-                      <a href="./learn.html" class="block button base-color padding margin-bottom"> <!--bright warm teal-->Learn more</a> 
-                      <br>
-                      <p class="gutter-top gutter-bottom small text-center">Help us build the Dweb! Join us on <a href="https://github.com/hyperhyperspace/hyperhyperspace-core">Github</a>.</p>
-                    </div>
-                  </div>
-                  
-
-                  <hr class="white text-width margin-auto gutter">
-                  <section class="text-width margin-auto">
-                    <p class="gutter-top">
-                      A <span class="dark base-color italic text-padding text-rounded">space</span> is a bit like a file, but designed for the Internet.
-                      It can be opened simultaneously on several devices and its contents will be synchronized
-                      automatically. Spaces can be looked up by using 3-word codes, and can also be embedded into websites.
-                    </p>
-                    <p class="gutter-bottom">
-                      The following chat room is an example of a space. While you visit this page, your <span class="dark base-color italic text-padding text-rounded">browser is hosting it</span> and making it
-                      available to others:
-                    </p>
-                  </section>
-
-                  <hr class="white text-width margin-auto gutter">
-                  
-                  <div class="margin">
-
-                    <iframe id="suburb-suburb-awake"
-                            title="Inline Frame Example"
-                            width="100%"
-                            height="400"
-                            src="https://hyperhyper.space/chat-window/?words=suburb-suburb-awake#/room/en/suburb-suburb-awake">
-                    </iframe>
-  
-                  </div>
-                  <p class="gutter-top gutter-bottom">
-                    The 3-word code for the space above is <i>suburb suburb awake</i>. Go on and open the 
-                    <a href="https://hyperhyper.space/chat-window" target="_blank">ChatRoom space viewer</a>
-                    and look it up, or explore creating new rooms and sharing them:
-                  </p>
-                  <footer class="gutter-top text-center text-width two-column tablet margin-auto">
-                    <div>
-                      <a href="https://hyperhyper.space/chat-window" class="block full-width button red big padding margin-bottom" target="_blank">ChatRoom viewer</a>
-                    </div>
-                    <div>
-                      <a href="./learn.html" class="block full-width button base-color big padding margin-bottom"> <!--bright warm teal-->Learn more</a> 
-                    </div>
-                  </footer>
-
-                  
-
-              </div>
-
-            </section>
-
-              <section class="no-margin inner-page-width">
-                <p class="margin">
-                  A space can be as simple as a few written notes synchronized over a person own devices, or it 
-                  may contain more complex structures (e.g. an entire discussion forum, used by any number of 
-                  people).
-                </p>
-
-                <p class="margin">
-                  A space is represented internally as an <span class="base-color">append-only Merkle-DAG</span>. Hyper Hyper Space's 
-                  <a href="https://github.com/hyperhyperspace/" target="_blank">open source libraries</a> help application creators implement complex 
-                  semantics over this simple DAG, and replicate its contents using an overlay peer-to-peer network.
-                  A technical intro is available <a href="./learn.html">here</a>.
-                </p>
-
-                <p class="margin gutter-bottom">
-                  Below are the slides from the Hyper Hyper Space lightning talk in the <a href="https://mailchi.mp/archive/this-wednesday-building-distributed-tech-is-not-enough-how-do-we-distribute-the-benefits" target="_blank">June 2021 DWeb meetup</a>:
-                </p>
-
-                <div class="margin gutter-bottom">
-                  <style>
-                    #presentation-embed {
-                      height: 415px;
-                    }
-
-                    @media screen and (max-width: 440px) {
-                      #presentation-embed {
-                        height: 225px;
-                      }
-                    }
-                  </style>
-                  
-                  <iframe id="presentation-embed"
-                          title="Inline Frame Example"
-                          width="100%"
-                          src="./presentation.html"
-                          style="border: 0">
-
-                  </iframe>
-                
-                </div>
-                
-                <div class="inner-gutter">
-                  <p class="no-margin">
-                    Drop us a line at <a class="red text-padding" href="mailto:hello@hyperhyperspace.org">hello@hyperhyperspace.org</a>!
-                  </p>
-
-                </div>
-              </section>
+<body class="black monospace starfield padding">
 
 
-              <section class="padding inner-page-width">
-                <div class="three-column desktop small margin-bottom">
-                  <div class="inner-text-width">
-                    <h5>Own your data</h5>
-                    <p>Store your conversations, pictures and files on your own devices. Share them only with whom you want.</p>
-                  </div>
-                  <div class="inner-text-width">
-                    <h5>Think freely</h5>
-                    <p>Share information without intermediaries or censorship, using peer-to-peer technology that works inside your browser.</p>
-                  </div>
-                  <div class="inner-text-width">
-                    <h5>Champion rights</h5>
-                    <p>By running your own node in a peer-to-peer network (inside a web browser, like this one, if you so choose!) you can finally own your information online top-to-bottom.</p>
-                  </div>
-                </div>
-              </section>
-          </section>
-        </div>
-        
-        <footer class="padding inner-page-width light warm black">
-          <div class="three-column trailing desktop">
-            <div>
-              <h6>Contribute</h6>
-              <ul>
-                <li>
-                  <a href="https://github.com/hyperhyperspace/hyperhyperspace-core/">Core library</a>
-                </li>
-                <li>
-                  <a href="https://github.com/hyperhyperspace/">All HHS modules</a>
-                </li>
-                <li>
-                  <a href="https://github.com/hyperhyperspace/hyperhyperspace-core/issues">Open issues</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h6>Join HHS</h6>
-              <ul>
-                <li>
-                  <a href="https://hyperhyper.space/chat-window#/room/en/suburb-suburb-awake" target="_blank">Live chat</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p>HHS is committed to building a better internet for everyone.</p>
-              <p>Site built with <a href="https://cavepaint.github.io/cavepaintcss/">Cavepaint</a>.</p>
-            </div>
-          </div>
-          
-        </footer>
-      </div>
-      
+	<!-- <div class="fixed top right text-margin-top">
+		<ul class="no-list-style">
+			<li class="float-left margin-right">Intro</li>
+				<li class="float-left margin-right"><a href="./learn.html">Learn More</a></li>
+				<li class="float-left"><a href="https://github.com/hyperhyperspace/hyperhyperspace-core">Code</a></li>
+		</ul>
+	</div> -->
+
+	<div class="text-center card-width margin-auto no-margin-top text-margin-bottom"><img class="black padding rounded" src="logos/HHS_Logo_ok.png" alt="Hyper Hyper Space"></div>
+	<p class="bold text-center black gutter-bottom"> 
+			A <span class="text-color tint light yellow">new way</span> new way to collaborate online.
+	</p>
+	<br>
+
+	<div class="two-column golden desktop gap-gutter page-width margin-auto">
+
+		<div class="border thick dashed text-width margin-auto inner-gutter margin-bottom" style="border-width: 4px;">
+			<h3 class="no-margin-top"><span class="all-caps">Space</span> <small class="italic no-bold">noun</small></h3>
+			<dl class="two-column reverse golden tablet margin-bottom">
+				<dt class="">1. <strong>neologism</strong></dt>
+				<dd class="small black">A distributed data structure used to represent information that is shared in real-time over the Internet. See also <em>file</em> and <em>website</em>.</dd>
+				
+			</dl>
+			<dl class="two-column reverse golden tablet">
+
+				<dt class="">2. <strong>informal</strong></dt>
+				<dd class="small black">A particular instance of a <em>space</em>: a chat room, a forum, an e-comerce storefront, a wiki, a blog, etc.</dd>
+			</dl>
+		</div>
+
+		<div class="padding vertical-center text-width margin-auto">
+			<div class="text-center">
+				<p>
+					<a href="https://hyperhyper.space/chat-window" class="button big bright red padding" target="_blank">See the chat demo</a>
+
+				</p>
+				<br>
+				<p>
+					<a href="./learn.html" class="button dull base-color padding">Learn more</a> 
+
+				</p>
+				<br>
+				<p class=" gutter-bottom small text-center">Help us build the Dweb! Join us on <a href="https://github.com/hyperhyperspace/hyperhyperspace-core">Github</a>.</p>
+			</div>
+			
+		</div>
+	</div>
+
+	<hr class="white text-width margin-auto gutter">
+					
+	<div class="page-width margin-auto margin-bottom">
+		<p class="black text-width margin-auto text-center">A <strong>decentralized</strong> chat instance running completely in your browser. Go ahead and say hi!</p>
+
+		<iframe id="suburb-suburb-awake"
+						title="Inline Frame Example"
+						width="100%"
+						height="400"
+						src="https://hyperhyper.space/chat-window/?words=suburb-suburb-awake#/room/en/suburb-suburb-awake">
+		</iframe>
+
+		
+
+	</div>
+
+	<p class="text-width margin-auto gutter-bottom">
+		The 3-word code for the space above is <i>suburb suburb awake</i>. See it in the 
+		<a href="https://hyperhyper.space/chat-window" target="_blank">Chat space viewer</a>.
+	</p>
+
+	<hr class="white text-width margin-auto gutter">
+
+	<div class="third triad padding small gutter-bottom margin-auto page-width">
+		<p class="big">
+			A <span class="dark base-color italic text-padding">space</span> is a bit like a file, but designed for <strong>the&nbsp;internet</strong>.
+		</p>
+		<p class="no-margin-bottom">
+			It can be opened simultaneously on several devices and its contents will be synchronized
+			automatically. Spaces can be looked up by using 3-word codes, and can also be embedded into websites.
+		</p>
+	</div>
+
+	<div class="inner-text-width">
+		<p>
+			A space can be as simple as a few written notes synchronized over a person own devices, or it 
+			may contain more complex structures (e.g. an entire discussion forum, used by any number of 
+			people).
+		</p>
+
+		<p>
+			A space is represented internally as an <span class="light yellow text-padding">append-only Merkle-DAG</span>. Hyper Hyper Space's 
+			<a href="https://github.com/hyperhyperspace/" target="_blank">open source libraries</a> help application creators implement complex 
+			semantics over this simple DAG, and replicate its contents using an overlay peer-to-peer network.
+			A technical intro is available <a href="./learn.html">here</a>.
+		</p>
+
+		<p>
+			Below are the slides from the Hyper Hyper Space lightning talk in the <a href="https://mailchi.mp/archive/this-wednesday-building-distributed-tech-is-not-enough-how-do-we-distribute-the-benefits" target="_blank">June 2021 DWeb meetup</a>:
+		</p>
+		<br>
+	</div>
+
+	<div class="page-width margin-auto">
+		<style>
+			#presentation-embed {
+				height: 320px;
+			}
+
+			@media screen and (min-width: 550px) {
+				#presentation-embed {
+					height: 480px;
+				}
+			}
+		</style>
+		
+		<iframe id="presentation-embed"
+						title="Dweb HHS presentation"
+						width="100%"
+						src="./presentation.html"
+						class="page-width"
+						style="border: 0; overflow: hidden;">
+
+		</iframe>
+	
+	</div>
+	
+	<div class="inner-gutter inner-text-width">
+		<p class="no-margin">
+			Drop us a line at <a class="red text-padding" href="mailto:hello@hyperhyperspace.org">hello@hyperhyperspace.org</a>!
+		</p>
+
+	</div>
+
+
+	<div class="dark dull base-color gray padding">
+		<div class="three-column desktop small margin-bottom inner-page-width">
+			<div class="inner-text-width">
+				<h4 class="big">Own your data</h4>
+				<p class="bold">Store your conversations, pictures and files on your own devices. Share them only with whom you want.</p>
+			</div>
+			<div class="inner-text-width">
+				<h4 class="big">Think freely</h4>
+				<p class="bold">Share information without intermediaries or censorship, using peer-to-peer technology that works inside your browser.</p>
+			</div>
+			<div class="inner-text-width">
+				<h4 class="big">Champion rights</h4>
+				<p class="bold">By running your own node in a peer-to-peer network (inside a web browser, like this one, if you so choose!) you can finally own your information online top-to-bottom.</p>
+			</div>
+		</div>
+	</div>
+				
+	<footer class="padding inner-page-width">
+		<div class="three-column trailing desktop">
+			<div>
+				<h6>Contribute</h6>
+				<ul>
+					<li>
+						<a href="https://github.com/hyperhyperspace/hyperhyperspace-core/">Core library</a>
+					</li>
+					<li>
+						<a href="https://github.com/hyperhyperspace/">All HHS modules</a>
+					</li>
+					<li>
+						<a href="https://github.com/hyperhyperspace/hyperhyperspace-core/issues">Open issues</a>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<h6>Join HHS</h6>
+				<ul>
+					<li>
+						<a href="https://hyperhyper.space/chat-window#/room/en/suburb-suburb-awake" target="_blank">Live chat</a>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<p>HHS is committed to building a better internet for everyone.</p>
+				<p>Site built using <a href="https://cavepaint.github.io/cavepaintcss/">Cavepaint</a>.</p>
+			</div>
+		</div>
+		
+	</footer>			
 </body>
 </html>
