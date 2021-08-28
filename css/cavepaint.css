@@ -1,9 +1,9 @@
 /* This project uses Cavepaint (MIT License) by Rex Riepe */
 /* https://github.com/cavepaint/cavepaintCSS */
 :root {
-  --font-size-base: 16px;
+  --font-size-base: 18px;
   --font-size-mod: 1;
-  --font-family: var(--monospace);
+  --font-family: var(--sans-serif);
   --line-height: 1.8;
   --headline-base: 1em;
   --headline-mod: 1;
