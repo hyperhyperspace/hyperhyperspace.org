@@ -13,7 +13,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
-<body class="black monospace starfield padding">
+<body class="black monospace starfield">
 
 
 	<!-- <div class="fixed top right text-margin-top">
@@ -24,10 +24,13 @@
 		</ul>
 	</div> -->
 
-	<div class="text-center card-width margin-auto no-margin-top text-margin-bottom"><img class="black padding rounded" src="logos/HHS_Logo_ok.png" alt="Hyper Hyper Space"></div>
-	<p class="bold text-center black gutter-bottom"> 
-			A <span class="text-color tint light yellow">new way</span> new way to collaborate online.
-	</p>
+	<div class="white full-width padding margin-auto margin-bottom">
+		<div class="text-center card-width margin-auto no-margin-top text-margin-bottom"><img class="white text-margin text-padding rounded" src="logos/HHS_Logo_ok.png" alt="Hyper Hyper Space"></div>
+		<p class="bold text-center"> 
+				A <span class="text-color red">new way</span> new way to collaborate online.
+		</p>
+	</div>
+
 	<br>
 
 	<div class="two-column golden desktop gap-gutter page-width margin-auto">
@@ -97,105 +100,111 @@
 		</p>
 	</div>
 
-	<div class="inner-text-width">
+	<div class="inner-text-width gutter-bottom">
 		<p>
 			A space can be as simple as a few written notes synchronized over a person own devices, or it 
 			may contain more complex structures (e.g. an entire discussion forum, used by any number of 
 			people).
 		</p>
+	</div>
 
-		<p>
+	<section class="dark dull base-color inner-gutter-top">
+		<p class="inner-text-width">
 			A space is represented internally as an <span class="light yellow text-padding">append-only Merkle-DAG</span>. Hyper Hyper Space's 
 			<a href="https://github.com/hyperhyperspace/" target="_blank">open source libraries</a> help application creators implement complex 
 			semantics over this simple DAG, and replicate its contents using an overlay peer-to-peer network.
 			A technical intro is available <a href="./learn.html">here</a>.
 		</p>
-
-		<p>
+	
+		<p class="inner-text-width">
 			Below are the slides from the Hyper Hyper Space lightning talk in the <a href="https://mailchi.mp/archive/this-wednesday-building-distributed-tech-is-not-enough-how-do-we-distribute-the-benefits" target="_blank">June 2021 DWeb meetup</a>:
 		</p>
 		<br>
-	</div>
-
-	<div class="page-width margin-auto">
-		<style>
-			#presentation-embed {
-				height: 320px;
-			}
-
-			@media screen and (min-width: 550px) {
+	
+		<div class="page-width margin-auto">
+			<style>
 				#presentation-embed {
-					height: 480px;
+					height: 320px;
 				}
-			}
-		</style>
+	
+				@media screen and (min-width: 550px) {
+					#presentation-embed {
+						height: 480px;
+					}
+				}
+			</style>
+			
+			<iframe id="presentation-embed"
+							title="Dweb HHS presentation"
+							width="100%"
+							src="./presentation.html"
+							class="page-width"
+							style="border: 0; overflow: hidden;">
+	
+			</iframe>
 		
-		<iframe id="presentation-embed"
-						title="Dweb HHS presentation"
-						width="100%"
-						src="./presentation.html"
-						class="page-width"
-						style="border: 0; overflow: hidden;">
+		</div>
 
-		</iframe>
+		<div class="inner-gutter inner-text-width">
+			<p class="no-margin">
+				Drop us a line at <a class="red text-padding" href="mailto:hello@hyperhyperspace.org">hello@hyperhyperspace.org</a>!
+			</p>
 	
-	</div>
+		</div>
 	
-	<div class="inner-gutter inner-text-width">
-		<p class="no-margin">
-			Drop us a line at <a class="red text-padding" href="mailto:hello@hyperhyperspace.org">hello@hyperhyperspace.org</a>!
-		</p>
-
-	</div>
-
-
-	<div class="dark dull base-color gray padding">
-		<div class="three-column desktop small margin-bottom inner-page-width">
-			<div class="inner-text-width">
-				<h4 class="big">Own your data</h4>
-				<p class="bold">Store your conversations, pictures and files on your own devices. Share them only with whom you want.</p>
-			</div>
-			<div class="inner-text-width">
-				<h4 class="big">Think freely</h4>
-				<p class="bold">Share information without intermediaries or censorship, using peer-to-peer technology that works inside your browser.</p>
-			</div>
-			<div class="inner-text-width">
-				<h4 class="big">Champion rights</h4>
-				<p class="bold">By running your own node in a peer-to-peer network (inside a web browser, like this one, if you so choose!) you can finally own your information online top-to-bottom.</p>
+	
+		<div class="padding cool black">
+			<div class="three-column desktop small margin-bottom inner-page-width">
+				<div class="inner-text-width">
+					<h4 class="">Own your data</h4>
+					<p class="bold no-margin-bottom">Store your conversations, pictures and files on your own devices. Share them only with whom you want.</p>
+				</div>
+				<div class="inner-text-width">
+					<h4 class="">Think freely</h4>
+					<p class="bold no-margin-bottom">Share information without intermediaries or censorship, using peer-to-peer technology that works inside your browser.</p>
+				</div>
+				<div class="inner-text-width">
+					<h4 class="">Champion rights</h4>
+					<p class="bold no-margin-bottom">By running your own node in a peer-to-peer network (inside a web browser, like this one, if you so choose!) you can finally own your information online top-to-bottom.</p>
+				</div>
 			</div>
 		</div>
-	</div>
-				
-	<footer class="padding inner-page-width">
-		<div class="three-column trailing desktop">
-			<div>
-				<h6>Contribute</h6>
-				<ul>
-					<li>
-						<a href="https://github.com/hyperhyperspace/hyperhyperspace-core/">Core library</a>
-					</li>
-					<li>
-						<a href="https://github.com/hyperhyperspace/">All HHS modules</a>
-					</li>
-					<li>
-						<a href="https://github.com/hyperhyperspace/hyperhyperspace-core/issues">Open issues</a>
-					</li>
-				</ul>
+					
+		<footer class="warm black padding inner-page-width">
+			<div class="three-column trailing desktop">
+				<div>
+					<h6>Contribute</h6>
+					<ul>
+						<li>
+							<a href="https://github.com/hyperhyperspace/hyperhyperspace-core/">Core library</a>
+						</li>
+						<li>
+							<a href="https://github.com/hyperhyperspace/">All HHS modules</a>
+						</li>
+						<li>
+							<a href="https://github.com/hyperhyperspace/hyperhyperspace-core/issues">Open issues</a>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<h6>Join HHS</h6>
+					<ul>
+						<li>
+							<a href="https://hyperhyper.space/chat-window#/room/en/suburb-suburb-awake" target="_blank">Live chat</a>
+						</li>
+					</ul>
+				</div>
+				<div class="small">
+					<p>HHS is committed to building a better internet for everyone.</p>
+					<p>Site built using <a href="https://cavepaint.github.io/cavepaintcss/">Cavepaint</a>.</p>
+				</div>
 			</div>
-			<div>
-				<h6>Join HHS</h6>
-				<ul>
-					<li>
-						<a href="https://hyperhyper.space/chat-window#/room/en/suburb-suburb-awake" target="_blank">Live chat</a>
-					</li>
-				</ul>
-			</div>
-			<div>
-				<p>HHS is committed to building a better internet for everyone.</p>
-				<p>Site built using <a href="https://cavepaint.github.io/cavepaintcss/">Cavepaint</a>.</p>
-			</div>
-		</div>
+			
+		</footer>		
 		
-	</footer>			
+	</section>
+
+	
+		
 </body>
 </html>
