@@ -1,3 +1,4 @@
+
 <!doctype html>
 
 <html lang="en">
@@ -8,205 +9,2040 @@
 	<meta name="description" content="Open-data p2p apps running inside a web browser.">
 	<meta name="author" content="Santiago Bazerque">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/cavepaint.css">
-	<link rel="stylesheet" href="css/hhs.css">
-	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.hyperhyperspace.org/favicon.ico">
+    <style>
+
+/* A California Stylesheet (MIT License) */
+/* https://github.com/casscss/cass */
+/* Typography */
+:root {
+  --line-height: 1.6;
+  --text-measure: 48;
+  --font-size-base: 16px;
+  --font-size-mod: 1;
+  --font-size: calc(var(--font-size-base) * var(--font-size-mod));
+  --font-family: var(--sans-serif);
+  --headline-font-family: var(--sans-serif);
+  --text-padding: calc(0.4 * var(--padding-base));
+  --text-margin: var(--text-padding);
+  --text-indent: var(--text-padding);
+  --text-border-radius: calc(0.6 * var(--text-padding));
+  --monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, "DejaVu Sans Mono", Courier, monospace;
+  --serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "Droid Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  --sans-serif: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+}
+/* Layout */
+:root {
+  --padding-base: 1em;
+  --padding: var(--padding-base);
+  --margin: var(--padding-base);
+  --gutter: 2rem;
+  --gap: var(--padding-base);
+  --width: var(--type-width);
+  --type-width: calc(var(--text-measure) * 0.6rem);
+  --card-width: calc(var(--type-width) * 0.6);
+  --page-width: calc(var(--type-width) * 1.6);
+  --feature-width: calc(var(--page-width) * 1.6);
+  --full-width: 100%;
+}
+/* Decoration */
+:root {
+  --border-width: 1px;
+  --border-style: solid;
+  --border-radius: 0.5em;
+  --border-h: var(--h);
+  --border-s: calc(var(--s) * 0.5);
+  --border-l: 40%;
+  --border-color: hsl(var(--border-h), var(--border-s), var(--border-l));
+  --border: var(--border-width) var(--border-style) var(--border-color);
+  --border-thin: calc(var(--border-width) / 2);
+  --border-thick: calc(var(--border-width) * 2);
+  --border-radius: var(--text-padding);
+  --box-shadow: 0 var(--shadow-position) var(--shadow-blur) var(--shadow-color);
+  --shadow-position: 1px;
+  --shadow-blur: 3px;
+  --shadow-color: rgba(3, 29, 37, 0.2);
+}
+/* Colors */
+:root {
+  --brand-color: #1a7fc3;
+  --complement: #ba6227;
+  --accent: #7985f1;
+  --white: #fafeff;
+  --gray: #cbcbcb;
+  --black: #031d25;
+  --red: #d02c31;
+  --orangered: #e7691a;
+  --orange: #fda502;
+  --gold: #f8d207;
+  --yellow: #f4ff0c;
+  --lime: #8dd630;
+  --green: #25ae54;
+  --jade: #27b086;
+  --teal: #28b2b9;
+  --aqua: #1ad2d6;
+  --cyan: #0cf2f3;
+  --skyblue: #10a2e9;
+  --blue: #1452df;
+  --indigo: #5043c6;
+  --purple: #8b34ad;
+  --fuchsia: #af28cb;
+  --magenta: #d21de9;
+  --pink: #d1258d;
+  --focus-color: var(--skyblue);
+  --h: 194.3;
+  --s: 91.6%;
+  --l: 99%;
+  --a: 1;
+}
+/* Responsive settings for mobile **/
+:root {
+  --responsive-width: 100%;
+  --responsive-padding: calc(var(--padding-base) * 0.6);
+  --responsive-font-size: calc(16px - 2px);
+}
+/* Responsive settings for tablet */
+@media screen and (min-width: 31.7rem) {
+  :root {
+    --responsive-width: var(--type-width);
+    --responsive-padding: calc(var(--padding-base) * 0.8);
+    --responsive-font-size: calc(16px - 1px);
+  }
+}
+/* Responsive settings for desktop */
+@media screen and (min-width: 50.1rem) {
+  :root {
+    --responsive-width: var(--page-width);
+    --responsive-padding: var(--padding-base);
+    --responsive-font-size: 16px;
+  }
+}
+/* Elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: calc(var(--font-size-base) * var(--font-size-mod));
+}
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  color: var(--t, var(--black, black));
+  background-color: var(--white);
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--headline-font-family);
+  font-weight: bold;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  letter-spacing: -0.03em;
+  color: inherit;
+  line-height: 1.3;
+}
+h1.gutter-bottom,
+h2.gutter-bottom,
+h3.gutter-bottom,
+h4.gutter-bottom,
+h5.gutter-bottom,
+h6.gutter-bottom {
+  margin-bottom: 1.2em;
+}
+h1 *,
+h2 *,
+h3 *,
+h4 *,
+h5 *,
+h6 * {
+  font-size: inherit;
+}
+h1.huge {
+  --font-size-mod: 2.8;
+}
+h1.big,
+h2.huge {
+  --font-size-mod: 2.4;
+}
+h1,
+h1.medium h2.big,
+h3.huge {
+  --font-size-mod: 2;
+}
+h1.small,
+h2,
+h2.medium,
+h3.big,
+h4.huge {
+  --font-size-mod: 1.8;
+}
+h1.tiny,
+h2.small,
+h3,
+h3.medium,
+h4.small,
+h5.tiny {
+  --font-size-mod: 1.6;
+}
+h2.tiny,
+h3.small,
+h4,
+h4.medium,
+h5.small,
+h6.tiny {
+  --font-size-mod: 1.4;
+}
+h3.tiny,
+h4.small,
+h5,
+h5.medium,
+h6.small {
+  --font-size-mod: 1.3;
+}
+h4.tiny,
+h5.small,
+h6,
+h6.medium {
+  --font-size-mod: 1.2;
+}
+h5.tiny,
+h6.small {
+  --font-size-mod: 1.1;
+}
+h6.tiny {
+  --font-size-mod: 1;
+}
+p {
+  margin-bottom: 1em;
+  text-indent: var(--text-indent);
+}
+p.gutter-bottom {
+  margin-bottom: 2em;
+}
+p:only-of-type {
+  text-indent: 0;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+nav {
+  z-index: 99;
+}
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+em {
+  display: inline;
+  font-style: italic;
+}
+hr {
+  border-color: hsl(var(--h), var(--s), var(--l)) !important;
+}
+input {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  background: var(--white);
+  color: var(--black);
+  border: var(--border);
+  line-height: var(--line-height);
+  padding: var(--text-padding);
+  max-width: 100%;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: 3px solid var(--focus-color);
+}
+textarea {
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  border: var(--border);
+  margin-bottom: var(--margin);
+  background: var(--white);
+  color: var(--black);
+  padding: var(--text-padding);
+  overflow: auto;
+}
+ul,
+ol {
+  margin-left: var(--gutter);
+  margin-bottom: var(--margin-bottom);
+}
+li {
+  margin-bottom: var(--text-margin);
+}
+kbd {
+  color: var(--white);
+  border-radius: var(--border-radius);
+  padding: var(--text-padding);
+  white-space: nowrap;
+}
+pre,
+code,
+.code {
+  font-family: var(--monospace);
+  margin-bottom: var(--margin);
+  border-radius: var(--border-radius);
+  padding: var(--text-padding);
+  background: var(--black);
+  color: var(--white);
+}
+pre > code {
+  background: transparent;
+  padding: 0;
+}
+/* Composables */
+.columns,
+.grid,
+.column {
+  --columns: 12;
+  --multi-column: repeat(var(--columns), minmax(0, 1fr));
+  --one-column: repeat(1, minmax(0, 1fr));
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: var(--multi-column);
+}
+.one.columns,
+.one.grid,
+.one.column {
+  --columns: 1;
+}
+.two.columns,
+.two.grid,
+.two.column {
+  --columns: 2;
+}
+.three.columns,
+.three.grid,
+.three.column {
+  --columns: 3;
+}
+.four.columns,
+.four.grid,
+.four.column {
+  --columns: 4;
+}
+.five.columns,
+.five.grid,
+.five.column {
+  --columns: 5;
+}
+.six.columns,
+.six.grid,
+.six.column {
+  --columns: 6;
+}
+.seven.columns,
+.seven.grid,
+.seven.column {
+  --columns: 7;
+}
+.eight.columns,
+.eight.grid,
+.eight.column {
+  --columns: 8;
+}
+.nine.columns,
+.nine.grid,
+.nine.column {
+  --columns: 9;
+}
+.ten.columns,
+.ten.grid,
+.ten.column {
+  --columns: 10;
+}
+.eleven.columns,
+.eleven.grid,
+.eleven.column {
+  --columns: 11;
+}
+.twelve.columns,
+.twelve.grid,
+.twelve.column {
+  --columns: 12;
+}
+.golden {
+  grid-template-columns: 1.618fr 1fr;
+}
+.golden.reverse {
+  grid-template-columns: 1fr 1.618fr;
+}
+.columns.mobile,
+.columns.mobile.tablet,
+.columns.tablet,
+.columns.desktop,
+.grid.mobile,
+.grid.mobile.tablet,
+.grid.tablet,
+.grid.desktop,
+.column.mobile,
+.column.mobile.tablet,
+.column.tablet,
+.column.desktop {
+  grid-template-columns: var(--one-column);
+}
+@media screen and (max-width: calc(31.7rem - 1px)) {
+  .columns.mobile,
+  .grid.mobile,
+  .column.mobile {
+    grid-template-columns: var(--multi-column);
+  }
+  .golden.mobile {
+    grid-template-columns: var(--one-column);
+  }
+  .golden.reverse.mobile {
+    grid-template-columns: var(--one-column);
+  }
+}
+@media screen and (min-width: 31.7rem) {
+  .columns.tablet,
+  .grid.tablet,
+  .column.tablet {
+    grid-template-columns: var(--multi-column);
+  }
+  .golden.tablet {
+    grid-template-columns: 1.618fr 1fr;
+  }
+  .golden.reverse.tablet {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+@media screen and (max-width: calc(50.1rem - 1px)) {
+  .columns.mobile.tablet,
+  .grid.mobile.tablet,
+  .column.mobile.tablet {
+    grid-template-columns: var(--multi-column);
+  }
+  .golden.mobile.tablet {
+    grid-template-columns: 1.618fr 1fr;
+  }
+  .golden.reverse.mobile.tablet {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+@media screen and (min-width: 50.1rem) {
+  .columns.desktop,
+  .grid.desktop,
+  .column.desktop {
+    grid-template-columns: var(--multi-column);
+  }
+  .golden.desktop {
+    grid-template-columns: 1.618fr 1fr;
+  }
+  .golden.reverse.desktop {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+.wide {
+  grid-column: auto / span var(--span);
+}
+.high {
+  grid-row: auto / span var(--span);
+}
+.one {
+  --span: 1;
+}
+.two {
+  --span: 2;
+}
+.three {
+  --span: 3;
+}
+.four {
+  --span: 4;
+}
+.five {
+  --span: 5;
+}
+.six {
+  --span: 6;
+}
+.seven {
+  --span: 7;
+}
+.eight {
+  --span: 8;
+}
+.nine {
+  --span: 9;
+}
+.ten {
+  --span: 10;
+}
+.eleven {
+  --span: 11;
+}
+.twelve {
+  --span: 12;
+}
+.button,
+button {
+  display: inline;
+  border-width: 0;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  position: relative;
+  font-family: inherit;
+  padding: 0.6em 1em;
+  color: inherit;
+  background-color: inherit;
+  line-height: 1.25;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-decoration: none;
+  touch-action: manipulation;
+  cursor: pointer;
+  transform: scale(1);
+  transition: scale 0.08s linear;
+}
+.button:active,
+button:active {
+  transform: scale(0.96);
+  box-shadow: unset;
+}
+.padding-responsive {
+  --padding: var(--responsive-padding);
+}
+.padding,
+.padding-responsive {
+  padding: var(--padding);
+}
+.margin {
+  margin: var(--margin);
+}
+.gutter {
+  margin: var(--gutter);
+}
+.text-padding {
+  padding: var(--text-padding);
+}
+.text-margin {
+  margin: var(--text-padding);
+}
+.padding-top {
+  padding-top: var(--padding);
+}
+.padding-right {
+  padding-right: var(--padding);
+}
+.padding-bottom {
+  padding-bottom: var(--padding);
+}
+.padding-left {
+  padding-left: var(--padding);
+}
+.margin-top {
+  margin-top: var(--margin);
+}
+.margin-right {
+  margin-right: var(--margin);
+}
+.margin-bottom {
+  margin-bottom: var(--margin);
+}
+.margin-left {
+  margin-left: var(--margin);
+}
+.gutter-top {
+  margin-top: var(--gutter);
+}
+.gutter-right {
+  margin-right: var(--gutter);
+}
+.gutter-bottom {
+  margin-bottom: var(--gutter);
+}
+.gutter-left {
+  margin-left: var(--gutter);
+}
+.text-padding-top {
+  padding-top: var(--text-padding);
+}
+.text-padding-right {
+  padding-right: var(--text-padding);
+}
+.text-padding-bottom {
+  padding-bottom: var(--text-padding);
+}
+.text-padding-left {
+  padding-left: var(--text-padding);
+}
+.text-margin-top {
+  margin-top: var(--text-padding);
+}
+.text-margin-right {
+  margin-right: var(--text-padding);
+}
+.text-margin-bottom {
+  margin-bottom: var(--text-padding);
+}
+.text-margin-left {
+  margin-left: var(--text-padding);
+}
+.trim > *:last-child {
+  margin-bottom: 0;
+}
+.text-border-radius,
+.text-rounded {
+  border-radius: var(--text-padding);
+}
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+.static {
+  position: static;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.margin-auto,
+.margin.auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.raised {
+  z-index: 100;
+}
+.lowered {
+  z-index: -100;
+}
+.shadow {
+  box-shadow: var(--box-shadow);
+}
+.shallow {
+  --shadow-position: 1px;
+  --shadow-color: rgba(3, 29, 37, 0.16);
+  --box-shadow: 0 var(--shadow-position) var(--shadow-blur) var(--shadow-color);
+}
+.deep {
+  --shadow-position: 3px;
+  --box-shadow: 0 var(--shadow-position) var(--shadow-blur) var(--shadow-color);
+}
+.inset {
+  box-shadow: inset var(--box-shadow);
+}
+.line.height,
+.placeholder {
+  min-height: calc(var(--font-size) * var(--line-height));
+}
+.line.height.force {
+  height: calc(var(--font-size) * var(--line-height));
+}
+.placeholder::after {
+  content: " ";
+  display: block;
+  width: 0;
+  padding-top: var(--ratio);
+}
+.square {
+  --ratio: 100%;
+}
+.screen {
+  --ratio: 75%;
+}
+.widescreen {
+  --ratio: 56.25%;
+}
+.full.height {
+  min-height: 100%;
+}
+.full.height.force {
+  height: 100%;
+}
+.viewport.height {
+  min-height: 100vh;
+}
+.viewport.height.force {
+  height: 100vh;
+}
+.viewport.height.golden {
+  min-height: 62vh;
+}
+.viewport.height.golden.force {
+  height: 62vh;
+}
+.viewport.height.golden.reverse {
+  min-height: 38vh;
+}
+.viewport.height.golden.reverse.force {
+  height: 38vh;
+}
+.cover {
+  background-size: cover;
+  background-position: center center;
+}
+.border {
+  border: var(--border);
+}
+.border-top {
+  border-top: var(--border);
+}
+.border-right {
+  border-right: var(--border);
+}
+.border-bottom {
+  border-bottom: var(--border);
+}
+.border-left {
+  border-left: var(--border);
+}
+.border-radius,
+.rounded {
+  border-radius: var(--border-radius);
+}
+.dashed {
+  border-style: dashed;
+}
+.dotted {
+  border-style: dotted;
+}
+.thick {
+  border-width: var(--border-thick);
+}
+.thin {
+  --border-l: clamp(0%, calc(var(--l) * 0.9), 85%);
+  border-width: var(--border-thin);
+}
+.border-text-color {
+  border-color: currentColor !important;
+}
+.fade {
+  opacity: 0.65;
+}
+.monospace {
+  font-family: var(--monospace);
+}
+.serif {
+  font-family: var(--serif);
+}
+.sans.serif {
+  font-family: var(--sans-serif);
+}
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+.caps,
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: lowercase;
+}
+.underline {
+  text-decoration: underline;
+}
+.tiny {
+  --font-size-mod: 0.85;
+}
+.small {
+  --font-size-mod: 0.92;
+}
+.medium {
+  --font-size-mod: 1;
+}
+.big {
+  --font-size-mod: 1.3;
+}
+.huge {
+  --font-size-mod: 1.6;
+}
+.vertical-center {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+.gap-border-width,
+.gap-tiny {
+  --gap: var(--border-width);
+}
+.gap-text-padding,
+.gap-small {
+  --gap: var(--text-padding);
+}
+.gap-padding,
+.gap-medium,
+.gap-default {
+  --gap: var(--padding);
+}
+.gap-margin {
+  --gap: var(--margin);
+}
+.gap-gutter,
+.gap-big {
+  --gap: var(--gutter);
+}
+.gap-huge {
+  --gap: calc(2 * var(--gutter));
+}
+.text-color {
+  color: hsl(var(--h), clamp(0%, var(--s), 90%), clamp(0%, var(--l), 30%)) !important;
+  background-color: transparent !important;
+}
+.text-color.tint {
+  color: hsl(var(--h), clamp(0%, var(--s), 90%), clamp(60%, var(--l), 100%)) !important;
+  background-color: transparent !important;
+}
+.tint,
+.hella.dark.white.gray,
+.very.dark.gray,
+.hella.dark.gray,
+.hella.dim.gray,
+.gray.black,
+.black,
+.brand-color,
+.complement,
+.accent,
+.hella.dark.complement.accent,
+.hella.dim.complement.accent,
+.red,
+.red.orange,
+.very.dark.orange,
+.hella.dark.orange,
+.very.dim.orange,
+.hella.dim.orange,
+.very.dark.orange.yellow,
+.hella.dark.orange.yellow,
+.very.dim.orange.yellow,
+.hella.dim.orange.yellow,
+.very.dark.yellow,
+.hella.dark.yellow,
+.very.dim.yellow,
+.hella.dim.yellow,
+.very.dark.yellow.green,
+.hella.dark.yellow.green,
+.very.dim.yellow.green,
+.hella.dim.yellow.green,
+.dark.green,
+.very.dark.green,
+.hella.dark.green,
+.dim.green,
+.very.dim.green,
+.hella.dim.green,
+.dark.green.teal,
+.very.dark.green.teal,
+.hella.dark.green.teal,
+.dim.green.teal,
+.very.dim.green.teal,
+.hella.dim.green.teal,
+.dark.teal,
+.very.dark.teal,
+.hella.dark.teal,
+.dim.teal,
+.very.dim.teal,
+.hella.dim.teal,
+.very.dark.teal.cyan,
+.hella.dark.teal.cyan,
+.very.dim.teal.cyan,
+.hella.dim.teal.cyan,
+.very.dark.cyan,
+.hella.dark.cyan,
+.very.dim.cyan,
+.hella.dim.cyan,
+.dark.cyan.blue,
+.very.dark.cyan.blue,
+.hella.dark.cyan.blue,
+.dim.cyan.blue,
+.very.dim.cyan.blue,
+.hella.dim.cyan.blue,
+.blue,
+.blue.purple,
+.purple,
+.purple.magenta,
+.magenta,
+.magenta.red,
+.orangered,
+.very.dark.gold,
+.hella.dark.gold,
+.very.dim.gold,
+.hella.dim.gold,
+.very.dark.lime,
+.hella.dark.lime,
+.very.dim.lime,
+.hella.dim.lime,
+.dark.jade,
+.very.dark.jade,
+.hella.dark.jade,
+.dim.jade,
+.very.dim.jade,
+.hella.dim.jade,
+.very.dark.aqua,
+.hella.dark.aqua,
+.very.dim.aqua,
+.hella.dim.aqua,
+.dark.skyblue,
+.very.dark.skyblue,
+.hella.dark.skyblue,
+.dim.skyblue,
+.very.dim.skyblue,
+.hella.dim.skyblue,
+.indigo,
+.fuchsia,
+.pink {
+  --t: var(--white);
+  color: var(--white);
+  background-color: hsla(var(--h), var(--s), var(--l), var(--a));
+  border-color: hsla(var(--border-h), var(--border-s), var(--border-l), var(--border-a));
+  --border-h: var(--h);
+  --border-s: var(--s);
+  --border-l: clamp(0%, calc(var(--l) * 0.75), 85%);
+  --border-a: var(--a);
+}
+.shade,
+.white,
+.white.gray,
+.gray,
+.very.light.gray.black,
+.hella.light.gray.black,
+.very.bright.gray.black,
+.hella.bright.gray.black,
+.very.light.black,
+.hella.light.black,
+.very.light.brand-color,
+.hella.light.brand-color,
+.very.bright.brand-color,
+.hella.bright.brand-color,
+.very.light.complement,
+.hella.light.complement,
+.very.bright.complement,
+.hella.bright.complement,
+.light.accent,
+.very.light.accent,
+.hella.light.accent,
+.very.bright.accent,
+.hella.bright.accent,
+.dim.accent,
+.complement.accent,
+.very.light.red,
+.hella.light.red,
+.hella.bright.red,
+.light.red.orange,
+.very.light.red.orange,
+.hella.light.red.orange,
+.bright.red.orange,
+.very.bright.red.orange,
+.hella.bright.red.orange,
+.orange,
+.orange.yellow,
+.yellow,
+.yellow.green,
+.green,
+.green.teal,
+.teal,
+.teal.cyan,
+.cyan,
+.cyan.blue,
+.very.light.blue,
+.hella.light.blue,
+.hella.bright.blue,
+.very.light.blue.purple,
+.hella.light.blue.purple,
+.very.light.purple,
+.hella.light.purple,
+.very.light.purple.magenta,
+.hella.light.purple.magenta,
+.hella.bright.purple.magenta,
+.very.light.magenta,
+.hella.light.magenta,
+.hella.bright.magenta,
+.very.light.magenta.red,
+.hella.light.magenta.red,
+.hella.bright.magenta.red,
+.light.orangered,
+.very.light.orangered,
+.hella.light.orangered,
+.bright.orangered,
+.very.bright.orangered,
+.hella.bright.orangered,
+.gold,
+.lime,
+.jade,
+.aqua,
+.skyblue,
+.very.light.indigo,
+.hella.light.indigo,
+.very.light.fuchsia,
+.hella.light.fuchsia,
+.hella.bright.fuchsia,
+.very.light.pink,
+.hella.light.pink,
+.hella.bright.pink {
+  color: var(--black);
+  background-color: hsla(var(--h), var(--s), var(--l), var(--a));
+  border-color: hsla(var(--border-h), var(--border-s), var(--border-l), var(--border-a));
+  --border-h: var(--h);
+  --border-s: var(--s);
+  --border-l: clamp(0%, calc(var(--l) * 0.75), 85%);
+  --border-a: var(--a);
+}
+.transparent {
+  --a: calc(0.85 - (var(--v, 0) * 0.2));
+}
+.hidden {
+  display: none !important;
+}
+.clearfix {
+  clear: both;
+}
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.text-indent {
+  text-indent: var(--text-indent);
+}
+.text-justify {
+  text-justify: justify;
+}
+.text-shadow {
+  --shadow-blur: 0;
+  --shadow-color: rgba(3, 29, 37, 0.6);
+  text-shadow: 0 var(--shadow-position) var(--shadow-blur) var(--shadow-color);
+}
+.text-trim {
+  line-height: 1;
+}
+.text-crunch {
+  line-height: calc(var(--line-height) * 0.85);
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-responsive {
+  --font-size-base: var(--responsive-font-size);
+}
+.top {
+  top: 0;
+}
+.right {
+  right: 0;
+}
+.bottom {
+  bottom: 0;
+}
+.left {
+  left: 0;
+}
+.cursor,
+.pointer {
+  cursor: pointer;
+}
+.width {
+  max-width: var(--width);
+}
+.width.force {
+  width: var(--width);
+}
+.golden-width {
+  width: 62%;
+}
+.golden-width.reverse {
+  width: 38%;
+}
+.responsive {
+  --width: var(--responsive-width);
+}
+.card {
+  --width: var(--card-width);
+}
+.full,
+.type,
+.page {
+  --width: 100%;
+}
+@media screen and (min-width: 31.7rem) {
+  .type {
+    --width: var(--type-width);
+  }
+}
+@media screen and (min-width: 50.1rem) {
+  .page {
+    --width: var(--page-width);
+  }
+}
+.inner.width {
+  max-width: 100%;
+  padding-left: calc(50% - (var(--width) * 0.5));
+  padding-right: calc(50% - (var(--width) * 0.5));
+}
+.inner.width.padding-left,
+.inner.width.padding,
+.inner.width.padding-responsive,
+.inner.width.padding-responsive {
+  padding-left: max(var(--padding), calc(50% - (var(--width) * 0.5) + var(--padding)));
+}
+.inner.width.padding-right,
+.inner.width.padding,
+.inner.width.padding-responsive,
+.inner.width.padding-responsive {
+  padding-right: max(var(--padding), calc(50% - (var(--width) * 0.5) + var(--padding)));
+}
+.hide {
+  display: none;
+}
+.hide.tablet {
+  display: initial;
+}
+.hide.desktop {
+  display: initial;
+}
+.hide.mobile {
+  display: none;
+}
+@media screen and (min-width: 31.7rem) {
+  .hide.mobile {
+    display: initial;
+  }
+  .hide.tablet {
+    display: none;
+  }
+}
+@media screen and (min-width: 50.1rem) {
+  .hide.desktop {
+    display: none;
+  }
+  .hide.mobile.tablet {
+    display: initial;
+  }
+}
+.fixed {
+  position: fixed;
+}
+.fixed.tablet {
+  position: initial;
+}
+.fixed.desktop {
+  position: initial;
+}
+.fixed.mobile {
+  position: fixed;
+}
+@media screen and (min-width: 31.7rem) {
+  .fixed.mobile {
+    position: initial;
+  }
+  .fixed.tablet {
+    position: fixed;
+  }
+}
+@media screen and (min-width: 50.1rem) {
+  .fixed.desktop {
+    position: fixed;
+  }
+  .fixed.mobile.tablet {
+    position: initial;
+  }
+}
+/* Nullifiers */
+.no-padding-top {
+  padding-top: 0;
+}
+.no-padding-right {
+  padding-right: 0;
+}
+.no-padding-bottom {
+  padding-bottom: 0;
+}
+.no-padding-left {
+  padding-left: 0;
+}
+.no-margin-top {
+  margin-top: 0;
+}
+.no-margin-right {
+  margin-right: 0;
+}
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+.no-margin-left {
+  margin-left: 0;
+}
+.no-padding {
+  padding: 0;
+}
+.no-margin,
+.no-gutter {
+  margin: 0;
+}
+.no-wrap {
+  white-space: nowrap;
+}
+.no-box-shadow {
+  box-shadow: unset;
+}
+.no-text-shadow {
+  text-shadow: unset;
+}
+.no-shadow {
+  box-shadow: unset;
+  text-shadow: unset;
+}
+.no-shadow-direction {
+  --shadow-position: 0;
+}
+.no-border-radius,
+.sharp {
+  border-radius: 0 !important;
+}
+.no-top-border-radius {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.no-bottom-border-radius {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.no-border {
+  border-width: 0 !important;
+}
+.no-border-top {
+  border-top-width: 0 !important;
+}
+.no-border-right {
+  border-right-width: 0 !important;
+}
+.no-border-bottom {
+  border-bottom-width: 0 !important;
+}
+.no-border-left {
+  border-left-width: 0 !important;
+}
+.no-background {
+  background: transparent !important;
+}
+.no-resize {
+  resize: none;
+}
+.no-transform {
+  transform: none;
+}
+.no-transition {
+  transition: all 0s ease 0s;
+}
+.no-caps {
+  text-transform: lowercase;
+}
+.no-bold {
+  font-weight: normal;
+}
+.no-overflow {
+  overflow: hidden;
+}
+.no-overflow-x {
+  overflow-x: hidden;
+}
+.no-line-height {
+  line-height: 1;
+}
+.no-text-indent {
+  --text-indent: 0;
+}
+.no-text,
+.no-text * {
+  text-indent: -9999px;
+}
+.no-underline {
+  text-decoration: none !important;
+}
+.no-user-select {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.no-pointer-events,
+.no-click {
+  pointer-events: none;
+}
+.no-list-style {
+  list-style-type: none;
+  margin-left: 0;
+}
+.no-fade {
+  opacity: 1;
+}
+.no-gap {
+  gap: 0;
+  column-gap: 0;
+}
+.no-press:active {
+  transform: scale(1);
+  box-shadow: inherit;
+}
+/* Colors */
+.default {
+  --v: 0;
+}
+.sorta > *,
+.very > *,
+.hella > * {
+  --v: 0;
+}
+.sorta {
+  --v: 0.5;
+}
+.very {
+  --v: 1;
+}
+.hella {
+  --v: 2;
+}
+.light {
+  --l: calc(var(--b) + ((100% - var(--b)) * var(--jump) * var(--v, 0))) !important;
+  --jump: 0.33;
+}
+.dark {
+  --l: calc(var(--b) - ((var(--b) - 20%) * var(--jump) * var(--v, 0))) !important;
+  --jump: 0.33;
+}
+.bright {
+  --s: calc(var(--b-s) + ((100% - var(--b-s)) * var(--jump) * 6 * var(--v, 0))) !important;
+  --l: calc(var(--b-l) + ((100% - var(--b-l)) * var(--jump) * var(--v, 0))) !important;
+  --jump: 0.15;
+}
+.dim {
+  --s: calc(var(--b-s) - ((var(--b-s)) * var(--jump) * 2 * var(--v, 0))) !important;
+  --l: calc(var(--b-l) - ((var(--b-l)) * var(--jump) * 1 * var(--v, 0))) !important;
+  --jump: 0.15;
+}
+.white {
+  --h: 194;
+  --s: 92%;
+  --l: 99%;
+  --jump: 0.01;
+}
+.light.white {
+  --b: 100%;
+}
+.dark.white {
+  --b: 97%;
+}
+.bright.white {
+  --b-s: 100%;
+  --b-l: 99%;
+}
+.dim.white {
+  --b-s: 59%;
+  --b-l: 99%;
+}
+.white.gray {
+  --h: 195;
+  --s: 11%;
+  --l: 94%;
+  --jump: 0.03;
+}
+.light.white.gray {
+  --b: 97%;
+}
+.dark.white.gray {
+  --b: 91%;
+}
+.bright.white.gray {
+  --b-s: 36%;
+  --b-l: 95%;
+}
+.dim.white.gray {
+  --b-s: 0%;
+  --b-l: 94%;
+}
+.gray {
+  --h: 0;
+  --s: 0%;
+  --l: 80%;
+  --jump: 0.08;
+}
+.light.gray {
+  --b: 84%;
+}
+.dark.gray {
+  --b: 75%;
+}
+.bright.gray {
+  --b-s: 25%;
+  --b-l: 81%;
+}
+.dim.gray {
+  --b-s: 0%;
+  --b-l: 79%;
+}
+.gray.black {
+  --h: 194;
+  --s: 8%;
+  --l: 44%;
+  --jump: 0.1;
+}
+.light.gray.black {
+  --b: 52%;
+}
+.dark.gray.black {
+  --b: 36%;
+}
+.bright.gray.black {
+  --b-s: 33%;
+  --b-l: 45%;
+}
+.dim.gray.black {
+  --b-s: 0%;
+  --b-l: 42%;
+}
+.black {
+  --h: 194;
+  --s: 87%;
+  --l: 8%;
+  --jump: 0.15;
+}
+.light.black {
+  --b: 20%;
+}
+.dark.black {
+  --b: 0%;
+}
+.bright.black {
+  --b-s: 100%;
+  --b-l: 10%;
+}
+.dim.black {
+  --b-s: 54%;
+  --b-l: 6%;
+}
+.brand-color {
+  --h: 204;
+  --s: 76%;
+  --l: 43%;
+}
+.light.brand-color {
+  --b: 50%;
+}
+.dark.brand-color {
+  --b: 37%;
+}
+.bright.brand-color {
+  --b-s: 100%;
+  --b-l: 45%;
+}
+.dim.brand-color {
+  --b-s: 43%;
+  --b-l: 42%;
+}
+.complement {
+  --h: 24;
+  --s: 65%;
+  --l: 44%;
+}
+.light.complement {
+  --b: 51%;
+}
+.dark.complement {
+  --b: 38%;
+}
+.bright.complement {
+  --b-s: 90%;
+  --b-l: 45%;
+}
+.dim.complement {
+  --b-s: 32%;
+  --b-l: 43%;
+}
+.accent {
+  --h: 234;
+  --s: 81%;
+  --l: 71%;
+}
+.light.accent {
+  --b: 79%;
+}
+.dark.accent {
+  --b: 63%;
+}
+.bright.accent {
+  --b-s: 100%;
+  --b-l: 73%;
+}
+.dim.accent {
+  --b-s: 48%;
+  --b-l: 70%;
+}
+.complement.accent {
+  --h: 54;
+  --s: 81%;
+  --l: 71%;
+}
+.light.complement.accent {
+  --b: 79%;
+}
+.dark.complement.accent {
+  --b: 63%;
+}
+.bright.complement.accent {
+  --b-s: 100%;
+  --b-l: 73%;
+}
+.dim.complement.accent {
+  --b-s: 48%;
+  --b-l: 70%;
+}
+.red {
+  --h: 358;
+  --s: 65%;
+  --l: 50%;
+}
+.light.red {
+  --b: 59%;
+}
+.dark.red {
+  --b: 40%;
+}
+.bright.red {
+  --b-s: 90%;
+  --b-l: 51%;
+}
+.dim.red {
+  --b-s: 32%;
+  --b-l: 48%;
+}
+.red.orange,
+.orangered {
+  --h: 23;
+  --s: 81%;
+  --l: 50%;
+}
+.light.red.orange,
+.light.orangered {
+  --b: 54%;
+}
+.dark.red.orange,
+.dark.orangered {
+  --b: 46%;
+}
+.bright.red.orange,
+.bright.orangered {
+  --b-s: 100%;
+  --b-l: 51%;
+}
+.dim.red.orange,
+.dim.orangered {
+  --b-s: 48%;
+  --b-l: 50%;
+}
+.orange {
+  --h: 39;
+  --s: 98%;
+  --l: 50%;
+}
+.light.orange {
+  --b: 51%;
+}
+.dark.orange {
+  --b: 49%;
+}
+.bright.orange {
+  --b-s: 100%;
+  --b-l: 50%;
+}
+.dim.orange {
+  --b-s: 65%;
+  --b-l: 50%;
+}
+.orange.yellow,
+.gold {
+  --h: 51;
+  --s: 95%;
+  --l: 50%;
+}
+.light.orange.yellow,
+.light.gold {
+  --b: 51%;
+}
+.dark.orange.yellow,
+.dark.gold {
+  --b: 49%;
+}
+.bright.orange.yellow,
+.bright.gold {
+  --b-s: 100%;
+  --b-l: 50%;
+}
+.dim.orange.yellow,
+.dim.gold {
+  --b-s: 62%;
+  --b-l: 50%;
+}
+.yellow {
+  --h: 63;
+  --s: 100%;
+  --l: 52%;
+}
+.light.yellow {
+  --b: 53%;
+}
+.dark.yellow {
+  --b: 51%;
+}
+.bright.yellow {
+  --b-s: 100%;
+  --b-l: 52%;
+}
+.dim.yellow {
+  --b-s: 67%;
+  --b-l: 52%;
+}
+.yellow.green,
+.lime {
+  --h: 87;
+  --s: 67%;
+  --l: 51%;
+}
+.light.yellow.green,
+.light.lime {
+  --b: 54%;
+}
+.dark.yellow.green,
+.dark.lime {
+  --b: 49%;
+}
+.bright.yellow.green,
+.bright.lime {
+  --b-s: 92%;
+  --b-l: 52%;
+}
+.dim.yellow.green,
+.dim.lime {
+  --b-s: 34%;
+  --b-l: 51%;
+}
+.green {
+  --h: 140;
+  --s: 65%;
+  --l: 41%;
+}
+.light.green {
+  --b: 51%;
+}
+.dark.green {
+  --b: 32%;
+}
+.bright.green {
+  --b-s: 90%;
+  --b-l: 43%;
+}
+.dim.green {
+  --b-s: 32%;
+  --b-l: 40%;
+}
+.green.teal,
+.jade {
+  --h: 162;
+  --s: 64%;
+  --l: 42%;
+}
+.light.green.teal,
+.light.jade {
+  --b: 50%;
+}
+.dark.green.teal,
+.dark.jade {
+  --b: 34%;
+}
+.bright.green.teal,
+.bright.jade {
+  --b-s: 89%;
+  --b-l: 44%;
+}
+.dim.green.teal,
+.dim.jade {
+  --b-s: 31%;
+  --b-l: 41%;
+}
+.teal {
+  --h: 183;
+  --s: 64%;
+  --l: 44%;
+}
+.light.teal {
+  --b: 54%;
+}
+.dark.teal {
+  --b: 35%;
+}
+.bright.teal {
+  --b-s: 89%;
+  --b-l: 46%;
+}
+.dim.teal {
+  --b-s: 31%;
+  --b-l: 43%;
+}
+.teal.cyan,
+.aqua {
+  --h: 181;
+  --s: 78%;
+  --l: 47%;
+}
+.light.teal.cyan,
+.light.aqua {
+  --b: 55%;
+}
+.dark.teal.cyan,
+.dark.aqua {
+  --b: 39%;
+}
+.bright.teal.cyan,
+.bright.aqua {
+  --b-s: 100%;
+  --b-l: 49%;
+}
+.dim.teal.cyan,
+.dim.aqua {
+  --b-s: 45%;
+  --b-l: 46%;
+}
+.cyan {
+  --h: 180;
+  --s: 90%;
+  --l: 50%;
+}
+.light.cyan {
+  --b: 64%;
+}
+.dark.cyan {
+  --b: 36%;
+}
+.bright.cyan {
+  --b-s: 100%;
+  --b-l: 53%;
+}
+.dim.cyan {
+  --b-s: 57%;
+  --b-l: 48%;
+}
+.cyan.blue,
+.skyblue {
+  --h: 200;
+  --s: 87%;
+  --l: 49%;
+}
+.light.cyan.blue,
+.light.skyblue {
+  --b: 65%;
+}
+.dark.cyan.blue,
+.dark.skyblue {
+  --b: 33%;
+}
+.bright.cyan.blue,
+.bright.skyblue {
+  --b-s: 100%;
+  --b-l: 52%;
+}
+.dim.cyan.blue,
+.dim.skyblue {
+  --b-s: 54%;
+  --b-l: 46%;
+}
+.blue {
+  --h: 222;
+  --s: 84%;
+  --l: 48%;
+}
+.light.blue {
+  --b: 61%;
+}
+.dark.blue {
+  --b: 34%;
+}
+.bright.blue {
+  --b-s: 100%;
+  --b-l: 50%;
+}
+.dim.blue {
+  --b-s: 51%;
+  --b-l: 46%;
+}
+.blue.purple,
+.indigo {
+  --h: 246;
+  --s: 53%;
+  --l: 52%;
+}
+.light.blue.purple,
+.light.indigo {
+  --b: 68%;
+}
+.dark.blue.purple,
+.dark.indigo {
+  --b: 36%;
+}
+.bright.blue.purple,
+.bright.indigo {
+  --b-s: 78%;
+  --b-l: 55%;
+}
+.dim.blue.purple,
+.dim.indigo {
+  --b-s: 20%;
+  --b-l: 50%;
+}
+.purple {
+  --h: 283;
+  --s: 54%;
+  --l: 44%;
+}
+.light.purple {
+  --b: 56%;
+}
+.dark.purple {
+  --b: 32%;
+}
+.bright.purple {
+  --b-s: 79%;
+  --b-l: 47%;
+}
+.dim.purple {
+  --b-s: 21%;
+  --b-l: 42%;
+}
+.purple.magenta,
+.fuchsia {
+  --h: 290;
+  --s: 67%;
+  --l: 48%;
+}
+.light.purple.magenta,
+.light.fuchsia {
+  --b: 64%;
+}
+.dark.purple.magenta,
+.dark.fuchsia {
+  --b: 32%;
+}
+.bright.purple.magenta,
+.bright.fuchsia {
+  --b-s: 92%;
+  --b-l: 51%;
+}
+.dim.purple.magenta,
+.dim.fuchsia {
+  --b-s: 34%;
+  --b-l: 45%;
+}
+.magenta {
+  --h: 293;
+  --s: 82%;
+  --l: 51%;
+}
+.light.magenta {
+  --b: 63%;
+}
+.dark.magenta {
+  --b: 39%;
+}
+.bright.magenta {
+  --b-s: 100%;
+  --b-l: 54%;
+}
+.dim.magenta {
+  --b-s: 49%;
+  --b-l: 49%;
+}
+.magenta.red,
+.pink {
+  --h: 324;
+  --s: 70%;
+  --l: 48%;
+}
+.light.magenta.red,
+.light.pink {
+  --b: 64%;
+}
+.dark.magenta.red,
+.dark.pink {
+  --b: 32%;
+}
+.bright.magenta.red,
+.bright.pink {
+  --b-s: 95%;
+  --b-l: 51%;
+}
+.dim.magenta.red,
+.dim.pink {
+  --b-s: 37%;
+  --b-l: 46%;
+}
+.desaturated,
+.desaturated * {
+  --s: 0% !important;
+}
+.desaturated img,
+.desaturated svg {
+  filter: grayscale(100%);
+}
+.matched {
+  --l: 43.33333333% !important;
+}
+.bright.gray,
+.bright.black,
+.light.black {
+  --s: 10% !important;
+}
+.white {
+  color: var(--black) !important;
+}
+.black {
+  color: var(--white) !important;
+}
+
+    </style>
 </head>
 
-<body class="white">
+<body>
+    
+    <div>
+        <div class="big text-center  monospace margin-top"><a href="https://www.hyperhyperspace.org/whitepaper">white paper</a> | <a href="https://hyperhyper.space">demo</a> | <a href="https://github.com/hyperhyperspace">source code</a> | <a href="#developers">developers</a> | <a href="#funding">funding</a></div>
+    </div>
+    <div class="responsive inner width">
+
+        <div class="text-center"><h1 class="gutter-top"><img src="logos/HHS_Logo_medium.png" alt="Hyper Hyper Space"></h1></div>
+
+        
+
+        <div class="text-center gutter-top padding"> 
+            <h1 class="huge monospace no-gutter"> <span class="text-color base-color">Make all data local</span> </h1> 
+            <h5 class="monospace text-color base-color">Communicate only through data sync</h2>
+        </div>
+
+        <div class="text-width gutter-top">
+            <div class="text-center"><p class="big no-margin-bottom">Hyper Hyper Space is a software library that provides:</p></div>
+        
+            <div class="margin bright red orange">
+            <ul class="medium padding text-color black">
+                <li><span class="big">a local data store</span>, both in-browser using InexedDB and server-side</li>
+                <li><span class="big">a data representation format</span>, based on Merkle-DAGs and CRDTs</li>
+                <li><span class="big">a secure data sync protocol</span> over WebRTC and WebSockets</li>
+            </ul>
+            </div>
+        
+        </div>
+
+        <div>
+            <p class="medium gutter-top padding">
+                Hyper Hyper Space-based applications organize their information using <b>spaces</b>, units of data with standardized formats
+                that can be opened using <b>space portals</b>. Portals can be generic and standads-based, like web browsers, or embedded in other apps.
+            </p>
+        </div>
+
+        <div class="grid gutter-top">
+            <div class="four wide text-center vertical-center margin padding"><img style="max-width: 75%;" src="img/spaces.png"></div>
+            <div class="eight wide">
+                <span class="medium">A <b>space</b> is a bit like a file designed for the Internet age. <span class="hella light teal">Spaces
+                are opened and modified locally on your devices, but are synchronized
+                automatically over the net.</span> They all share a base encoding, based on
+                Merkle-DAGs, but each has a given datatype: a chat room, an article,
+                a blog, an ecommerce store, etc. They can be universally looked up
+                using 3-word codes, like suburb-suburb-awake.</span>
+                
+            </div>
+        </div>
+
+        <div class="grid gutter-top">
+            <div class="seven wide">
+                <span class="medium">We interact with spaces through <b>space portals</b>. A space
+                portal holds a local copy of the spaces a person wants
+                to make available to others, and also of the spaces
+                they are visiting at the moment. <span class="hella light green">Portals connect to
+                each other forming a mesh, used to synchronize space
+                contents.</span> You can create a space portal <a href="https://hyperhyper.space" target="_blank">inside your 
+                browser</a>!<br></span>
+                
+            </div>
+            <div class="five wide text-center vertical-center"><img src="img/space-portals.png"></div>
+        </div>
+
+        <div class="grid gutter-top">
+            <div class="five wide text-center vertical-center margin padding"><img src="img/space-interop.png"></div>
+            <div class="seven wide">
+                <span class="medium"><br><br>While they live inside people's space portals, <span class="hella light red">spaces can link
+                    and embed each other independently of where they are hosted</span>.
+                    Embeds can work in different ways: a link to an article-space
+                    can take the form of a snippet that reflects the current title 
+                    and contents of the article, a chat room space can be embedded 
+                    into an article as an interactive comments section, etc.
+                    When linked like this spaces form an interactive virtual realm, 
+                    much like the world wide web, that we call <b>hyper space</b>.
+                    </span>
+                
+            </div>
+        </div>
+
+        <h2 id="developers" class="gutter-top">Developer resources</h2>
+
+        <div>
+            <ul>
+                <li><a href="https://www.hyperhyperspace.org/whitepaper">White Paper</a>: read about the technology powering Hyper Hyper Space.</li>
+                <li><a href="https://github.com/hyperhyperspace/hyperhyperspace-core">Core library</a>: written in TypeScript, it allows HHS-based apps to run both inside a web-browser and in servers using NodeJs.</li>
+                <li><a href="https://github.com/hyperhyperspace/workspace">Workspace</a>: git monorepo and yarn workspace used for HHS development.</li>
+                <li><a href="https://discord.gg/9epr3XrRnW">Discord</a>: for live discussion.</li>
+            </ul>
+        </div>
 
 
-	<!-- <div class="fixed top right text-margin-top">
-		<ul class="no-list-style">
-			<li class="float-left margin-right">Intro</li>
-				<li class="float-left margin-right"><a href="./learn.html">Learn More</a></li>
-				<li class="float-left"><a href="https://github.com/hyperhyperspace/hyperhyperspace-core">Code</a></li>
-		</ul>
-	</div> -->
+        <h2 id="funding" class="gutter-top">Funding</h2>
 
-	<div class="black starfield full-width padding margin-auto margin-bottom">
-		<div class="text-center card-width margin-auto no-margin-top text-margin-bottom"><img class="text-margin text-padding rounded" src="logos/HHS_Logo_ok.png" alt="Hyper Hyper Space"></div>
-		<p class="bold text-center"> 
-				A <span class="text-color yellow tint">new way</span> new way to collaborate online.
-		</p>
-	</div>
+        The <a href="https://nlnet.nl/">NLnet Foundation</a> is generously <a href="https://nlnet.nl/project/HyperHyperSpace/">funding</a> 
+        the development of Hyper Hyper Space through its <a href="https://nlnet.nl/assure/">NGI Assure</a> program, made possible with 
+        financial support from the <a href="https://ec.europa.eu/">European Comission</a>'s <a href="https://ngi.eu/">Next Generation Internet</a> programme.
 
-	<br>
 
-	<div class="two-column padding no-padding-top golden desktop gap-gutter page-width margin-auto">
+        <div style="display: flex" class="padding"><img class="padding" style="width: 20%;" src="https://nlnet.nl/logo/banner.svg"><img class="padding" style="width: 20%;"  src="https://nlnet.nl/image/logos/NGIAssure_tag.svg"></div>
 
-		<div class="light white monospace border thick dashed text-width margin-auto inner-gutter margin-bottom" style="border-width: 4px;">
-			<h3 class="no-margin-top"><span class="all-caps">Space</span> <small class="italic no-bold">noun</small></h3>
-			<dl class="two-column reverse golden tablet margin-bottom">
-				<dt class="">1. <strong>neologism</strong></dt>
-				<dd class="small">A distributed data structure used to represent information that is shared in real-time over the Internet. See also <em>file</em> and <em>website</em>.</dd>
-				
-			</dl>
-			<dl class="two-column reverse golden tablet">
+        <h2>Contact</h2>
 
-				<dt class="">2. <strong>informal</strong></dt>
-				<dd class="small">A particular instance of a <em>space</em>: a chat room, a forum, an e-comerce storefront, a wiki, a blog, etc.</dd>
-			</dl>
-		</div>
+        Drop us a line at <a class="hella light teal" href="mailto:hello@hyperhyperspace.org">hello@hyperhyperspace.org</a>.
 
-		<div class="padding vertical-center text-width margin-auto">
-			<div class="text-center">
-				<p>
-					<a href="https://hyperhyper.space/chat-window" class="button big bright red padding" target="_blank">See the chat demo</a>
+        <div style="margin-bottom: 100px"></div>
 
-				</p>
-				<br>
-				<p>
-					<a href="./learn.html" class="button dull base-color padding">Learn more</a> 
 
-				</p>
-				<br>
-				<p class=" gutter-bottom small text-center">Help us build the Dweb! Join us on <a href="https://github.com/hyperhyperspace/hyperhyperspace-core">Github</a>.</p>
-			</div>
-			
-		</div>
-	</div>
 
-	<hr class="white text-width margin-auto gutter">
-					
-	<div class="page-width margin-auto margin-bottom">
-		<p class="text-width margin-auto text-center">A <strong>decentralized</strong> chat instance running completely in your browser. Go ahead and say hi!</p>
+    </div>
 
-		<iframe id="suburb-suburb-awake"
-						title="Inline Frame Example"
-						width="100%"
-						height="400"
-						src="https://hyperhyper.space/chat-window/?words=suburb-suburb-awake#/room/en/suburb-suburb-awake">
-		</iframe>
-
-		
-
-	</div>
-
-	<p class="text-width padding margin-auto gutter-bottom">
-		The 3-word code for the space above is <i>suburb suburb awake</i>. See it in the 
-		<a href="https://hyperhyper.space/chat-window" target="_blank">Chat space viewer</a>.
-	</p>
-
-	<hr class="white text-width margin-auto gutter">
-
-	<div class="two-column golden tablet padding gutter-bottom margin-auto page-width">
-		<h4 class="big tint text-color triad inner-text-width gutter-bottom">
-			A <span class="bold light teal text-color shade">space</span> is a bit like a file, but designed for <strong>the&nbsp;internet</strong>.
-		</h4>
-		<p class="no-margin-bottom inner-text-width">
-			It can be opened simultaneously on several devices and its contents will be synchronized
-			automatically. Spaces can be looked up by using 3-word codes, and can also be embedded into websites.
-		</p>
-	</div>
-
-	<div class="inner-text-width padding gutter-bottom">
-		<p>
-			A space can be as simple as a few written notes synchronized over a person own devices, or it 
-			may contain more complex structures (e.g. an entire discussion forum, used by any number of 
-			people).
-		</p>
-	</div>
-
-	<section class="dark dull base-color inner-page-width inner-gutter-top">
-		<p class="padding inner-text-width">
-			A space is represented internally as an <span class="light yellow text-padding">append-only Merkle-DAG</span>. Hyper Hyper Space's 
-			<a href="https://github.com/hyperhyperspace/" target="_blank">open source libraries</a> help application creators implement complex 
-			semantics over this simple DAG, and replicate its contents using an overlay peer-to-peer network.
-			A technical intro is available <a href="./learn.html">here</a>.
-		</p>
-	
-		<p class="padding inner-text-width">
-			Below are the slides from the Hyper Hyper Space lightning talk in the <a href="https://mailchi.mp/archive/this-wednesday-building-distributed-tech-is-not-enough-how-do-we-distribute-the-benefits" target="_blank">June 2021 DWeb meetup</a>:
-		</p>
-		<br>
-	
-		<div class="page-width margin-auto padding">
-			<style>
-				#presentation-embed {
-					height: 320px;
-				}
-	
-				@media screen and (min-width: 550px) {
-					#presentation-embed {
-						height: 480px;
-					}
-				}
-			</style>
-			
-			<iframe id="presentation-embed"
-							title="Dweb HHS presentation"
-							width="100%"
-							src="./presentation.html"
-							class="page-width"
-							style="border: 0; overflow: hidden;">
-	
-			</iframe>
-		
-		</div>
-
-		<div class="inner-gutter inner-text-width">
-			<p class="no-margin padding">
-				Drop us a line at <a class="red text-padding" href="mailto:hello@hyperhyperspace.org">hello@hyperhyperspace.org</a>!
-			</p>
-	
-		</div>
-	
-	
-		
-					
-		
-		
-	</section>
-
-	<div class="padding cool white">
-		<div class="three-column desktop small margin-bottom inner-page-width">
-			<div class="inner-text-width">
-				<h4 class="">Own your data</h4>
-				<p class="bold no-margin-bottom fade">Store your conversations, pictures and files on your own devices. Share them only with whom you want.</p>
-			</div>
-			<div class="inner-text-width">
-				<h4 class="">Think freely</h4>
-				<p class="bold no-margin-bottom fade">Share information without intermediaries or censorship, using peer-to-peer technology that works inside your browser.</p>
-			</div>
-			<div class="inner-text-width">
-				<h4 class="">Champion rights</h4>
-				<p class="bold no-margin-bottom fade">By running your own node in a peer-to-peer network (inside a web browser, like this one, if you so choose!) you can finally own your information online top-to-bottom.</p>
-			</div>
-		</div>
-	</div>
-
-	<footer class="warm black padding inner-page-width">
-		<div class="three-column trailing desktop">
-			<div>
-				<h6>Contribute</h6>
-				<ul>
-					<li>
-						<a href="https://github.com/hyperhyperspace/hyperhyperspace-core/">Core library</a>
-					</li>
-					<li>
-						<a href="https://github.com/hyperhyperspace/">All HHS modules</a>
-					</li>
-					<li>
-						<a href="https://github.com/hyperhyperspace/hyperhyperspace-core/issues">Open issues</a>
-					</li>
-				</ul>
-			</div>
-			<div>
-				<h6>Join HHS</h6>
-				<ul>
-					<li>
-						<a href="https://hyperhyper.space/chat-window#/room/en/suburb-suburb-awake" target="_blank">Live chat</a>
-					</li>
-				</ul>
-			</div>
-			<div class="small">
-				<p>HHS is committed to building a better internet for everyone.</p>
-				<p>Site built using <a href="https://cavepaint.github.io/cavepaintcss/">Cavepaint</a>.</p>
-			</div>
-		</div>
-		
-	</footer>		
-		
 </body>
-</html>
