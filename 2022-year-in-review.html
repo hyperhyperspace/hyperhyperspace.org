@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+
+	<title>2022: A year in review</title>
+	<meta name="description" content="Summary of the Hyper Hyper Space project's 2022">
+	<meta name="author" content="Santiago Bazerque">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="https://www.hyperhyperspace.org/favicon.ico">
+</head>
+
+<body class="light white">
+
+  <style>
+		/* This project uses Cavepaint (MIT License) by Rex Riepe */
+/* https://github.com/cavepaint/cavepaintCSS */
+:root {
+  --font-size-base: 18px;
+  --font-size-mod: 1;
+  --font-family: var(--sans-serif);
+  --line-height: 1.8;
+  --headline-base: 1em;
+  --headline-mod: 1;
+  --pad: 0.8rem;
+  --padding: var(--pad);
+  --margin: var(--pad);
+  --gutter: calc(2 * var(--pad));
+  --text-padding: 0.28em;
+  --text-margin: var(--text-padding);
+  --text-border-radius: var(--text-padding);
+  --text-shadow: var(--box-shadow);
+  --gap: var(--pad);
+  --grid-columns: 12;
+  --golden: 1.618;
+  --h: 194.3;
+  --s: 91.6%;
+  --l: 97.1%;
+  --a: 0.2;
+  --border-width: 1px;
+  --border-style: solid;
+  --border-radius: 0.5em;
+  --border-h: var(--h);
+  --border-s: var(--s);
+  --border-l: clamp(0%, calc(var(--l) * 0.85), 85%);
+  --border-color: hsl(var(--border-h), var(--border-s), var(--border-l));
+  --border: var(--border-width) var(--border-style) var(--border-color);
+  --border-thin: calc(var(--border-width) / 2);
+  --border-thick: calc(var(--border-width) * 2);
+  --border-radius: var(--text-padding);
+  --text-measure: 54;
+  --text-width: calc(var(--text-measure) * 0.618rem);
+  --card-width: calc(var(--text-width) * 0.618);
+  --page-width: calc(var(--text-width) * 1.618);
+  --feature-width: calc(var(--page-width) * 1.618);
+  --box-shadow: var(--shadow-position) var(--shadow-position) var(--shadow-blur) var(--shadow-color);
+  --shadow-position: 1px;
+  --shadow-blur: 1px;
+  --shadow-color: rgba(2, 27, 34, 0.2);
+  --direction: 180deg;
+  --warm: rgba(215.8, 97.5, 108.1, var(--a));
+  --cool: rgba(11.7, 195, 195.5, var(--a));
+  --neutral: rgba(34.8, 128.6, 191.8, var(--a));
+  --dull: rgba(110.5, 110.5, 110.5, var(--a));
+  --monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, "DejaVu Sans Mono", Courier, monospace;
+  --serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "Droid Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  --sans-serif: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+  --ambient: #12bff5;
+  --white: #f1fbfe;
+  --black: #021b22;
+  --red: #cb202f;
+  --orange: #ffa500;
+  --yellow: #f4ff0c;
+  --green: #008617;
+  --teal: #008080;
+  --cyan: #0df1f2;
+  --blue: #0e22ee;
+  --purple: #750d8c;
+  --magenta: #c923ea;
+  --gray: #808080;
+  --base-color: #1a7fc3;
+  --complement: #c35e1a;
+  --accent: #1a2ac3;
+  --second-accent: #1ac3b3;
+  --split: #b31ac3;
+  --second-split: #2ac31a;
+  --triad: #5e1ac3;
+  --second-triad: var(--complement);
+  --third-triad: #1ac35e;
+  --tetrad: #341ac3;
+  --second-tetrad: #c31a55;
+  --third-tetrad: #a9c31a;
+  --fourth-tetrad: #1ac388;
+  --action: #1a7fc3;
+  --reaction: #8d4413;
+  --info: var(--cyan);
+  --warning: var(--orange);
+  --success: var(--green);
+  --failure: var(--red);
+}
+@media screen and (min-width: 1px) {
+  :root {
+    --pad: calc(0.6 * 0.8rem);
+    --font-size: calc(var(--font-size-base) - 2px);
+    --headline-base: 1em;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  :root {
+    --pad: calc(0.8 * 0.8rem);
+    --font-size: calc(var(--font-size-base) - 1px);
+    --headline-base: 1.1em;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  :root {
+    --pad: 0.8rem;
+    --font-size: var(--font-size-base);
+    --headline-base: 1.2em;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: calc(var(--font-size) * var(--font-size-mod));
+}
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  color: var(--black);
+  background-color: var(--white);
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  letter-spacing: -0.025em;
+  color: inherit;
+  line-height: 1.5;
+}
+h1 *,
+h2 *,
+h3 *,
+h4 *,
+h5 *,
+h6 * {
+  font-size: inherit;
+}
+h1 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 2.2);
+}
+h2 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 1.8);
+}
+h3 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 1.4);
+}
+h4 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 1.2);
+}
+h5 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 1.1);
+}
+h6 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 1);
+}
+p {
+  margin-bottom: 1em;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+nav {
+  z-index: 99;
+}
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+em {
+  display: inline;
+  font-style: italic;
+}
+hr {
+  border-color: hsl(var(--h), var(--s), var(--l)) !important;
+}
+fieldset {
+  border: 0;
+  outline: none;
+}
+input {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  background: var(--white);
+  color: var(--black);
+  border: var(--border);
+  line-height: var(--line-height);
+  padding: var(--text-padding);
+}
+textarea {
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  border: var(--border);
+  margin-bottom: var(--margin);
+  background: var(--white);
+  color: var(--black);
+  font-size: var(--font-size);
+  padding: var(--text-padding);
+  overflow: auto;
+}
+ul,
+ol {
+  margin-left: var(--gutter);
+  margin-bottom: var(--margin-bottom);
+}
+li {
+  margin-bottom: var(--text-margin);
+}
+kbd {
+  color: var(--white);
+  border-radius: var(--border-radius);
+  padding: var(--text-padding);
+  white-space: nowrap;
+}
+pre,
+code {
+  font-family: var(--monospace);
+  margin-bottom: var(--margin);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  padding: var(--text-padding);
+  background: var(--black);
+  color: var(--white);
+}
+pre.white-space,
+pre.word-break {
+  white-space: pre-wrap;
+}
+pre > code {
+  background: transparent;
+  padding: 0;
+}
+.grid,
+.one-column,
+.two-column,
+.three-column,
+.four-column,
+.five-column,
+.six-column,
+.seven-column,
+.eight-column,
+.nine-column,
+.ten-column,
+.eleven-column,
+.twelve-column {
+  --grid-columns: 12;
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+}
+.mobile,
+.tablet,
+.mobile.tablet,
+.desktop {
+  grid-template-columns: minmax(0, 1fr);
+}
+@media screen and (min-width: 1px) {
+  .mobile {
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .mobile {
+    --grid-columns: 1;
+  }
+}
+@media screen and (max-width: calc(calc(37.08rem + 1.6rem) - 1px)) {
+  .tablet {
+    --grid-columns: 1;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .tablet {
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  }
+}
+.mobile.tablet {
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .mobile.tablet {
+    --grid-columns: 1;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .desktop {
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  }
+}
+@media screen and (max-width: calc(calc(59.99544rem + 1.6rem) - 1px)) {
+  .desktop {
+    --grid-columns: 1;
+  }
+}
+.one-column {
+  --grid-columns: 1;
+}
+.two-column {
+  --grid-columns: 2;
+}
+.three-column {
+  --grid-columns: 3;
+}
+.four-column {
+  --grid-columns: 4;
+}
+.five-column {
+  --grid-columns: 5;
+}
+.six-column {
+  --grid-columns: 6;
+}
+.seven-column {
+  --grid-columns: 7;
+}
+.eight-column {
+  --grid-columns: 8;
+}
+.nine-column {
+  --grid-columns: 9;
+}
+.ten-column {
+  --grid-columns: 10;
+}
+.eleven-column {
+  --grid-columns: 11;
+}
+.twelve-column {
+  --grid-columns: 12;
+}
+.grid-width-one {
+  grid-column: auto / span 1;
+}
+.grid-width-two {
+  grid-column: auto / span 2;
+}
+.grid-width-three {
+  grid-column: auto / span 3;
+}
+.grid-width-four {
+  grid-column: auto / span 4;
+}
+.grid-width-five {
+  grid-column: auto / span 5;
+}
+.grid-width-six {
+  grid-column: auto / span 6;
+}
+.grid-width-seven {
+  grid-column: auto / span 7;
+}
+.grid-width-eight {
+  grid-column: auto / span 8;
+}
+.grid-width-nine {
+  grid-column: auto / span 9;
+}
+.grid-width-ten {
+  grid-column: auto / span 10;
+}
+.grid-width-eleven {
+  grid-column: auto / span 11;
+}
+.grid-width-twelve {
+  grid-column: auto / span 12;
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .grid.mobile > *,
+  .one-column.mobile > *,
+  .two-column.mobile > *,
+  .three-column.mobile > *,
+  .four-column.mobile > *,
+  .five-column.mobile > *,
+  .six-column.mobile > *,
+  .seven-column.mobile > *,
+  .eight-column.mobile > *,
+  .nine-column.mobile > *,
+  .ten-column.mobile > *,
+  .eleven-column.mobile > *,
+  .twelve-column.mobile > * {
+    grid-column: auto / span 1;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .grid.mobile.tablet > *,
+  .one-column.mobile.tablet > *,
+  .two-column.mobile.tablet > *,
+  .three-column.mobile.tablet > *,
+  .four-column.mobile.tablet > *,
+  .five-column.mobile.tablet > *,
+  .six-column.mobile.tablet > *,
+  .seven-column.mobile.tablet > *,
+  .eight-column.mobile.tablet > *,
+  .nine-column.mobile.tablet > *,
+  .ten-column.mobile.tablet > *,
+  .eleven-column.mobile.tablet > *,
+  .twelve-column.mobile.tablet > * {
+    grid-column: auto / span 1;
+  }
+}
+@media screen and (max-width: calc(calc(37.08rem + 1.6rem) - 1px)) {
+  .grid.tablet > *,
+  .one-column.tablet > *,
+  .two-column.tablet > *,
+  .three-column.tablet > *,
+  .four-column.tablet > *,
+  .five-column.tablet > *,
+  .six-column.tablet > *,
+  .seven-column.tablet > *,
+  .eight-column.tablet > *,
+  .nine-column.tablet > *,
+  .ten-column.tablet > *,
+  .eleven-column.tablet > *,
+  .twelve-column.tablet > * {
+    grid-column: auto / span 1;
+  }
+}
+@media screen and (max-width: calc(calc(59.99544rem + 1.6rem) - 1px)) {
+  .grid.desktop > *,
+  .one-column.desktop > *,
+  .two-column.desktop > *,
+  .three-column.desktop > *,
+  .four-column.desktop > *,
+  .five-column.desktop > *,
+  .six-column.desktop > *,
+  .seven-column.desktop > *,
+  .eight-column.desktop > *,
+  .nine-column.desktop > *,
+  .ten-column.desktop > *,
+  .eleven-column.desktop > *,
+  .twelve-column.desktop > * {
+    grid-column: auto / span 1;
+  }
+}
+.two-column.golden {
+  grid-template-columns: 1.618fr 1fr;
+}
+.two-column.golden.mobile,
+.two-column.golden.tablet,
+.two-column.golden.mobile.tablet,
+.two-column.golden.desktop {
+  grid-template-columns: 1fr;
+}
+@media screen and (min-width: 1px) {
+  .two-column.golden.mobile {
+    grid-template-columns: 1.618fr 1fr;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .two-column.golden.mobile {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .two-column.golden.tablet {
+    grid-template-columns: 1.618fr 1fr;
+  }
+}
+@media screen and (max-width: calc(calc(59.99544rem + 1.6rem) - 1px)) {
+  .two-column.golden.mobile.tablet {
+    grid-template-columns: 1.618fr 1fr;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .two-column.golden.desktop {
+    grid-template-columns: 1.618fr 1fr;
+  }
+}
+.two-column.golden.reverse {
+  grid-template-columns: 1fr 1.618fr;
+}
+.two-column.golden.reverse.mobile,
+.two-column.golden.reverse.tablet,
+.two-column.golden.reverse.mobile.tablet,
+.two-column.golden.reverse.desktop {
+  grid-template-columns: 1fr;
+}
+@media screen and (min-width: 1px) {
+  .two-column.golden.reverse.mobile {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .two-column.golden.reverse.mobile {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .two-column.golden.reverse.tablet {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+@media screen and (max-width: calc(calc(59.99544rem + 1.6rem) - 1px)) {
+  .two-column.golden.reverse.mobile.tablet {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .two-column.golden.reverse.desktop {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+.button,
+button {
+  display: inline;
+  border-width: 0;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  position: relative;
+  font-family: inherit;
+  padding: var(--text-padding);
+  color: inherit;
+  background-color: inherit;
+  line-height: 1.25;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-decoration: none;
+  touch-action: manipulation;
+  cursor: pointer;
+  transform: scale(1);
+  transition: scale 0.08s linear;
+}
+.button:active,
+button:active {
+  transform: scale(0.96);
+  box-shadow: unset;
+}
+.modal {
+  max-width: none;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.overlay {
+  padding: 0;
+  position: relative;
+}
+.overlay .top,
+.overlay .bottom,
+.overlay .left,
+.overlay .right {
+  position: absolute;
+  z-index: 10;
+}
+.overlay.stretch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.bar {
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.bar.bottom {
+  top: auto;
+  bottom: 0;
+}
+.card {
+  border-radius: var(--border-radius);
+  padding: var(--padding);
+  background: var(--white);
+  color: var(--black);
+  box-shadow: var(--box-shadow);
+  max-width: var(--card-width);
+}
+.padding {
+  padding: var(--padding);
+}
+.margin {
+  margin: var(--margin);
+}
+.gutter {
+  margin: var(--gutter);
+}
+.inner-gutter {
+  padding: var(--gutter);
+}
+.text-padding {
+  padding: var(--text-padding);
+}
+.text-margin {
+  margin: var(--text-padding);
+}
+.padding-top {
+  padding-top: var(--padding);
+}
+.padding-right {
+  padding-right: var(--padding);
+}
+.padding-bottom {
+  padding-bottom: var(--padding);
+}
+.padding-left {
+  padding-left: var(--padding);
+}
+.margin-top {
+  margin-top: var(--margin);
+}
+.margin-right {
+  margin-right: var(--margin);
+}
+.margin-bottom {
+  margin-bottom: var(--margin);
+}
+.margin-left {
+  margin-left: var(--margin);
+}
+.gutter-top {
+  margin-top: var(--gutter);
+}
+.gutter-right {
+  margin-right: var(--gutter);
+}
+.gutter-bottom {
+  margin-bottom: var(--gutter);
+}
+.gutter-left {
+  margin-left: var(--gutter);
+}
+.inner-gutter-top {
+  padding-top: var(--gutter);
+}
+.inner-gutter-right {
+  padding-right: var(--gutter);
+}
+.inner-gutter-bottom {
+  padding-bottom: var(--gutter);
+}
+.inner-gutter-left {
+  padding-left: var(--gutter);
+}
+.text-padding-top {
+  padding-top: var(--text-padding);
+}
+.text-padding-right {
+  padding-right: var(--text-padding);
+}
+.text-padding-bottom {
+  padding-bottom: var(--text-padding);
+}
+.text-padding-left {
+  padding-left: var(--text-padding);
+}
+.text-margin-top {
+  margin-top: var(--text-padding);
+}
+.text-margin-right {
+  margin-right: var(--text-padding);
+}
+.text-margin-bottom {
+  margin-bottom: var(--text-padding);
+}
+.text-margin-left {
+  margin-left: var(--text-padding);
+}
+.text-border-radius,
+.text-rounded {
+  border-radius: var(--text-padding);
+}
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.inline-all,
+.inline-all * {
+  display: inline;
+}
+.inline-break::after {
+  content: "\A";
+  white-space: pre;
+}
+.initial {
+  display: initial;
+}
+.table {
+  display: table;
+}
+.flex {
+  display: flex;
+}
+.inline-block {
+  display: inline-block;
+}
+.static {
+  position: static;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.margin-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.width-auto {
+  width: auto;
+}
+.inset {
+  box-shadow: inset var(--box-shadow);
+}
+.box-shadow,
+.shadow {
+  box-shadow: var(--box-shadow);
+}
+.shallow {
+  --shadow-position: 0.5px;
+  --box-shadow: var(--shadow-position) var(--shadow-position) var(--shadow-blur) var(--shadow-color);
+}
+.deep {
+  --shadow-position: 2px;
+  --box-shadow: var(--shadow-position) var(--shadow-position) var(--shadow-blur) var(--shadow-color);
+}
+.full-height {
+  min-height: 100%;
+}
+.full-height.force {
+  height: 100%;
+}
+.viewport-height {
+  min-height: 100vh;
+}
+.viewport-height.force {
+  height: 100vh;
+}
+.golden-height {
+  min-height: 62vh;
+}
+.golden-height.force {
+  height: 62vh;
+}
+.overflow-scroll {
+  overflow-y: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.border {
+  border: var(--border);
+}
+.border-top {
+  border-top: var(--border);
+}
+.border-right {
+  border-right: var(--border);
+}
+.border-bottom {
+  border-bottom: var(--border);
+}
+.border-left {
+  border-left: var(--border);
+}
+.border-radius,
+.rounded {
+  border-radius: var(--border-radius);
+}
+.dashed {
+  border-style: dashed;
+}
+.dotted {
+  border-style: dotted;
+}
+.thick {
+  border-width: var(--border-thick);
+}
+.thin {
+  --border-l: clamp(0%, calc(var(--l) * 0.9), 85%);
+  border-width: var(--border-thin);
+}
+.current-color {
+  border-color: currentColor;
+}
+.fade {
+  opacity: 0.65;
+}
+.monospace {
+  font-family: var(--monospace);
+}
+.serif {
+  font-family: var(--serif);
+}
+.sans-serif {
+  font-family: var(--sans-serif);
+}
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+.all-caps {
+  text-transform: uppercase;
+}
+.underline {
+  text-decoration: underline;
+}
+.text-transparent {
+  color: transparent;
+}
+.small {
+  --font-size-mod: 0.9;
+}
+.medium {
+  --font-size-mod: 1;
+}
+.big {
+  --font-size-mod: 1.1;
+}
+.huge {
+  --font-size-mod: 1.2;
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .small {
+    --font-size-mod: 0.9;
+  }
+  .medium {
+    --font-size-mod: 1;
+  }
+  .big {
+    --font-size-mod: 1.2;
+  }
+  .huge {
+    --font-size-mod: 1.4;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .small {
+    --font-size-mod: 0.9;
+  }
+  .medium {
+    --font-size-mod: 1;
+  }
+  .big {
+    --font-size-mod: 1.3;
+  }
+  .huge {
+    --font-size-mod: 1.6;
+  }
+}
+.vertical-center,
+.center-vertical {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+.container {
+  max-width: var(--page-width);
+  margin: var(--margin) auto;
+  padding: var(--padding);
+}
+.text-trim {
+  line-height: 1;
+}
+.text-crunch {
+  line-height: calc((var(--line-height) + 1) * 0.62);
+}
+.text-align-center,
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.gap-padding {
+  --gap: var(--padding);
+}
+.gap-margin {
+  --gap: var(--margin);
+}
+.gap-gutter {
+  --gap: var(--gutter);
+}
+.gap-border-width {
+  --gap: var(--border-width);
+}
+.gap-text-padding,
+.gap-text-margin {
+  --gap: var(--text-padding);
+}
+.text-color {
+  color: hsl(var(--h), clamp(0%, var(--s), 90%), clamp(0%, var(--l), 40%)) !important;
+  background-color: transparent !important;
+}
+.text-color.tint {
+  color: hsl(var(--h), clamp(0%, var(--s), 90%), clamp(60%, var(--l), 100%)) !important;
+  background-color: transparent !important;
+}
+.shade,
+.white,
+.orange,
+.yellow,
+.light.green,
+.light.teal,
+.cyan,
+.light.gray,
+.light.base-color,
+.light.complement,
+.bright.complement,
+.second.accent,
+.second.split,
+.third.triad,
+.third.tetrad,
+.fourth.tetrad,
+.orange,
+.yellow,
+.light.green,
+.light.teal,
+.cyan,
+.light.second.triad,
+.bright.second.triad,
+.light.action,
+.light.primary,
+.light.reaction,
+.bright.reaction,
+.light.secondary,
+.bright.secondary,
+.warning,
+.warning,
+.light.success,
+.light.success {
+  color: var(--black);
+  background-color: hsl(var(--h), var(--s), var(--l));
+  border-color: hsl(var(--border-h), var(--border-s), var(--border-l));
+  --border-h: var(--h);
+  --border-s: var(--s);
+  --border-l: clamp(0%, calc(var(--l) * 0.75), 85%);
+}
+.tint,
+.black,
+.red,
+.dark.orange,
+.dim.orange,
+.green,
+.teal,
+.dark.cyan,
+.blue,
+.purple,
+.magenta,
+.gray,
+.base-color,
+.complement,
+.accent,
+.dark.second.accent,
+.dim.second.accent,
+.split,
+.dark.second.split,
+.dim.second.split,
+.triad,
+.dark.third.triad,
+.dim.third.triad,
+.tetrad,
+.second.tetrad,
+.dark.third.tetrad,
+.dim.third.tetrad,
+.dark.fourth.tetrad,
+.dim.fourth.tetrad,
+.red,
+.dark.orange,
+.dim.orange,
+.green,
+.teal,
+.dark.cyan,
+.blue,
+.purple,
+.magenta,
+.second.triad,
+.action,
+.primary,
+.reaction,
+.secondary,
+.info,
+.info,
+.dark.warning,
+.dim.warning,
+.dark.warning,
+.dim.warning,
+.success,
+.success,
+.failure,
+.failure,
+.error,
+.error {
+  color: var(--white);
+  background-color: hsl(var(--h), var(--s), var(--l));
+  border-color: hsl(var(--border-h), var(--border-s), var(--border-l));
+  --border-h: var(--h);
+  --border-s: var(--s);
+  --border-l: clamp(0%, calc(var(--l) * 0.75), 85%);
+}
+.transparent {
+  background-color: transparent !important;
+  color: inherit;
+  border-color: inherit;
+  --light: hsl(var(--h), var(--s), var(--l), 0.85);
+  background-image: linear-gradient(var(--light), var(--light));
+  color: var(--black);
+}
+.transparent.black,
+.transparent.dark {
+  --dark: hsla(var(--h), var(--s), var(--l), 0.65);
+  background-image: linear-gradient(var(--dark), var(--dark));
+  color: var(--white) !important;
+}
+.gradient {
+  background: linear-gradient(var(--direction), hsla(var(--h), var(--s), var(--l), 1) 0%, hsla(var(--h), var(--s), var(--l), 0) 100%);
+}
+.horizontal {
+  --direction: 180deg;
+}
+.vertical {
+  --direction: 90deg;
+}
+.trim {
+  margin-bottom: 0;
+}
+.trim-inner * {
+  margin-bottom: 0;
+}
+.trim-all {
+  margin-bottom: 0;
+}
+.trim-all * {
+  margin-bottom: 0;
+}
+.bump {
+  position: relative;
+}
+.bump.up {
+  top: -2px;
+}
+.bump.down {
+  top: 2px;
+}
+.bump.left {
+  left: -2px;
+}
+.bump.right {
+  right: initial;
+  left: 2px;
+}
+.hidden {
+  display: none !important;
+}
+.clearfix,
+.clear {
+  clear: both;
+}
+.clearfix::after,
+.clear::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.user-background {
+  background-color: var(--white);
+  color: var(--black);
+}
+@media (prefers-color-scheme: dark) {
+  .user-background {
+    background: var(--black);
+    color: var(--white);
+  }
+}
+.align-content {
+  align-content: stretch;
+}
+.align-items {
+  align-items: stretch;
+}
+.align-self {
+  align-self: auto;
+}
+.flex {
+  flex: 0 1 auto;
+}
+.flex-direction {
+  flex-direction: column;
+}
+.justify-content {
+  justify-content: center;
+}
+.list-style {
+  list-style: disc inside none;
+}
+.list-style-type {
+  list-style-type: disc;
+}
+.text-indent {
+  text-indent: 2ch;
+}
+.text-justify {
+  text-justify: justify;
+}
+.text-overflow {
+  text-overflow: ellipsis;
+}
+.text-shadow {
+  text-shadow: var(--text-shadow);
+}
+.line-height {
+  line-height: var(--line-height);
+}
+.vertical-align {
+  vertical-align: middle;
+}
+.letter-spacing {
+  letter-spacing: 0;
+}
+.word-spacing {
+  word-spacing: normal;
+}
+.white-space {
+  white-space: nowrap;
+}
+.word-break {
+  word-break: break-all;
+}
+.word-wrap {
+  word-wrap: break-word;
+}
+.transform {
+  transform: none;
+}
+.transition {
+  transition: all 0s ease 0s;
+}
+.display {
+  display: block;
+}
+.position {
+  position: absolute;
+}
+.top {
+  top: 0;
+}
+.right {
+  right: 0;
+}
+.bottom {
+  bottom: 0;
+}
+.left {
+  left: 0;
+}
+.float {
+  float: left;
+}
+.clear {
+  clear: both;
+}
+.z-index {
+  z-index: 10;
+}
+.overflow {
+  overflow: hidden;
+}
+.cursor,
+.pointer {
+  cursor: pointer;
+}
+.placeholder {
+  min-height: var(--pad);
+}
+.placeholder::after {
+  content: " ";
+}
+.rem-width {
+  width: 1rem;
+}
+.golden-width {
+  max-width: calc(62% - var(--pad));
+}
+.golden-width.force {
+  width: calc(62% - var(--pad));
+}
+.golden-width.switch {
+  max-width: calc(38% - var(--pad));
+}
+.golden-width.switch.force {
+  width: calc(38% - var(--pad));
+}
+.card-width {
+  max-width: var(--card-width);
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .text-width {
+    max-width: var(--text-width);
+  }
+  .text-width.force {
+    width: var(--text-width);
+  }
+}
+.page-width {
+  max-width: var(--page-width);
+}
+.page-width.force {
+  width: var(--page-width);
+}
+.feature-width {
+  max-width: calc(var(--page-width) * 1.6);
+}
+.feature-width.force {
+  width: calc(var(--page-width) * 1.6);
+}
+.full-width {
+  max-width: 100%;
+}
+.full-width.force {
+  width: 100%;
+}
+.inner-card-width {
+  padding-left: max(var(--pad), calc(50% - (var(--card-width) * 0.5)));
+  padding-right: max(var(--pad), calc(50% - (var(--card-width) * 0.5)));
+}
+.inner-card-width.padding {
+  padding-left: max(var(--pad), calc(50% - (var(--card-width) * 0.5) + var(--pad)));
+  padding-right: max(var(--pad), calc(50% - (var(--card-width) * 0.5) + var(--pad)));
+}
+.inner-text-width {
+  padding-left: calc(50% - (var(--text-width) * 0.5));
+  padding-right: calc(50% - (var(--text-width) * 0.5));
+}
+.inner-text-width.padding {
+  padding-left: max(var(--pad), calc(50% - (var(--text-width) * 0.5) + var(--pad)));
+  padding-right: max(var(--pad), calc(50% - (var(--text-width) * 0.5) + var(--pad)));
+}
+.inner-page-width {
+  padding-left: calc(50% - (var(--page-width) * 0.5));
+  padding-right: calc(50% - (var(--page-width) * 0.5));
+}
+.inner-page-width.padding {
+  padding-left: max(var(--pad), calc(50% - (var(--page-width) * 0.5) + var(--pad)));
+  padding-right: max(var(--pad), calc(50% - (var(--page-width) * 0.5) + var(--pad)));
+}
+.inner-feature-width {
+  padding-left: calc(50% - (var(--feature-width) * 0.5));
+  padding-right: calc(50% - (var(--feature-width) * 0.5));
+}
+.inner-feature-width.padding {
+  padding-left: max(var(--pad), calc(50% - (var(--feature-width) * 0.5) + var(--pad)));
+  padding-right: max(var(--pad), calc(50% - (var(--feature-width) * 0.5) + var(--pad)));
+}
+.hide {
+  display: none;
+}
+.hide.tablet {
+  display: initial;
+}
+.hide.desktop {
+  display: initial;
+}
+.hide.mobile {
+  display: none;
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .hide.mobile {
+    display: initial;
+  }
+  .hide.tablet {
+    display: none;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .hide.desktop {
+    display: none;
+  }
+  .hide.mobile.tablet {
+    display: initial;
+  }
+}
+.fixed {
+  position: fixed;
+}
+.fixed.tablet {
+  position: initial;
+}
+.fixed.desktop {
+  position: initial;
+}
+.fixed.mobile {
+  position: fixed;
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .fixed.mobile {
+    position: initial;
+  }
+  .fixed.tablet {
+    position: fixed;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .fixed.desktop {
+    position: fixed;
+  }
+  .fixed.mobile.tablet {
+    position: initial;
+  }
+}
+.no-padding-top {
+  padding-top: 0;
+}
+.no-padding-right {
+  padding-right: 0;
+}
+.no-padding-bottom {
+  padding-bottom: 0;
+}
+.no-padding-left {
+  padding-left: 0;
+}
+.no-margin-top {
+  margin-top: 0;
+}
+.no-margin-right {
+  margin-right: 0;
+}
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+.no-margin-left {
+  margin-left: 0;
+}
+.no-padding {
+  padding: 0;
+}
+.no-margin,
+.no-gutter {
+  margin: 0;
+}
+.no-side-margin,
+.no-side-margins {
+  margin-left: 0;
+  margin-right: 0;
+}
+.no-margins {
+  margin: 0;
+}
+.no-margins * {
+  margin: 0;
+}
+.no-min-width {
+  min-width: 0 !important;
+}
+.no-max-width {
+  max-width: 0 !important;
+}
+.no-min-height {
+  min-height: 0 !important;
+}
+.no-max-height {
+  max-height: 0 !important;
+}
+.no-box-shadow {
+  box-shadow: unset;
+}
+.no-text-shadow {
+  text-shadow: unset;
+}
+.no-shadow,
+.no-shadows,
+.no-shadows *,
+.flatten,
+.flatten * {
+  box-shadow: unset;
+  text-shadow: unset;
+}
+.no-border-radius {
+  border-radius: 0 !important;
+}
+.no-border,
+.no-borders,
+.no-borders * {
+  border-width: 0 !important;
+}
+.no-border-top {
+  border-top-width: 0 !important;
+}
+.no-border-right {
+  border-right-width: 0 !important;
+}
+.no-border-bottom {
+  border-bottom-width: 0 !important;
+}
+.no-border-left {
+  border-left-width: 0 !important;
+}
+.no-background {
+  background: transparent !important;
+}
+.no-bold {
+  font-weight: normal;
+}
+.no-overflow,
+.no-overflow * {
+  overflow: hidden;
+}
+.no-text-indent {
+  text-indent: 0;
+}
+.no-text,
+.no-text * {
+  text-indent: -9999px;
+  display: inline-block;
+}
+.no-text-align {
+  text-align: initial;
+}
+.no-underline {
+  text-decoration: none !important;
+}
+.no-underlines * {
+  text-decoration: none !important;
+}
+.no-user-select {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.no-pointer-events {
+  pointer-events: none;
+}
+.no-list-style {
+  list-style-type: none;
+  margin-left: 0;
+}
+.no-fade {
+  opacity: 1;
+}
+.no-gap,
+.no-column-gap {
+  gap: 0;
+  column-gap: 0;
+}
+.white {
+  --h: 194.3;
+  --s: 91.6%;
+  --l: 97.1%;
+}
+.light.white {
+  --l: 100%;
+}
+.dark.white {
+  --l: 77.1%;
+}
+.bright.white {
+  --s: 0%;
+  --l: 100%;
+}
+.dim.white {
+  --s: 66.6%;
+  --l: 87.1%;
+}
+.black {
+  --h: 194.3;
+  --s: 86.5%;
+  --l: 7.2%;
+}
+.light.black {
+  --l: 17.2%;
+}
+.dark.black {
+  --l: 0%;
+}
+.bright.black {
+  --s: 100%;
+  --l: 12.2%;
+}
+.dim.black {
+  --s: 0%;
+  --l: 0%;
+}
+.red,
+.failure,
+.error {
+  --h: 354.6;
+  --s: 72.8%;
+  --l: 46%;
+}
+.light.red,
+.light.failure,
+.light.error {
+  --l: 56%;
+}
+.dark.red,
+.dark.failure,
+.dark.error {
+  --l: 26%;
+}
+.bright.red,
+.bright.failure,
+.bright.error {
+  --s: 97.8%;
+  --l: 51%;
+}
+.dim.red,
+.dim.failure,
+.dim.error {
+  --s: 47.8%;
+  --l: 36%;
+}
+.orange,
+.warning {
+  --h: 38.8;
+  --s: 100%;
+  --l: 50%;
+}
+.light.orange,
+.light.warning {
+  --l: 60%;
+}
+.dark.orange,
+.dark.warning {
+  --l: 30%;
+}
+.bright.orange,
+.bright.warning {
+  --s: 100%;
+  --l: 55%;
+}
+.dim.orange,
+.dim.warning {
+  --s: 75%;
+  --l: 40%;
+}
+.yellow {
+  --h: 62.7;
+  --s: 99.9%;
+  --l: 52.3%;
+}
+.light.yellow {
+  --l: 62.3%;
+}
+.dark.yellow {
+  --l: 32.3%;
+}
+.bright.yellow {
+  --s: 100%;
+  --l: 57.3%;
+}
+.dim.yellow {
+  --s: 74.9%;
+  --l: 42.3%;
+}
+.green,
+.success {
+  --h: 130.5;
+  --s: 100%;
+  --l: 26.4%;
+}
+.light.green,
+.light.success {
+  --l: 36.4%;
+}
+.dark.green,
+.dark.success {
+  --l: 6.4%;
+}
+.bright.green,
+.bright.success {
+  --s: 100%;
+  --l: 31.4%;
+}
+.dim.green,
+.dim.success {
+  --s: 75%;
+  --l: 16.4%;
+}
+.teal {
+  --h: 180;
+  --s: 100%;
+  --l: 25.1%;
+}
+.light.teal {
+  --l: 35.1%;
+}
+.dark.teal {
+  --l: 5.1%;
+}
+.bright.teal {
+  --s: 100%;
+  --l: 30.1%;
+}
+.dim.teal {
+  --s: 75%;
+  --l: 15.1%;
+}
+.cyan {
+  --h: 180.2;
+  --s: 90%;
+  --l: 49.9%;
+}
+.light.cyan {
+  --l: 59.9%;
+}
+.dark.cyan {
+  --l: 29.9%;
+}
+.bright.cyan {
+  --s: 100%;
+  --l: 54.9%;
+}
+.dim.cyan {
+  --s: 65%;
+  --l: 39.9%;
+}
+.blue,
+.info {
+  --h: 234.7;
+  --s: 89%;
+  --l: 49.4%;
+}
+.light.blue,
+.light.info {
+  --l: 59.4%;
+}
+.dark.blue,
+.dark.info {
+  --l: 29.4%;
+}
+.bright.blue,
+.bright.info {
+  --s: 100%;
+  --l: 54.4%;
+}
+.dim.blue,
+.dim.info {
+  --s: 64%;
+  --l: 39.4%;
+}
+.purple {
+  --h: 289.3;
+  --s: 83.4%;
+  --l: 29.9%;
+}
+.light.purple {
+  --l: 39.9%;
+}
+.dark.purple {
+  --l: 9.9%;
+}
+.bright.purple {
+  --s: 100%;
+  --l: 34.9%;
+}
+.dim.purple {
+  --s: 58.4%;
+  --l: 19.9%;
+}
+.magenta {
+  --h: 290;
+  --s: 82.6%;
+  --l: 52.7%;
+}
+.light.magenta {
+  --l: 62.7%;
+}
+.dark.magenta {
+  --l: 32.7%;
+}
+.bright.magenta {
+  --s: 100%;
+  --l: 57.7%;
+}
+.dim.magenta {
+  --s: 57.6%;
+  --l: 42.7%;
+}
+.gray {
+  --h: 0;
+  --s: 0%;
+  --l: 50.2%;
+}
+.light.gray {
+  --l: 60.2%;
+}
+.dark.gray {
+  --l: 30.2%;
+}
+.bright.gray {
+  --s: 25%;
+  --l: 55.2%;
+}
+.dim.gray {
+  --s: 0%;
+  --l: 40.2%;
+}
+.base-color,
+.action,
+.primary {
+  --h: 204.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.base-color,
+.light.action,
+.light.primary {
+  --l: 53.3%;
+}
+.dark.base-color,
+.dark.action,
+.dark.primary {
+  --l: 23.3%;
+}
+.bright.base-color,
+.bright.action,
+.bright.primary {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.base-color,
+.dim.action,
+.dim.primary {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.complement,
+.second.triad,
+.reaction,
+.secondary {
+  --h: 24.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.complement,
+.light.second.triad,
+.light.reaction,
+.light.secondary {
+  --l: 53.3%;
+}
+.dark.complement,
+.dark.second.triad,
+.dark.reaction,
+.dark.secondary {
+  --l: 23.3%;
+}
+.bright.complement,
+.bright.second.triad,
+.bright.reaction,
+.bright.secondary {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.complement,
+.dim.second.triad,
+.dim.reaction,
+.dim.secondary {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.accent {
+  --h: 234.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.accent {
+  --l: 53.3%;
+}
+.dark.accent {
+  --l: 23.3%;
+}
+.bright.accent {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.accent {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.second.accent {
+  --h: 174.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.second.accent {
+  --l: 53.3%;
+}
+.dark.second.accent {
+  --l: 23.3%;
+}
+.bright.second.accent {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.second.accent {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.split {
+  --h: 294.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.split {
+  --l: 53.3%;
+}
+.dark.split {
+  --l: 23.3%;
+}
+.bright.split {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.split {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.second.split {
+  --h: 114.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.second.split {
+  --l: 53.3%;
+}
+.dark.second.split {
+  --l: 23.3%;
+}
+.bright.second.split {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.second.split {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.triad {
+  --h: 264.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.triad {
+  --l: 53.3%;
+}
+.dark.triad {
+  --l: 23.3%;
+}
+.bright.triad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.triad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.third.triad {
+  --h: 144.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.third.triad {
+  --l: 53.3%;
+}
+.dark.third.triad {
+  --l: 23.3%;
+}
+.bright.third.triad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.third.triad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.tetrad {
+  --h: 249.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.tetrad {
+  --l: 53.3%;
+}
+.dark.tetrad {
+  --l: 23.3%;
+}
+.bright.tetrad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.tetrad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.second.tetrad {
+  --h: 339.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.second.tetrad {
+  --l: 53.3%;
+}
+.dark.second.tetrad {
+  --l: 23.3%;
+}
+.bright.second.tetrad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.second.tetrad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.third.tetrad {
+  --h: 69.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.third.tetrad {
+  --l: 53.3%;
+}
+.dark.third.tetrad {
+  --l: 23.3%;
+}
+.bright.third.tetrad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.third.tetrad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.fourth.tetrad {
+  --h: 159.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.fourth.tetrad {
+  --l: 53.3%;
+}
+.dark.fourth.tetrad {
+  --l: 23.3%;
+}
+.bright.fourth.tetrad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.fourth.tetrad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.warm {
+  --a: 0.2;
+  background-image: linear-gradient(rgba(215.8, 97.5, 108.1, var(--a)), rgba(215.8, 97.5, 108.1, var(--a)));
+}
+.cool {
+  --a: 0.2;
+  background-image: linear-gradient(rgba(11.7, 195, 195.5, var(--a)), rgba(11.7, 195, 195.5, var(--a)));
+}
+.neutral {
+  --a: 0.2;
+  background-image: linear-gradient(rgba(34.8, 128.6, 191.8, var(--a)), rgba(34.8, 128.6, 191.8, var(--a)));
+}
+.dull {
+  --a: 0.2;
+  background-image: linear-gradient(rgba(110.5, 110.5, 110.5, var(--a)), rgba(110.5, 110.5, 110.5, var(--a)));
+}
+.red,
+.failure,
+.error {
+  --h: 354.6;
+  --s: 72.8%;
+  --l: 46%;
+}
+.light.red,
+.light.failure,
+.light.error {
+  --l: 56%;
+}
+.dark.red,
+.dark.failure,
+.dark.error {
+  --l: 26%;
+}
+.bright.red,
+.bright.failure,
+.bright.error {
+  --s: 97.8%;
+  --l: 51%;
+}
+.dim.red,
+.dim.failure,
+.dim.error {
+  --s: 47.8%;
+  --l: 36%;
+}
+.orange,
+.warning {
+  --h: 38.8;
+  --s: 100%;
+  --l: 50%;
+}
+.light.orange,
+.light.warning {
+  --l: 60%;
+}
+.dark.orange,
+.dark.warning {
+  --l: 30%;
+}
+.bright.orange,
+.bright.warning {
+  --s: 100%;
+  --l: 55%;
+}
+.dim.orange,
+.dim.warning {
+  --s: 75%;
+  --l: 40%;
+}
+.yellow {
+  --h: 62.7;
+  --s: 99.9%;
+  --l: 52.3%;
+}
+.light.yellow {
+  --l: 62.3%;
+}
+.dark.yellow {
+  --l: 32.3%;
+}
+.bright.yellow {
+  --s: 100%;
+  --l: 57.3%;
+}
+.dim.yellow {
+  --s: 74.9%;
+  --l: 42.3%;
+}
+.green,
+.success {
+  --h: 130.5;
+  --s: 100%;
+  --l: 26.4%;
+}
+.light.green,
+.light.success {
+  --l: 36.4%;
+}
+.dark.green,
+.dark.success {
+  --l: 6.4%;
+}
+.bright.green,
+.bright.success {
+  --s: 100%;
+  --l: 31.4%;
+}
+.dim.green,
+.dim.success {
+  --s: 75%;
+  --l: 16.4%;
+}
+.teal {
+  --h: 180;
+  --s: 100%;
+  --l: 25.1%;
+}
+.light.teal {
+  --l: 35.1%;
+}
+.dark.teal {
+  --l: 5.1%;
+}
+.bright.teal {
+  --s: 100%;
+  --l: 30.1%;
+}
+.dim.teal {
+  --s: 75%;
+  --l: 15.1%;
+}
+.cyan {
+  --h: 180.2;
+  --s: 90%;
+  --l: 49.9%;
+}
+.light.cyan {
+  --l: 59.9%;
+}
+.dark.cyan {
+  --l: 29.9%;
+}
+.bright.cyan {
+  --s: 100%;
+  --l: 54.9%;
+}
+.dim.cyan {
+  --s: 65%;
+  --l: 39.9%;
+}
+.blue,
+.info {
+  --h: 234.7;
+  --s: 89%;
+  --l: 49.4%;
+}
+.light.blue,
+.light.info {
+  --l: 59.4%;
+}
+.dark.blue,
+.dark.info {
+  --l: 29.4%;
+}
+.bright.blue,
+.bright.info {
+  --s: 100%;
+  --l: 54.4%;
+}
+.dim.blue,
+.dim.info {
+  --s: 64%;
+  --l: 39.4%;
+}
+.purple {
+  --h: 289.3;
+  --s: 83.4%;
+  --l: 29.9%;
+}
+.light.purple {
+  --l: 39.9%;
+}
+.dark.purple {
+  --l: 9.9%;
+}
+.bright.purple {
+  --s: 100%;
+  --l: 34.9%;
+}
+.dim.purple {
+  --s: 58.4%;
+  --l: 19.9%;
+}
+.magenta {
+  --h: 290;
+  --s: 82.6%;
+  --l: 52.7%;
+}
+.light.magenta {
+  --l: 62.7%;
+}
+.dark.magenta {
+  --l: 32.7%;
+}
+.bright.magenta {
+  --s: 100%;
+  --l: 57.7%;
+}
+.dim.magenta {
+  --s: 57.6%;
+  --l: 42.7%;
+}
+
+	</style>
+
+	<nav class="inner-page-width padding">
+		<a href="https://www.hyperhyperspace.org/" class="no-underline"><img src="logos/HHS_Logo_small.png" alt="Hyper Hyper Space" class="padding-left padding-top"></a>
+	</nav>
+	<div class="bar inner-page-width padding no-padding-top no-padding-bottom border-top border-bottom white">
+		<span class="padding monospace">End-of-year Report</span>
+	</div>
+	<div class="inner-page-width padding">
+		<h2 class="text-margin-bottom padding-left sans-serif" id="start">Hyper Hyper Space</h2>
+        <h5 class="text-margin-bottom padding-left border-bottom sans-serif">2022: A year in review</h5>
+		<div class="two-column tablet"><span class="monospace small  padding-left"> </span><span class="text-right padding-right monospace small">December 31st, <b>2022</b></span></div>
+	</div>
+
+    <div class="inner-page-width padding two-column golden reverse desktop tablet gap-gutter gutter-top">
+    
+    
+    <div>
+    <div class="hide mobile" style="position: sticky; top: 2rem">
+        <ol class="white padding" style="list-style-type: none;">
+            <li>
+                <a href="#start">2022: A year in review</a><br/>
+            </li>
+            <li style="padding-inline-start: 2rem">
+                <a href="#hyperbrowser">The Hyper Browser</a><br/>
+            </li>
+            <li style="padding-inline-start: 2rem">
+                <a href="#evolution">Sync techology: Evolution</a><br/>
+            </li>
+            <li style="padding-inline-start: 2rem">
+                <a href="#fancy">Fancy data types</a><br/>
+            </li>
+            <li style="padding-inline-start: 2rem">
+                <a href="#community">Community</a><br/>
+            </li>
+            <li style="padding-inline-start: 2rem">
+                <a href="#future">Future Work</a><br/>
+            </li>
+            <li style="padding-inline-start: 2rem">
+                <a href="#help">Help wanted!</a><br/>
+            </li>
+
+        </ol>
+    </div>
+    </div>
+    
+
+    <div class="inner-text-width">
+
+        
+        <p style="text-indent: 1rem"> The outlook for a non-for-profit open source software project trying to change the way we use the Internet is usually… rather challenging. But society-at-large is starting to question the ways of the mainstream Internet, and in 2022 it took notice of our existence! And this was fun and crazy and feels <i>full of possibilities</i> we want to share with you all.
+        </p>
+        
+        <p> So what are we doing? The year started with us getting to present <a href="https://www.hyperhyperspace.org">Hyper Hyper Space</a> at <a href="https://archive.fosdem.org/2022/">FOSDEM '22</a>, the largest open-source conference in Europe:
+        </p>
+
+        <div class="padding">
+            <img src="img/fosdem.png">
+            <div class="center text-center">Santi, trying to look like he knows what he's talking about (he doesn't!)</div>
+        </div>
+
+        <p> Things were very technical at that point: we were storing information <i>inside web browsers</i>, doing some fancy things with replicable data types and Byzantine-fault tolerance, trying to do browser-to-browser data sync, etc. You can watch the presentation <a href="https://video.fosdem.org/2022/D.web3/hyperhyper.webm">here</a>.</p>
+
+        <p> Shortly after that we were thrilled by the news that the <a href="https://nlnet.nl/">NLNet</a> foundation was going to <span class="green">fund further development of Hyper Hyper Space</span>. The <i>enormously</i> kind folks at NLNet helped us draft a plan for the year, a <i>memorandum of understanding</i> was signed and we were accepted under the umbrella of the <a href="https://nlnet.nl/assure/">NGI Assure</a> program. Hooray!</p>
+
+        <p> While in the past the focus of our work was on protocols and algorithms for decentralized data, we decided that this year we'd use the NLNet grant to create a web-based environment where people could interact with each other and do creative work, backed by Hyper Hyper Space. This became the <a href="https://hyperhyper.space">Hyper Browser</a> project (<a href="https://github.com/hyperhyperspace/hyper-browser-web">source</a>).
+        </p>
+
+        <p> This created a feedback loop where we'd be inspired by imagining new features for the Hyper Browser, and would work on the core library to support them. This in turn opened up new possibilities for the Hyper Browser and… you get the idea.
+        </p>
+
+        <h5 id="hyperbrowser">The Hyper Browser</h5>
+
+        <p style="text-indent: 1rem">We knew two things about the environment we wanted to create:</p>
+
+        <p>First, we wanted it to be web-based, so folks could casually experiment without installing any software. Since Hyper Hyper Space supports in-browser storage via IndexedDb and browser-to-browser sync through WebRTC, this seemed possible. We'd be using the web to deliver the Hyper Browser, packaged as a JavaScript application within a static site, to the browser - all data would be stored locally and synchronized peer-to-peer.</p>
+
+        <p>Second, since <i>spaces</i> (the unit of work in Hyper Hyper Space) are somewhat similar to files, we modeled our web-based environment after the familiar desktop-and-folders interface found  on most computers. This is how the web app looks now:</p>
+
+        <div class="padding">
+            <img src="img/home.png" style="border: 1px solid #ddd">
+            <div class="center text-center">The Hyper Browser's <i>Home</i> UI
+            </div>
+        </div>
+
+        <p>Each of the spaces in this desktop (that we call your <i>Home</i> on Hyper Hyper Space) is stored as a separate IndexedDb database inside the browser. Spaces open in new browser tabs, and their URLs are formed using a hash that uniquely identifies the space. This way, links can be shared like in a regular website. Upon loading a link to a space, the Hyper Browser web application is loaded first, and then the hash embedded in the URL is used to do peer discovery on that space. If any peers hosting the space are found, a local ephemeral copy is created locally and the space is displayed in the browser.
+        </p>
+
+        <p>This is somewhat similar to loading a regular website: a local (ephemeral) copy of the fetched HTML is stored and parsed by the browser for display. In the space's case, however, the local copy contains the actual data that was used to render the page, enabling the Hyper Browser to do other things (like editing the content and sending back the changes, or rendering it in richer ways that would be possible from just HTML).</p>
+
+        <p>The <i>Home</i> desktop environment is itself also a space, and you can use it to link all your devices, keeping their contents synchronized. It includes some social features in addition to the desktop interface: profiles, chat and a “contacts” section.</p>
+
+        <div class="padding">
+            <img src="img/profile.png">
+            <div class="center text-center">The Hyper Browser's social profile editing window</div>
+        </div>
+
+        <p>
+            If you want to publish your spaces for others to visit, this leaves us with the problem of your spaces going offline if you power down all your devices. While in the future space-hosting in the cloud could be provided, either as a paid service or through some collaborative solution, we felt that a purely browser-based alternative was also interesting. The social layer built into the Hyper Browser is used to this end: if you so choose, you can help the contacts you trust to keep their spaces online, pooling your resources to improve availability.
+        </p>
+
+        <p>
+            We're eager to receive feedback on this. If you can spend the time, head to the Hyper Browser website, create a Home and tell us about your experience (<a href="https://discord.gg/9epr3XrRnW">discord</a>, <a href="hello@hyperhyperspace.org">mail</a>). You can also clone the repo and run the site locally. Since all the data is handled peer-to-peer, it should make no difference!
+        </p>
+
+        <h5 id="evolution">Sync technology: Evolution</h5>
+
+        <p style="text-indent: 1rem">
+            The <a href="https://hyperhyper.space">Hyper Browser</a> was the first non-trivial application built on top of Hyper Hyper Space. This led to <i>a lot</i> of additions and improvements. While we were working on this, we were kindly invited to attend a meeting on local-fist software organized by the <a href="https://www.inkandswitch.com/">Ink & Switch</a> research lab in the context of the <a href="https://2022.ecoop.org/">ECOOP</a> conference in Berlin. This was an <i>amazing</i> experience. We saw a lot of work on tying user interfaces to databases directly, which was very related to our own recent work. We decided that the best way to do this on Hyper Hyper Space was by adding an event system, where changes would bubble up following the nesting of data types in the model. This enabled us to create <a href="https://github.com/hyperhyperspace/hyperhyperspace-react">react hooks</a> that bind entire UI components to the parts of the data that are relevant to them. After working on front-ends that have to keep their internal state in sync with a remote back-end, the simplicity of being able to bind the UI directly to a local replica of the app state, that is kept in sync automatically, is really incredible.
+        </p>
+
+        <h5 id="fancy">Fancy data types</h5>
+
+        <p style="text-indent: 1rem">
+            The data types that make up spaces on Hyper Hyper Space are based on conflict-free replicated data types (<a href="https://crdt.tech/">CRDTs</a>). The most successful usage case for this family of types is currently text editing: they enable editing a shared document while offline, and the modified text is merged reasonably well once connectivity becomes available. However, when one moves to more complex domains (for example when several of these types need to be composed, or application-defined invariants need to be enforced across them), there is not an effective, well-studied way of going about it. We felt that the applications we envisioned would need such flexibility in order to be intuitive and easy to use.
+        </p>
+
+        <p>
+            To overcome this issue, we extended the definition of our CRDTs to include special operations that are used to attest that the state of the local replica satisfies some constraints. While these special operations work as proof that the local state was satisfactory at the time they were created, they may become invalidated if operations received at a later time show that these constraints were not actually satisfied (it's just that the local state was not aware of that yet). We also enabled creating operations whose validity is dependent on the validity of other ops. This gives rise to a form of atomicity, where one can guarantee that a set of operations is either executed completely, or completely invalidated, while respecting the convenient convergence properties of CRDTs.
+        </p>
+
+        <p>
+            We used these new constructs to equip the wiki space-type included in the Hyper Browser with a capability system that enables having mutable sets of authors and moderators. The new causality features are used to express things like “let Alice delete Bob's message if and only if Alice is currently in the set of moderators” or “let Carol make an edit if and only if the wiki is currently openly editable or Carol is in the set of authors”. If there's a race condition and someone uses a capability that they no longer possess, their changes are reverted automatically by the storage system.
+        </p>
+
+        <p>
+            The situation when such a race happens is similar to a rollback in a database system. The coordination-free nature of CRDTs, however, makes it impossible to have the analogous of a commit: we can never know for sure that there isn't an operation out there, that we haven't received yet, that will invalidate a given change, and thus we cannot be sure that it will not be rolled back in the future.
+        </p>
+
+        <p>
+            Enabling Hyper Hyper Space's datatypes to incorporate finality guarantees, either as an emergent property of the system or by tapping into an external authority, is part of our research plans for next year.
+        </p>
+
+        <h5 id="community">Community</h5>
+
+        <p style="text-indent: 1rem">
+            In the past we've often had trouble communicating just how Hyper Hyper Space is different from other decentralized software projects. While we've gotten better at it with practice, our approach has often been to show rather than tell, and with more working software people are starting to show interest in the project, sometimes even offering to help!
+        </p>
+
+        <p>
+            This is very encouraging, and also presents new challenges. As an upstart open source project working on new ideas, our focus has been on validating our approach (mainly by writing code). We'd like to broaden our focus and learn new ways to collaborate. In an effort to make the project more approachable, we plan to improve our documentation and introductory materials next year.
+        </p>
+
+        <p>
+            We've also created a Discord instance (<a href="https://discord.gg/9epr3XrRnW">invite</a>) and are trying to make our planning and decision-making more community-driven. The experience has been very rewarding.
+        </p>
+
+        <div class="padding">
+            <img src="img/micah.png">
+            <div class="center text-center">Micah uses the Hyper Browser to <a href="https://archive.org/details/25-11-15_-_intro_to_hyper_hyper_space.qt">demo</a> an early version of the wiki space-type at Dweb Camp</div>
+        </div>
+
+        <h5 id="future">Future work</h5>
+
+        <p style="text-indent: 1rem">
+            We worked for a year, now we got at least 5 years' worth of stuff we want to do:
+        </p>
+
+        <div class="white padding">
+        <h6>New protocol + library version</h6>
+        <p>We've picked up <i>a lot</i> of ideas for making the library more intuitive and sync more performant. We want to act on them!</p>
+
+        <h6>More Space Types</h6>
+        <p>Moderated chat rooms, File sharing + media playing (photos, audio, video), Microblogging / Publishing, <a href="mailto:hello@hyperhyperspace.org">what else?</a></p>
+
+        <h6>Finality</h6>
+        <p>This year we got atomicity via <i>rollbacks</i>. Next year we want to <i>commit</i>!
+        </p>
+
+        <h6>Hyper Browser Porting</h6>
+        <p>We want native versions of the <i>Home</i> enviroment for phones, computers and servers.
+        </p>
+
+        <h6>Sandboxed Applications</h6>
+        <p>Right now, software to handle space-types (like the wiki shown above!) comes bundled with the Hyper Browser. We'd like spaces to be able to deliver their own software, that’d run in a sandbox and have fine-grained access to system resources and personal information. This idea just screams <i>Wasm</i> out loud 😃</p>
+
+        <h6>Schema Definition Language</h6>
+        <p>Hyper Hyper Space-based applications define their data model programmatically now. We'd like to have a declarative language for schema definitions, and possibly constraints (at least some of them).</p>
+
+        <h6>Docs + Community</h6>
+        <p>Yes, this year we'll finally work on documentation! 🤞</p>
+
+        </div>
+        
+
+        <h5 id="help">Help wanted!</h5>
+
+        <p>
+            Throughout this year we were funded by NLNet's <a href="https://nlnet.nl/assure/">NGI Assure</a> program. We're now working on getting funding to continue our work in 2023. If you'd like to help, you can support us through <a href="https://opencollective.com/hyper-hyper-space">Open Collective</a> or drop us a line at <a href="mailto:hello@hyperhyperspace.org">hello@hyperhyperspace.org</a>.
+        </p>
+
+        <p>
+            You can also contribute coding/interface design/ideas/etc. by joining us in <a href="https://discord.gg/9epr3XrRnW">Discord</a> and <a href="https://github.com/hyperhyperspace">GitHub</a>!
+        </p>
+
+        <div class="inner-page-width padding gutter-top no-padding-bottom text-right">
+            <span class="padding small">Designed using <a target="_blank" href="https://casscss.github.io/cass/">CASS</a>.</span>
+          </div>
+    </div>
+
+    
+</div>
+</body>
+</html>

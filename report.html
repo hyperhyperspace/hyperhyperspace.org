@@ -1,0 +1,2532 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+
+	<title>Conclusions and ideas for building p2p secure sync</title>
+	<meta name="description" content="The Hyper Hyper Space is a browser-based p2p framework for application interoperability">
+	<meta name="author" content="Santiago Bazerque">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="https://www.hyperhyperspace.org/favicon.ico">
+</head>
+
+<body class="light white">
+
+  <style>
+		/* This project uses Cavepaint (MIT License) by Rex Riepe */
+/* https://github.com/cavepaint/cavepaintCSS */
+:root {
+  --font-size-base: 18px;
+  --font-size-mod: 1;
+  --font-family: var(--sans-serif);
+  --line-height: 1.8;
+  --headline-base: 1em;
+  --headline-mod: 1;
+  --pad: 0.8rem;
+  --padding: var(--pad);
+  --margin: var(--pad);
+  --gutter: calc(2 * var(--pad));
+  --text-padding: 0.28em;
+  --text-margin: var(--text-padding);
+  --text-border-radius: var(--text-padding);
+  --text-shadow: var(--box-shadow);
+  --gap: var(--pad);
+  --grid-columns: 12;
+  --golden: 1.618;
+  --h: 194.3;
+  --s: 91.6%;
+  --l: 97.1%;
+  --a: 0.2;
+  --border-width: 1px;
+  --border-style: solid;
+  --border-radius: 0.5em;
+  --border-h: var(--h);
+  --border-s: var(--s);
+  --border-l: clamp(0%, calc(var(--l) * 0.85), 85%);
+  --border-color: hsl(var(--border-h), var(--border-s), var(--border-l));
+  --border: var(--border-width) var(--border-style) var(--border-color);
+  --border-thin: calc(var(--border-width) / 2);
+  --border-thick: calc(var(--border-width) * 2);
+  --border-radius: var(--text-padding);
+  --text-measure: 54;
+  --text-width: calc(var(--text-measure) * 0.618rem);
+  --card-width: calc(var(--text-width) * 0.618);
+  --page-width: calc(var(--text-width) * 1.618);
+  --feature-width: calc(var(--page-width) * 1.618);
+  --box-shadow: var(--shadow-position) var(--shadow-position) var(--shadow-blur) var(--shadow-color);
+  --shadow-position: 1px;
+  --shadow-blur: 1px;
+  --shadow-color: rgba(2, 27, 34, 0.2);
+  --direction: 180deg;
+  --warm: rgba(215.8, 97.5, 108.1, var(--a));
+  --cool: rgba(11.7, 195, 195.5, var(--a));
+  --neutral: rgba(34.8, 128.6, 191.8, var(--a));
+  --dull: rgba(110.5, 110.5, 110.5, var(--a));
+  --monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, "DejaVu Sans Mono", Courier, monospace;
+  --serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "Droid Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  --sans-serif: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+  --ambient: #12bff5;
+  --white: #f1fbfe;
+  --black: #021b22;
+  --red: #cb202f;
+  --orange: #ffa500;
+  --yellow: #f4ff0c;
+  --green: #008617;
+  --teal: #008080;
+  --cyan: #0df1f2;
+  --blue: #0e22ee;
+  --purple: #750d8c;
+  --magenta: #c923ea;
+  --gray: #808080;
+  --base-color: #1a7fc3;
+  --complement: #c35e1a;
+  --accent: #1a2ac3;
+  --second-accent: #1ac3b3;
+  --split: #b31ac3;
+  --second-split: #2ac31a;
+  --triad: #5e1ac3;
+  --second-triad: var(--complement);
+  --third-triad: #1ac35e;
+  --tetrad: #341ac3;
+  --second-tetrad: #c31a55;
+  --third-tetrad: #a9c31a;
+  --fourth-tetrad: #1ac388;
+  --action: #1a7fc3;
+  --reaction: #8d4413;
+  --info: var(--cyan);
+  --warning: var(--orange);
+  --success: var(--green);
+  --failure: var(--red);
+}
+@media screen and (min-width: 1px) {
+  :root {
+    --pad: calc(0.6 * 0.8rem);
+    --font-size: calc(var(--font-size-base) - 2px);
+    --headline-base: 1em;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  :root {
+    --pad: calc(0.8 * 0.8rem);
+    --font-size: calc(var(--font-size-base) - 1px);
+    --headline-base: 1.1em;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  :root {
+    --pad: 0.8rem;
+    --font-size: var(--font-size-base);
+    --headline-base: 1.2em;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: calc(var(--font-size) * var(--font-size-mod));
+}
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+body {
+  color: var(--black);
+  background-color: var(--white);
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  letter-spacing: -0.025em;
+  color: inherit;
+  line-height: 1.5;
+}
+h1 *,
+h2 *,
+h3 *,
+h4 *,
+h5 *,
+h6 * {
+  font-size: inherit;
+}
+h1 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 2.2);
+}
+h2 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 1.8);
+}
+h3 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 1.4);
+}
+h4 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 1.2);
+}
+h5 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 1.1);
+}
+h6 {
+  font-size: calc((var(--headline-base) * var(--font-size-mod)) * 1);
+}
+p {
+  margin-bottom: 1em;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+nav {
+  z-index: 99;
+}
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+em {
+  display: inline;
+  font-style: italic;
+}
+hr {
+  border-color: hsl(var(--h), var(--s), var(--l)) !important;
+}
+fieldset {
+  border: 0;
+  outline: none;
+}
+input {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  background: var(--white);
+  color: var(--black);
+  border: var(--border);
+  line-height: var(--line-height);
+  padding: var(--text-padding);
+}
+textarea {
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  border: var(--border);
+  margin-bottom: var(--margin);
+  background: var(--white);
+  color: var(--black);
+  font-size: var(--font-size);
+  padding: var(--text-padding);
+  overflow: auto;
+}
+ul,
+ol {
+  margin-left: var(--gutter);
+  margin-bottom: var(--margin-bottom);
+}
+li {
+  margin-bottom: var(--text-margin);
+}
+kbd {
+  color: var(--white);
+  border-radius: var(--border-radius);
+  padding: var(--text-padding);
+  white-space: nowrap;
+}
+pre,
+code {
+  font-family: var(--monospace);
+  margin-bottom: var(--margin);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  padding: var(--text-padding);
+  background: var(--black);
+  color: var(--white);
+}
+pre.white-space,
+pre.word-break {
+  white-space: pre-wrap;
+}
+pre > code {
+  background: transparent;
+  padding: 0;
+}
+.grid,
+.one-column,
+.two-column,
+.three-column,
+.four-column,
+.five-column,
+.six-column,
+.seven-column,
+.eight-column,
+.nine-column,
+.ten-column,
+.eleven-column,
+.twelve-column {
+  --grid-columns: 12;
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+}
+.mobile,
+.tablet,
+.mobile.tablet,
+.desktop {
+  grid-template-columns: minmax(0, 1fr);
+}
+@media screen and (min-width: 1px) {
+  .mobile {
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .mobile {
+    --grid-columns: 1;
+  }
+}
+@media screen and (max-width: calc(calc(37.08rem + 1.6rem) - 1px)) {
+  .tablet {
+    --grid-columns: 1;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .tablet {
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  }
+}
+.mobile.tablet {
+  grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .mobile.tablet {
+    --grid-columns: 1;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .desktop {
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+  }
+}
+@media screen and (max-width: calc(calc(59.99544rem + 1.6rem) - 1px)) {
+  .desktop {
+    --grid-columns: 1;
+  }
+}
+.one-column {
+  --grid-columns: 1;
+}
+.two-column {
+  --grid-columns: 2;
+}
+.three-column {
+  --grid-columns: 3;
+}
+.four-column {
+  --grid-columns: 4;
+}
+.five-column {
+  --grid-columns: 5;
+}
+.six-column {
+  --grid-columns: 6;
+}
+.seven-column {
+  --grid-columns: 7;
+}
+.eight-column {
+  --grid-columns: 8;
+}
+.nine-column {
+  --grid-columns: 9;
+}
+.ten-column {
+  --grid-columns: 10;
+}
+.eleven-column {
+  --grid-columns: 11;
+}
+.twelve-column {
+  --grid-columns: 12;
+}
+.grid-width-one {
+  grid-column: auto / span 1;
+}
+.grid-width-two {
+  grid-column: auto / span 2;
+}
+.grid-width-three {
+  grid-column: auto / span 3;
+}
+.grid-width-four {
+  grid-column: auto / span 4;
+}
+.grid-width-five {
+  grid-column: auto / span 5;
+}
+.grid-width-six {
+  grid-column: auto / span 6;
+}
+.grid-width-seven {
+  grid-column: auto / span 7;
+}
+.grid-width-eight {
+  grid-column: auto / span 8;
+}
+.grid-width-nine {
+  grid-column: auto / span 9;
+}
+.grid-width-ten {
+  grid-column: auto / span 10;
+}
+.grid-width-eleven {
+  grid-column: auto / span 11;
+}
+.grid-width-twelve {
+  grid-column: auto / span 12;
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .grid.mobile > *,
+  .one-column.mobile > *,
+  .two-column.mobile > *,
+  .three-column.mobile > *,
+  .four-column.mobile > *,
+  .five-column.mobile > *,
+  .six-column.mobile > *,
+  .seven-column.mobile > *,
+  .eight-column.mobile > *,
+  .nine-column.mobile > *,
+  .ten-column.mobile > *,
+  .eleven-column.mobile > *,
+  .twelve-column.mobile > * {
+    grid-column: auto / span 1;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .grid.mobile.tablet > *,
+  .one-column.mobile.tablet > *,
+  .two-column.mobile.tablet > *,
+  .three-column.mobile.tablet > *,
+  .four-column.mobile.tablet > *,
+  .five-column.mobile.tablet > *,
+  .six-column.mobile.tablet > *,
+  .seven-column.mobile.tablet > *,
+  .eight-column.mobile.tablet > *,
+  .nine-column.mobile.tablet > *,
+  .ten-column.mobile.tablet > *,
+  .eleven-column.mobile.tablet > *,
+  .twelve-column.mobile.tablet > * {
+    grid-column: auto / span 1;
+  }
+}
+@media screen and (max-width: calc(calc(37.08rem + 1.6rem) - 1px)) {
+  .grid.tablet > *,
+  .one-column.tablet > *,
+  .two-column.tablet > *,
+  .three-column.tablet > *,
+  .four-column.tablet > *,
+  .five-column.tablet > *,
+  .six-column.tablet > *,
+  .seven-column.tablet > *,
+  .eight-column.tablet > *,
+  .nine-column.tablet > *,
+  .ten-column.tablet > *,
+  .eleven-column.tablet > *,
+  .twelve-column.tablet > * {
+    grid-column: auto / span 1;
+  }
+}
+@media screen and (max-width: calc(calc(59.99544rem + 1.6rem) - 1px)) {
+  .grid.desktop > *,
+  .one-column.desktop > *,
+  .two-column.desktop > *,
+  .three-column.desktop > *,
+  .four-column.desktop > *,
+  .five-column.desktop > *,
+  .six-column.desktop > *,
+  .seven-column.desktop > *,
+  .eight-column.desktop > *,
+  .nine-column.desktop > *,
+  .ten-column.desktop > *,
+  .eleven-column.desktop > *,
+  .twelve-column.desktop > * {
+    grid-column: auto / span 1;
+  }
+}
+.two-column.golden {
+  grid-template-columns: 1.618fr 1fr;
+}
+.two-column.golden.mobile,
+.two-column.golden.tablet,
+.two-column.golden.mobile.tablet,
+.two-column.golden.desktop {
+  grid-template-columns: 1fr;
+}
+@media screen and (min-width: 1px) {
+  .two-column.golden.mobile {
+    grid-template-columns: 1.618fr 1fr;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .two-column.golden.mobile {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .two-column.golden.tablet {
+    grid-template-columns: 1.618fr 1fr;
+  }
+}
+@media screen and (max-width: calc(calc(59.99544rem + 1.6rem) - 1px)) {
+  .two-column.golden.mobile.tablet {
+    grid-template-columns: 1.618fr 1fr;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .two-column.golden.desktop {
+    grid-template-columns: 1.618fr 1fr;
+  }
+}
+.two-column.golden.reverse {
+  grid-template-columns: 1fr 1.618fr;
+}
+.two-column.golden.reverse.mobile,
+.two-column.golden.reverse.tablet,
+.two-column.golden.reverse.mobile.tablet,
+.two-column.golden.reverse.desktop {
+  grid-template-columns: 1fr;
+}
+@media screen and (min-width: 1px) {
+  .two-column.golden.reverse.mobile {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .two-column.golden.reverse.mobile {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .two-column.golden.reverse.tablet {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+@media screen and (max-width: calc(calc(59.99544rem + 1.6rem) - 1px)) {
+  .two-column.golden.reverse.mobile.tablet {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .two-column.golden.reverse.desktop {
+    grid-template-columns: 1fr 1.618fr;
+  }
+}
+.button,
+button {
+  display: inline;
+  border-width: 0;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  position: relative;
+  font-family: inherit;
+  padding: var(--text-padding);
+  color: inherit;
+  background-color: inherit;
+  line-height: 1.25;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-decoration: none;
+  touch-action: manipulation;
+  cursor: pointer;
+  transform: scale(1);
+  transition: scale 0.08s linear;
+}
+.button:active,
+button:active {
+  transform: scale(0.96);
+  box-shadow: unset;
+}
+.modal {
+  max-width: none;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.overlay {
+  padding: 0;
+  position: relative;
+}
+.overlay .top,
+.overlay .bottom,
+.overlay .left,
+.overlay .right {
+  position: absolute;
+  z-index: 10;
+}
+.overlay.stretch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.bar {
+  top: 0;
+  right: 0;
+  left: 0;
+}
+.bar.bottom {
+  top: auto;
+  bottom: 0;
+}
+.card {
+  border-radius: var(--border-radius);
+  padding: var(--padding);
+  background: var(--white);
+  color: var(--black);
+  box-shadow: var(--box-shadow);
+  max-width: var(--card-width);
+}
+.padding {
+  padding: var(--padding);
+}
+.margin {
+  margin: var(--margin);
+}
+.gutter {
+  margin: var(--gutter);
+}
+.inner-gutter {
+  padding: var(--gutter);
+}
+.text-padding {
+  padding: var(--text-padding);
+}
+.text-margin {
+  margin: var(--text-padding);
+}
+.padding-top {
+  padding-top: var(--padding);
+}
+.padding-right {
+  padding-right: var(--padding);
+}
+.padding-bottom {
+  padding-bottom: var(--padding);
+}
+.padding-left {
+  padding-left: var(--padding);
+}
+.margin-top {
+  margin-top: var(--margin);
+}
+.margin-right {
+  margin-right: var(--margin);
+}
+.margin-bottom {
+  margin-bottom: var(--margin);
+}
+.margin-left {
+  margin-left: var(--margin);
+}
+.gutter-top {
+  margin-top: var(--gutter);
+}
+.gutter-right {
+  margin-right: var(--gutter);
+}
+.gutter-bottom {
+  margin-bottom: var(--gutter);
+}
+.gutter-left {
+  margin-left: var(--gutter);
+}
+.inner-gutter-top {
+  padding-top: var(--gutter);
+}
+.inner-gutter-right {
+  padding-right: var(--gutter);
+}
+.inner-gutter-bottom {
+  padding-bottom: var(--gutter);
+}
+.inner-gutter-left {
+  padding-left: var(--gutter);
+}
+.text-padding-top {
+  padding-top: var(--text-padding);
+}
+.text-padding-right {
+  padding-right: var(--text-padding);
+}
+.text-padding-bottom {
+  padding-bottom: var(--text-padding);
+}
+.text-padding-left {
+  padding-left: var(--text-padding);
+}
+.text-margin-top {
+  margin-top: var(--text-padding);
+}
+.text-margin-right {
+  margin-right: var(--text-padding);
+}
+.text-margin-bottom {
+  margin-bottom: var(--text-padding);
+}
+.text-margin-left {
+  margin-left: var(--text-padding);
+}
+.text-border-radius,
+.text-rounded {
+  border-radius: var(--text-padding);
+}
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.inline-all,
+.inline-all * {
+  display: inline;
+}
+.inline-break::after {
+  content: "\A";
+  white-space: pre;
+}
+.initial {
+  display: initial;
+}
+.table {
+  display: table;
+}
+.flex {
+  display: flex;
+}
+.inline-block {
+  display: inline-block;
+}
+.static {
+  position: static;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.margin-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.width-auto {
+  width: auto;
+}
+.inset {
+  box-shadow: inset var(--box-shadow);
+}
+.box-shadow,
+.shadow {
+  box-shadow: var(--box-shadow);
+}
+.shallow {
+  --shadow-position: 0.5px;
+  --box-shadow: var(--shadow-position) var(--shadow-position) var(--shadow-blur) var(--shadow-color);
+}
+.deep {
+  --shadow-position: 2px;
+  --box-shadow: var(--shadow-position) var(--shadow-position) var(--shadow-blur) var(--shadow-color);
+}
+.full-height {
+  min-height: 100%;
+}
+.full-height.force {
+  height: 100%;
+}
+.viewport-height {
+  min-height: 100vh;
+}
+.viewport-height.force {
+  height: 100vh;
+}
+.golden-height {
+  min-height: 62vh;
+}
+.golden-height.force {
+  height: 62vh;
+}
+.overflow-scroll {
+  overflow-y: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.border {
+  border: var(--border);
+}
+.border-top {
+  border-top: var(--border);
+}
+.border-right {
+  border-right: var(--border);
+}
+.border-bottom {
+  border-bottom: var(--border);
+}
+.border-left {
+  border-left: var(--border);
+}
+.border-radius,
+.rounded {
+  border-radius: var(--border-radius);
+}
+.dashed {
+  border-style: dashed;
+}
+.dotted {
+  border-style: dotted;
+}
+.thick {
+  border-width: var(--border-thick);
+}
+.thin {
+  --border-l: clamp(0%, calc(var(--l) * 0.9), 85%);
+  border-width: var(--border-thin);
+}
+.current-color {
+  border-color: currentColor;
+}
+.fade {
+  opacity: 0.65;
+}
+.monospace {
+  font-family: var(--monospace);
+}
+.serif {
+  font-family: var(--serif);
+}
+.sans-serif {
+  font-family: var(--sans-serif);
+}
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+.all-caps {
+  text-transform: uppercase;
+}
+.underline {
+  text-decoration: underline;
+}
+.text-transparent {
+  color: transparent;
+}
+.small {
+  --font-size-mod: 0.9;
+}
+.medium {
+  --font-size-mod: 1;
+}
+.big {
+  --font-size-mod: 1.1;
+}
+.huge {
+  --font-size-mod: 1.2;
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .small {
+    --font-size-mod: 0.9;
+  }
+  .medium {
+    --font-size-mod: 1;
+  }
+  .big {
+    --font-size-mod: 1.2;
+  }
+  .huge {
+    --font-size-mod: 1.4;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .small {
+    --font-size-mod: 0.9;
+  }
+  .medium {
+    --font-size-mod: 1;
+  }
+  .big {
+    --font-size-mod: 1.3;
+  }
+  .huge {
+    --font-size-mod: 1.6;
+  }
+}
+.vertical-center,
+.center-vertical {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+.container {
+  max-width: var(--page-width);
+  margin: var(--margin) auto;
+  padding: var(--padding);
+}
+.text-trim {
+  line-height: 1;
+}
+.text-crunch {
+  line-height: calc((var(--line-height) + 1) * 0.62);
+}
+.text-align-center,
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.gap-padding {
+  --gap: var(--padding);
+}
+.gap-margin {
+  --gap: var(--margin);
+}
+.gap-gutter {
+  --gap: var(--gutter);
+}
+.gap-border-width {
+  --gap: var(--border-width);
+}
+.gap-text-padding,
+.gap-text-margin {
+  --gap: var(--text-padding);
+}
+.text-color {
+  color: hsl(var(--h), clamp(0%, var(--s), 90%), clamp(0%, var(--l), 40%)) !important;
+  background-color: transparent !important;
+}
+.text-color.tint {
+  color: hsl(var(--h), clamp(0%, var(--s), 90%), clamp(60%, var(--l), 100%)) !important;
+  background-color: transparent !important;
+}
+.shade,
+.white,
+.orange,
+.yellow,
+.light.green,
+.light.teal,
+.cyan,
+.light.gray,
+.light.base-color,
+.light.complement,
+.bright.complement,
+.second.accent,
+.second.split,
+.third.triad,
+.third.tetrad,
+.fourth.tetrad,
+.orange,
+.yellow,
+.light.green,
+.light.teal,
+.cyan,
+.light.second.triad,
+.bright.second.triad,
+.light.action,
+.light.primary,
+.light.reaction,
+.bright.reaction,
+.light.secondary,
+.bright.secondary,
+.warning,
+.warning,
+.light.success,
+.light.success {
+  color: var(--black);
+  background-color: hsl(var(--h), var(--s), var(--l));
+  border-color: hsl(var(--border-h), var(--border-s), var(--border-l));
+  --border-h: var(--h);
+  --border-s: var(--s);
+  --border-l: clamp(0%, calc(var(--l) * 0.75), 85%);
+}
+.tint,
+.black,
+.red,
+.dark.orange,
+.dim.orange,
+.green,
+.teal,
+.dark.cyan,
+.blue,
+.purple,
+.magenta,
+.gray,
+.base-color,
+.complement,
+.accent,
+.dark.second.accent,
+.dim.second.accent,
+.split,
+.dark.second.split,
+.dim.second.split,
+.triad,
+.dark.third.triad,
+.dim.third.triad,
+.tetrad,
+.second.tetrad,
+.dark.third.tetrad,
+.dim.third.tetrad,
+.dark.fourth.tetrad,
+.dim.fourth.tetrad,
+.red,
+.dark.orange,
+.dim.orange,
+.green,
+.teal,
+.dark.cyan,
+.blue,
+.purple,
+.magenta,
+.second.triad,
+.action,
+.primary,
+.reaction,
+.secondary,
+.info,
+.info,
+.dark.warning,
+.dim.warning,
+.dark.warning,
+.dim.warning,
+.success,
+.success,
+.failure,
+.failure,
+.error,
+.error {
+  color: var(--white);
+  background-color: hsl(var(--h), var(--s), var(--l));
+  border-color: hsl(var(--border-h), var(--border-s), var(--border-l));
+  --border-h: var(--h);
+  --border-s: var(--s);
+  --border-l: clamp(0%, calc(var(--l) * 0.75), 85%);
+}
+.transparent {
+  background-color: transparent !important;
+  color: inherit;
+  border-color: inherit;
+  --light: hsl(var(--h), var(--s), var(--l), 0.85);
+  background-image: linear-gradient(var(--light), var(--light));
+  color: var(--black);
+}
+.transparent.black,
+.transparent.dark {
+  --dark: hsla(var(--h), var(--s), var(--l), 0.65);
+  background-image: linear-gradient(var(--dark), var(--dark));
+  color: var(--white) !important;
+}
+.gradient {
+  background: linear-gradient(var(--direction), hsla(var(--h), var(--s), var(--l), 1) 0%, hsla(var(--h), var(--s), var(--l), 0) 100%);
+}
+.horizontal {
+  --direction: 180deg;
+}
+.vertical {
+  --direction: 90deg;
+}
+.trim {
+  margin-bottom: 0;
+}
+.trim-inner * {
+  margin-bottom: 0;
+}
+.trim-all {
+  margin-bottom: 0;
+}
+.trim-all * {
+  margin-bottom: 0;
+}
+.bump {
+  position: relative;
+}
+.bump.up {
+  top: -2px;
+}
+.bump.down {
+  top: 2px;
+}
+.bump.left {
+  left: -2px;
+}
+.bump.right {
+  right: initial;
+  left: 2px;
+}
+.hidden {
+  display: none !important;
+}
+.clearfix,
+.clear {
+  clear: both;
+}
+.clearfix::after,
+.clear::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.user-background {
+  background-color: var(--white);
+  color: var(--black);
+}
+@media (prefers-color-scheme: dark) {
+  .user-background {
+    background: var(--black);
+    color: var(--white);
+  }
+}
+.align-content {
+  align-content: stretch;
+}
+.align-items {
+  align-items: stretch;
+}
+.align-self {
+  align-self: auto;
+}
+.flex {
+  flex: 0 1 auto;
+}
+.flex-direction {
+  flex-direction: column;
+}
+.justify-content {
+  justify-content: center;
+}
+.list-style {
+  list-style: disc inside none;
+}
+.list-style-type {
+  list-style-type: disc;
+}
+.text-indent {
+  text-indent: 2ch;
+}
+.text-justify {
+  text-justify: justify;
+}
+.text-overflow {
+  text-overflow: ellipsis;
+}
+.text-shadow {
+  text-shadow: var(--text-shadow);
+}
+.line-height {
+  line-height: var(--line-height);
+}
+.vertical-align {
+  vertical-align: middle;
+}
+.letter-spacing {
+  letter-spacing: 0;
+}
+.word-spacing {
+  word-spacing: normal;
+}
+.white-space {
+  white-space: nowrap;
+}
+.word-break {
+  word-break: break-all;
+}
+.word-wrap {
+  word-wrap: break-word;
+}
+.transform {
+  transform: none;
+}
+.transition {
+  transition: all 0s ease 0s;
+}
+.display {
+  display: block;
+}
+.position {
+  position: absolute;
+}
+.top {
+  top: 0;
+}
+.right {
+  right: 0;
+}
+.bottom {
+  bottom: 0;
+}
+.left {
+  left: 0;
+}
+.float {
+  float: left;
+}
+.clear {
+  clear: both;
+}
+.z-index {
+  z-index: 10;
+}
+.overflow {
+  overflow: hidden;
+}
+.cursor,
+.pointer {
+  cursor: pointer;
+}
+.placeholder {
+  min-height: var(--pad);
+}
+.placeholder::after {
+  content: " ";
+}
+.rem-width {
+  width: 1rem;
+}
+.golden-width {
+  max-width: calc(62% - var(--pad));
+}
+.golden-width.force {
+  width: calc(62% - var(--pad));
+}
+.golden-width.switch {
+  max-width: calc(38% - var(--pad));
+}
+.golden-width.switch.force {
+  width: calc(38% - var(--pad));
+}
+.card-width {
+  max-width: var(--card-width);
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .text-width {
+    max-width: var(--text-width);
+  }
+  .text-width.force {
+    width: var(--text-width);
+  }
+}
+.page-width {
+  max-width: var(--page-width);
+}
+.page-width.force {
+  width: var(--page-width);
+}
+.feature-width {
+  max-width: calc(var(--page-width) * 1.6);
+}
+.feature-width.force {
+  width: calc(var(--page-width) * 1.6);
+}
+.full-width {
+  max-width: 100%;
+}
+.full-width.force {
+  width: 100%;
+}
+.inner-card-width {
+  padding-left: max(var(--pad), calc(50% - (var(--card-width) * 0.5)));
+  padding-right: max(var(--pad), calc(50% - (var(--card-width) * 0.5)));
+}
+.inner-card-width.padding {
+  padding-left: max(var(--pad), calc(50% - (var(--card-width) * 0.5) + var(--pad)));
+  padding-right: max(var(--pad), calc(50% - (var(--card-width) * 0.5) + var(--pad)));
+}
+.inner-text-width {
+  padding-left: calc(50% - (var(--text-width) * 0.5));
+  padding-right: calc(50% - (var(--text-width) * 0.5));
+}
+.inner-text-width.padding {
+  padding-left: max(var(--pad), calc(50% - (var(--text-width) * 0.5) + var(--pad)));
+  padding-right: max(var(--pad), calc(50% - (var(--text-width) * 0.5) + var(--pad)));
+}
+.inner-page-width {
+  padding-left: calc(50% - (var(--page-width) * 0.5));
+  padding-right: calc(50% - (var(--page-width) * 0.5));
+}
+.inner-page-width.padding {
+  padding-left: max(var(--pad), calc(50% - (var(--page-width) * 0.5) + var(--pad)));
+  padding-right: max(var(--pad), calc(50% - (var(--page-width) * 0.5) + var(--pad)));
+}
+.inner-feature-width {
+  padding-left: calc(50% - (var(--feature-width) * 0.5));
+  padding-right: calc(50% - (var(--feature-width) * 0.5));
+}
+.inner-feature-width.padding {
+  padding-left: max(var(--pad), calc(50% - (var(--feature-width) * 0.5) + var(--pad)));
+  padding-right: max(var(--pad), calc(50% - (var(--feature-width) * 0.5) + var(--pad)));
+}
+.hide {
+  display: none;
+}
+.hide.tablet {
+  display: initial;
+}
+.hide.desktop {
+  display: initial;
+}
+.hide.mobile {
+  display: none;
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .hide.mobile {
+    display: initial;
+  }
+  .hide.tablet {
+    display: none;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .hide.desktop {
+    display: none;
+  }
+  .hide.mobile.tablet {
+    display: initial;
+  }
+}
+.fixed {
+  position: fixed;
+}
+.fixed.tablet {
+  position: initial;
+}
+.fixed.desktop {
+  position: initial;
+}
+.fixed.mobile {
+  position: fixed;
+}
+@media screen and (min-width: calc(37.08rem + 1.6rem)) {
+  .fixed.mobile {
+    position: initial;
+  }
+  .fixed.tablet {
+    position: fixed;
+  }
+}
+@media screen and (min-width: calc(59.99544rem + 1.6rem)) {
+  .fixed.desktop {
+    position: fixed;
+  }
+  .fixed.mobile.tablet {
+    position: initial;
+  }
+}
+.no-padding-top {
+  padding-top: 0;
+}
+.no-padding-right {
+  padding-right: 0;
+}
+.no-padding-bottom {
+  padding-bottom: 0;
+}
+.no-padding-left {
+  padding-left: 0;
+}
+.no-margin-top {
+  margin-top: 0;
+}
+.no-margin-right {
+  margin-right: 0;
+}
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+.no-margin-left {
+  margin-left: 0;
+}
+.no-padding {
+  padding: 0;
+}
+.no-margin,
+.no-gutter {
+  margin: 0;
+}
+.no-side-margin,
+.no-side-margins {
+  margin-left: 0;
+  margin-right: 0;
+}
+.no-margins {
+  margin: 0;
+}
+.no-margins * {
+  margin: 0;
+}
+.no-min-width {
+  min-width: 0 !important;
+}
+.no-max-width {
+  max-width: 0 !important;
+}
+.no-min-height {
+  min-height: 0 !important;
+}
+.no-max-height {
+  max-height: 0 !important;
+}
+.no-box-shadow {
+  box-shadow: unset;
+}
+.no-text-shadow {
+  text-shadow: unset;
+}
+.no-shadow,
+.no-shadows,
+.no-shadows *,
+.flatten,
+.flatten * {
+  box-shadow: unset;
+  text-shadow: unset;
+}
+.no-border-radius {
+  border-radius: 0 !important;
+}
+.no-border,
+.no-borders,
+.no-borders * {
+  border-width: 0 !important;
+}
+.no-border-top {
+  border-top-width: 0 !important;
+}
+.no-border-right {
+  border-right-width: 0 !important;
+}
+.no-border-bottom {
+  border-bottom-width: 0 !important;
+}
+.no-border-left {
+  border-left-width: 0 !important;
+}
+.no-background {
+  background: transparent !important;
+}
+.no-bold {
+  font-weight: normal;
+}
+.no-overflow,
+.no-overflow * {
+  overflow: hidden;
+}
+.no-text-indent {
+  text-indent: 0;
+}
+.no-text,
+.no-text * {
+  text-indent: -9999px;
+  display: inline-block;
+}
+.no-text-align {
+  text-align: initial;
+}
+.no-underline {
+  text-decoration: none !important;
+}
+.no-underlines * {
+  text-decoration: none !important;
+}
+.no-user-select {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.no-pointer-events {
+  pointer-events: none;
+}
+.no-list-style {
+  list-style-type: none;
+  margin-left: 0;
+}
+.no-fade {
+  opacity: 1;
+}
+.no-gap,
+.no-column-gap {
+  gap: 0;
+  column-gap: 0;
+}
+.white {
+  --h: 194.3;
+  --s: 91.6%;
+  --l: 97.1%;
+}
+.light.white {
+  --l: 100%;
+}
+.dark.white {
+  --l: 77.1%;
+}
+.bright.white {
+  --s: 0%;
+  --l: 100%;
+}
+.dim.white {
+  --s: 66.6%;
+  --l: 87.1%;
+}
+.black {
+  --h: 194.3;
+  --s: 86.5%;
+  --l: 7.2%;
+}
+.light.black {
+  --l: 17.2%;
+}
+.dark.black {
+  --l: 0%;
+}
+.bright.black {
+  --s: 100%;
+  --l: 12.2%;
+}
+.dim.black {
+  --s: 0%;
+  --l: 0%;
+}
+.red,
+.failure,
+.error {
+  --h: 354.6;
+  --s: 72.8%;
+  --l: 46%;
+}
+.light.red,
+.light.failure,
+.light.error {
+  --l: 56%;
+}
+.dark.red,
+.dark.failure,
+.dark.error {
+  --l: 26%;
+}
+.bright.red,
+.bright.failure,
+.bright.error {
+  --s: 97.8%;
+  --l: 51%;
+}
+.dim.red,
+.dim.failure,
+.dim.error {
+  --s: 47.8%;
+  --l: 36%;
+}
+.orange,
+.warning {
+  --h: 38.8;
+  --s: 100%;
+  --l: 50%;
+}
+.light.orange,
+.light.warning {
+  --l: 60%;
+}
+.dark.orange,
+.dark.warning {
+  --l: 30%;
+}
+.bright.orange,
+.bright.warning {
+  --s: 100%;
+  --l: 55%;
+}
+.dim.orange,
+.dim.warning {
+  --s: 75%;
+  --l: 40%;
+}
+.yellow {
+  --h: 62.7;
+  --s: 99.9%;
+  --l: 52.3%;
+}
+.light.yellow {
+  --l: 62.3%;
+}
+.dark.yellow {
+  --l: 32.3%;
+}
+.bright.yellow {
+  --s: 100%;
+  --l: 57.3%;
+}
+.dim.yellow {
+  --s: 74.9%;
+  --l: 42.3%;
+}
+.green,
+.success {
+  --h: 130.5;
+  --s: 100%;
+  --l: 26.4%;
+}
+.light.green,
+.light.success {
+  --l: 36.4%;
+}
+.dark.green,
+.dark.success {
+  --l: 6.4%;
+}
+.bright.green,
+.bright.success {
+  --s: 100%;
+  --l: 31.4%;
+}
+.dim.green,
+.dim.success {
+  --s: 75%;
+  --l: 16.4%;
+}
+.teal {
+  --h: 180;
+  --s: 100%;
+  --l: 25.1%;
+}
+.light.teal {
+  --l: 35.1%;
+}
+.dark.teal {
+  --l: 5.1%;
+}
+.bright.teal {
+  --s: 100%;
+  --l: 30.1%;
+}
+.dim.teal {
+  --s: 75%;
+  --l: 15.1%;
+}
+.cyan {
+  --h: 180.2;
+  --s: 90%;
+  --l: 49.9%;
+}
+.light.cyan {
+  --l: 59.9%;
+}
+.dark.cyan {
+  --l: 29.9%;
+}
+.bright.cyan {
+  --s: 100%;
+  --l: 54.9%;
+}
+.dim.cyan {
+  --s: 65%;
+  --l: 39.9%;
+}
+.blue,
+.info {
+  --h: 234.7;
+  --s: 89%;
+  --l: 49.4%;
+}
+.light.blue,
+.light.info {
+  --l: 59.4%;
+}
+.dark.blue,
+.dark.info {
+  --l: 29.4%;
+}
+.bright.blue,
+.bright.info {
+  --s: 100%;
+  --l: 54.4%;
+}
+.dim.blue,
+.dim.info {
+  --s: 64%;
+  --l: 39.4%;
+}
+.purple {
+  --h: 289.3;
+  --s: 83.4%;
+  --l: 29.9%;
+}
+.light.purple {
+  --l: 39.9%;
+}
+.dark.purple {
+  --l: 9.9%;
+}
+.bright.purple {
+  --s: 100%;
+  --l: 34.9%;
+}
+.dim.purple {
+  --s: 58.4%;
+  --l: 19.9%;
+}
+.magenta {
+  --h: 290;
+  --s: 82.6%;
+  --l: 52.7%;
+}
+.light.magenta {
+  --l: 62.7%;
+}
+.dark.magenta {
+  --l: 32.7%;
+}
+.bright.magenta {
+  --s: 100%;
+  --l: 57.7%;
+}
+.dim.magenta {
+  --s: 57.6%;
+  --l: 42.7%;
+}
+.gray {
+  --h: 0;
+  --s: 0%;
+  --l: 50.2%;
+}
+.light.gray {
+  --l: 60.2%;
+}
+.dark.gray {
+  --l: 30.2%;
+}
+.bright.gray {
+  --s: 25%;
+  --l: 55.2%;
+}
+.dim.gray {
+  --s: 0%;
+  --l: 40.2%;
+}
+.base-color,
+.action,
+.primary {
+  --h: 204.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.base-color,
+.light.action,
+.light.primary {
+  --l: 53.3%;
+}
+.dark.base-color,
+.dark.action,
+.dark.primary {
+  --l: 23.3%;
+}
+.bright.base-color,
+.bright.action,
+.bright.primary {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.base-color,
+.dim.action,
+.dim.primary {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.complement,
+.second.triad,
+.reaction,
+.secondary {
+  --h: 24.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.complement,
+.light.second.triad,
+.light.reaction,
+.light.secondary {
+  --l: 53.3%;
+}
+.dark.complement,
+.dark.second.triad,
+.dark.reaction,
+.dark.secondary {
+  --l: 23.3%;
+}
+.bright.complement,
+.bright.second.triad,
+.bright.reaction,
+.bright.secondary {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.complement,
+.dim.second.triad,
+.dim.reaction,
+.dim.secondary {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.accent {
+  --h: 234.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.accent {
+  --l: 53.3%;
+}
+.dark.accent {
+  --l: 23.3%;
+}
+.bright.accent {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.accent {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.second.accent {
+  --h: 174.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.second.accent {
+  --l: 53.3%;
+}
+.dark.second.accent {
+  --l: 23.3%;
+}
+.bright.second.accent {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.second.accent {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.split {
+  --h: 294.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.split {
+  --l: 53.3%;
+}
+.dark.split {
+  --l: 23.3%;
+}
+.bright.split {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.split {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.second.split {
+  --h: 114.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.second.split {
+  --l: 53.3%;
+}
+.dark.second.split {
+  --l: 23.3%;
+}
+.bright.second.split {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.second.split {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.triad {
+  --h: 264.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.triad {
+  --l: 53.3%;
+}
+.dark.triad {
+  --l: 23.3%;
+}
+.bright.triad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.triad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.third.triad {
+  --h: 144.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.third.triad {
+  --l: 53.3%;
+}
+.dark.third.triad {
+  --l: 23.3%;
+}
+.bright.third.triad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.third.triad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.tetrad {
+  --h: 249.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.tetrad {
+  --l: 53.3%;
+}
+.dark.tetrad {
+  --l: 23.3%;
+}
+.bright.tetrad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.tetrad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.second.tetrad {
+  --h: 339.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.second.tetrad {
+  --l: 53.3%;
+}
+.dark.second.tetrad {
+  --l: 23.3%;
+}
+.bright.second.tetrad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.second.tetrad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.third.tetrad {
+  --h: 69.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.third.tetrad {
+  --l: 53.3%;
+}
+.dark.third.tetrad {
+  --l: 23.3%;
+}
+.bright.third.tetrad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.third.tetrad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.fourth.tetrad {
+  --h: 159.1;
+  --s: 76.5%;
+  --l: 43.3%;
+}
+.light.fourth.tetrad {
+  --l: 53.3%;
+}
+.dark.fourth.tetrad {
+  --l: 23.3%;
+}
+.bright.fourth.tetrad {
+  --s: 100%;
+  --l: 48.3%;
+}
+.dim.fourth.tetrad {
+  --s: 51.5%;
+  --l: 33.3%;
+}
+.warm {
+  --a: 0.2;
+  background-image: linear-gradient(rgba(215.8, 97.5, 108.1, var(--a)), rgba(215.8, 97.5, 108.1, var(--a)));
+}
+.cool {
+  --a: 0.2;
+  background-image: linear-gradient(rgba(11.7, 195, 195.5, var(--a)), rgba(11.7, 195, 195.5, var(--a)));
+}
+.neutral {
+  --a: 0.2;
+  background-image: linear-gradient(rgba(34.8, 128.6, 191.8, var(--a)), rgba(34.8, 128.6, 191.8, var(--a)));
+}
+.dull {
+  --a: 0.2;
+  background-image: linear-gradient(rgba(110.5, 110.5, 110.5, var(--a)), rgba(110.5, 110.5, 110.5, var(--a)));
+}
+.red,
+.failure,
+.error {
+  --h: 354.6;
+  --s: 72.8%;
+  --l: 46%;
+}
+.light.red,
+.light.failure,
+.light.error {
+  --l: 56%;
+}
+.dark.red,
+.dark.failure,
+.dark.error {
+  --l: 26%;
+}
+.bright.red,
+.bright.failure,
+.bright.error {
+  --s: 97.8%;
+  --l: 51%;
+}
+.dim.red,
+.dim.failure,
+.dim.error {
+  --s: 47.8%;
+  --l: 36%;
+}
+.orange,
+.warning {
+  --h: 38.8;
+  --s: 100%;
+  --l: 50%;
+}
+.light.orange,
+.light.warning {
+  --l: 60%;
+}
+.dark.orange,
+.dark.warning {
+  --l: 30%;
+}
+.bright.orange,
+.bright.warning {
+  --s: 100%;
+  --l: 55%;
+}
+.dim.orange,
+.dim.warning {
+  --s: 75%;
+  --l: 40%;
+}
+.yellow {
+  --h: 62.7;
+  --s: 99.9%;
+  --l: 52.3%;
+}
+.light.yellow {
+  --l: 62.3%;
+}
+.dark.yellow {
+  --l: 32.3%;
+}
+.bright.yellow {
+  --s: 100%;
+  --l: 57.3%;
+}
+.dim.yellow {
+  --s: 74.9%;
+  --l: 42.3%;
+}
+.green,
+.success {
+  --h: 130.5;
+  --s: 100%;
+  --l: 26.4%;
+}
+.light.green,
+.light.success {
+  --l: 36.4%;
+}
+.dark.green,
+.dark.success {
+  --l: 6.4%;
+}
+.bright.green,
+.bright.success {
+  --s: 100%;
+  --l: 31.4%;
+}
+.dim.green,
+.dim.success {
+  --s: 75%;
+  --l: 16.4%;
+}
+.teal {
+  --h: 180;
+  --s: 100%;
+  --l: 25.1%;
+}
+.light.teal {
+  --l: 35.1%;
+}
+.dark.teal {
+  --l: 5.1%;
+}
+.bright.teal {
+  --s: 100%;
+  --l: 30.1%;
+}
+.dim.teal {
+  --s: 75%;
+  --l: 15.1%;
+}
+.cyan {
+  --h: 180.2;
+  --s: 90%;
+  --l: 49.9%;
+}
+.light.cyan {
+  --l: 59.9%;
+}
+.dark.cyan {
+  --l: 29.9%;
+}
+.bright.cyan {
+  --s: 100%;
+  --l: 54.9%;
+}
+.dim.cyan {
+  --s: 65%;
+  --l: 39.9%;
+}
+.blue,
+.info {
+  --h: 234.7;
+  --s: 89%;
+  --l: 49.4%;
+}
+.light.blue,
+.light.info {
+  --l: 59.4%;
+}
+.dark.blue,
+.dark.info {
+  --l: 29.4%;
+}
+.bright.blue,
+.bright.info {
+  --s: 100%;
+  --l: 54.4%;
+}
+.dim.blue,
+.dim.info {
+  --s: 64%;
+  --l: 39.4%;
+}
+.purple {
+  --h: 289.3;
+  --s: 83.4%;
+  --l: 29.9%;
+}
+.light.purple {
+  --l: 39.9%;
+}
+.dark.purple {
+  --l: 9.9%;
+}
+.bright.purple {
+  --s: 100%;
+  --l: 34.9%;
+}
+.dim.purple {
+  --s: 58.4%;
+  --l: 19.9%;
+}
+.magenta {
+  --h: 290;
+  --s: 82.6%;
+  --l: 52.7%;
+}
+.light.magenta {
+  --l: 62.7%;
+}
+.dark.magenta {
+  --l: 32.7%;
+}
+.bright.magenta {
+  --s: 100%;
+  --l: 57.7%;
+}
+.dim.magenta {
+  --s: 57.6%;
+  --l: 42.7%;
+}
+
+	</style>
+
+	<nav class="inner-page-width padding">
+    <div style="display: flex; flex-direction: horizontal; justify-content: space-between; align-items: center;">
+		<a href="https://www.hyperhyperspace.org/" class="no-underline"><img src="./img/HHS_Logo_small.png" alt="Hyper Hyper Space" class="padding-left padding-top"></a>
+    <a href="https://nlnet.nl/assure/" class="no-underline"><img class="" style="width: 8rem;" src="https://nlnet.nl/image/logos/NGIAssure_tag.svg"></a>
+  </div>
+	</nav>
+	<div class="bar inner-page-width padding no-padding-top no-padding-bottom border-top border-bottom white">
+		<span class="padding monospace">Technical Report for NGI Assure Grant 2021-08-39</span>
+	</div>
+	<div class="inner-page-width padding">
+    <div class="text-margin-bottom padding-left border-bottom sans-serif">
+		<h2 class="text-margin-bottom sans-serif">Hyper Hyper Space: Conclusions and ideas for building p2p secure data sync</h2>
+    <span class=""></span>
+  </div>
+		<div class="two-column golden tablet"><span class="monospace small  padding-left"> by <a href="mailto:santi@hyperhyperspace.org"><b>Santiago Bazerque</b></a>, Hyper Hyper Space Project</span><span class="text-right padding-right monospace small"><b>draft</b>, August 26th <b>2024</b></span></div>
+	</div>
+
+	<div class="inner-page-width padding desktop gap-gutter gutter-top">
+		<div class="">
+      <h5>Summary</h5>
+		
+      <p>The Hyper Hyper Space project aims to build a Byzantine fault tolerant, general purpose data replication system. In practice, this means that applications that use Hyper Hyper Space for data sync could connect their storage systems directly to the open Internet, and the replication protocol would be aware of both the application's data representation invariants and its data access control rules. Applications can work autonomously on a local replica of the data, greatly simplifying implementation and delegating security and correctnes concerns to the provided sync system. Furthermore, standardization of the synchronized data formats could result in greater interoperability and new integration mechanisms, as replication of self-verifiable data could become an alternative to remote procedure calls in APIs.
+      </p>
+
+      <p>This reports summarizes our conclusions after:</p>
+
+      <ul class="padding-bottom">
+        <li>Building a functionally complete secure data sync system (full description in the <a href="https://www.hyperhyperspace.org/whitepaper/">White Paper</a>).</li>
+        <li>Creating a small suite of browser-based communication tools based on secure data sync, running the sync engine <i>inside</i> the browser (demo at <a href="https://hyperhyper.space">hyperhyper.space</a>, repos for <a href="https://github.com/hyperhyperspace/hyper-browser-web">hyper browser</a>, <a href="https://github.com/hyperhyperspace/home">desktop & address book</a>, <a hre="https://github.com/hyperhyperspace/chat-group">chat</a>, <a href="https://github.com/hyperhyperspace/wiki-collab">wikis</a>).</li>
+        <li>Analyzing use cases of emerging p2p applications w.r.t. data sync.</li>
+        <li>Drafting an improved data model for replicated applications, and validating it through a <a href="https://github.com/hyperhyperspace/hhs-v3-proto">small prototype</a>.</li>
+      </ul>
+
+      <p>The following sections detail the different design choices and technical alternatives that were explored. They are intended to help future development of Hyper Hyper Space, and to share this experience more broadly with other developers of synchronization engines and distributed end-user applications.</p>
+
+      <p>We'll provide a detailed description of the data model we're proposing, provide references to recent publications framing this problem and justify the trade-offs involved.</p>
+
+      <p>Finally, propose next steps to go from the new prototype to a production-ready system.</p>
+		</div>
+
+    <div class="dull white padding gutter-bottom gutter-top">
+      <h4>Contents</h4>
+
+      <a class="underline" href="#design-choices">Design choices</a>
+      <ul>
+        <li><a href="#platform">Platform</a></li>
+        <li><a href="#byzantine-fault-tolerance">Byzantine fault tolerance</a></li>
+        <li><a href="#local-first">Coordination-free / Local first operation</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#data-structures">Data structures</a></li>
+      </ul>
+
+      <a class="underline" href="#new-data-model">New data model</a>
+
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#merkle-search-trees">Merkle search trees</a></li>
+        <li><a href="#conflict-resolution">Coordination-free conflict resolution</a></li>
+        <li><a href="#co-transactions">Co-transactions</a></li>
+      </ul>
+
+      <a class="underline" href="#conclusions">Conclusions and recommendations</a>
+      <ul></ul>
+      <a class="feedback" href="#feedback">Feedback</a>
+      <ul></ul>
+      <a class="references" href="#references">References</a>
+    </div>
+
+    <div>
+    <h4 id="design-choices">Design choices</h4>
+
+    Designing a sync system that affords greater levels of autonomy, resiliency and privacy and at the same time results in applications that have good ergonomics involves <i>lots</i> of compromises. In this section we want to make a critical survey of ours.
+
+    <h6 id="platform">Platform</h6>
+
+    <p>The current version of Hyper Hyper Space targets primarily web browsers, using advanced but well standardized features to run a full synchronization node insde a browser tab (<a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API">IndexedDb</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API">WebRTC</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Workers</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API">WebCrypto</a>). The reasoning behind this decision is that the browser is the most widely deployed secure virtual execution environment available, especially in a personal environment. Additionally, operating a web browser doesn't require overly technical skills.</p>
+    
+    <p>In retrospect, this has two important drawbacks:</p>
+
+    <ul class="padding-bottom">
+      <li>Web browsers apply limitations to what web pages can do, sometimes inconsistently or opaquely. This resulted browsers sometimes deleting IndexedDb databases, refusing to show the dialog that would mark a database as permanent, or not enabling advanced features like Web Crypto or WebRTC. This is somewhat understandable given the attack surface browsers present in their usual function, but attempts to adopt more p2p-friendly policies seem stalled.</li>
+      <li>The software ecosystem available for JavaScript development changes very rapidly. Libraries will frequently be abandoned or stop receiving security updates. Furthermore, the tooling (transpilers, bundlers, etc.) necessary for creating complex software products that target the browser adds significant complexity to the project.</li>
+    </ul>
+    
+    <p>We believe it would be better to have an agnostic approach w.r.t. networking, storage and crypto primitives, and develop the core sync engine and its protocol independently of any platform restrictions. The browser (or <a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WASM</a>, once it is sufficiently mature) is an interesting target for the reasons stated above, but not exclusively or as the main platform target.</p>
+
+    <h6 id="byzantine-fault-tolerance">Byzantine fault tolerance</h6>
+
+    <p>The general design of the library is heavily influenced by the requirement of having a Byzantine fault tolerant sync protocol, since this implies that all the stored data needs to be self-verifiable.</p>
+    
+    <p>The current version of the library uses a cryptographically secure log to ensure the integrity and completeness of replicated data. The operational semantics that can be implemented over the log are easy to reason about, especially in the coordination-free use cases. However, handling coordination in a purely operational setting can be difficult (see <a href="#local-first">next section</a> for details).</p>
+    
+    <p>It also makes the learning curve steeper for application developers, who need to specify their data integrity and access policy requirements in terms the sync protocol can use automatically.</p>
+
+    <p>However, we believe Byzantine fault tolerance is unavoidable for the vision of bringing end-user autonomy and data interoperability to multi-user environments. Without it, our use-case would be limited to personal or in-group applications, leaving out any apps targeting society at large that could provide practical alternatives to large cloud-based platforms. Learning to use the library properly will still be an order of magnitude easier than devising secure sync primitives from scratch, and ready-made adapters may be provided for common use cases, like user authentication and capability-based systems.</p>
+    
+    <h6 id="local-first">Coordination-free / Local first operation</h6>
+
+    <p>Autonomous operation, in the sense of being able to run an application with intermittent access to the network, or even offline, is one of our core objectives. However, in the absence of coordination, almost any non-trivial application will not be able to operate without conflicts. A detailed example using a capability system is presented on the <a href="https://www.hyperhyperspace.org/whitepaper/">Hyper Hyper Space White Paper</a>. This fact pulls us outside of the comfort of using only CRDTs as our modelling building blocks, and forces us into some form of conflict resolution layer.
+    
+    <p> We explored two alternatives:</p>
+
+    <ul>
+      <li>
+        <b>Forking</b>. This method is widely deployed in proof of work-based cryptocurrencies. It is based on using a <i>fork-choice rule</i> to resolve conflicts, simply choosing a winning version and discarding the others. We explored this alternative by implementing <a href="https://github.com/hyperhyperspace/pulsar">Pulsar</a>, a financial ledger, on top of Hyper Hyper Space. It uses a <a href="https://arxiv.org/abs/2008.10189#">synthetic proof-of-work schema designed by José Orlicki</a>. We found two main takeaways:
+        <ul>
+          <li>Forking can be implemented on top of a Merkle DAG distributed via epistemic gossip. The gossiping scheme was made aware of the fork choice rule, and a cutoff depth was put in practice to prevent discarded forks from overloading the network. In the case of a ledger, the implementation would be much more natural if the model provided some facilities to materialize state at arbitrary points of the log. For work on that problem, see the <a href="#new-data-model">New data model</a> section.</li>
+          <li>Cascading the reorganizations caused by fork choices causally to the rest of the state is problematic. Besides very coarse approaches, like those used in cryptocurrencies (e.g. in Bitcoin, wait until the block depth makes a reorganization impossible in practical terms, and only then allow the rest of the state to depend on this fork being chosen), we couldn't find an elegant way to do this.</li>
+        </ul>
+      </li>
+      <li>
+        <b>Optimistic conflict resolution</b>. Under this model, the local state is used to validate any possible conflicting conditions. The Merkle DAG <a href="https://dl.acm.org/doi/pdf/10.1145/3642976.3653034">provides a form of logical clock</a> that can be use to detect concurrent operations, and revert those whose assumptions have been invalidated by changes not-yet-replicated at the time, thus providing convergence to a consistent state. This was implemented in the purely operational model used in Hyper Hyper Space by making explicit causal links between operations, and cascading these invalidations accordingly. Special <i>attestation</i> ops are used for referring to the state of other (CRDT-based) objects. For details, please see the <a href="https://www.hyperhyperspace.org/whitepaper/">White Paper</a>. Overall, using this method yields applications with reasonable ergonomics (that degrade as network interruptions are more prolonged). We found two main setbacks:
+        <ul>
+          <li><b>Lack of expressive power</b>: Some properties are impossible to express as attestations that depend on a single operation. The position of an element in a CRDT growable array, for example, depends on the entire operational history up to that point, and can't be modelled this way. Simpler statements, like an element belonging to a set, can be mapped to operations, and sometimes this suffices (like in the capability system example), but the method lacks generality.</li>
+          <li><b>Complexity</b>: In pratice, virtually al operations in the system require the creation of several attestaion ops, and the nesting of causal links as the system grows becomes somewhat hard to follow.</li>
+        </ul>
+      </li>
+
+      <p>Both issues (expressivity and ergonomics) are addressed in the <a href="#new-data-model">new proposed model</a>.</p>
+    </ul>
+    
+
+    <h6 id="architecture">Architecture</h6>
+
+    <p>Hyper Hyper Space's interface to the application developer is a library of replicated data types, that cover well-known CRDTs: observed-removed sets, replicable growable arrays, multi-valued and last-writer-wins registers, etc. When these types are combined to form an application's data model, the causal linking / attestation mechanism can be used to provide convergence to a consistent state. All the types implement operation-based CRDTs, and the operations are stored in a database (IndexedDb in the browser or SQLite if running standalone). The database is mainly used as a content-addressable store, saving immutable objects indexed by their hashes. The operations need to be fed to a running instance of the data types for use.</p>
+
+    <p>On startup, initially the system re-played all the operational histories to reach the current state. Eventually this proved too costly, and a snapshot of the latest state was saved periodically to reduce start-up time. This of course doesn't help on initial sync, and cold start-up times could still be slightly annoying. The log structure makes it very complex to prioritize the replication of the data that will be needed earliest.</p>
+
+    <p>Applications are expected to compose and extend these types, embedding application rules and logic in a way that makes them available to the replication mechanism. Some application developers expressed that this architectural decision is too invasive, and would rather maintain a clear separation of application behaviour and storage.</p>
+
+    <p>The transformation of the in-memory data structures that implement the replicated data types into Merkle-ized (hash-linked) structures is transparent and automatic. While this has amazing ergonomics, it makes the synchronization unnecessarily complex. We believe it would be wiser to implement this memory to hash-linked translation as a separate, optional layer. This is in line with the idea of using data sync as a <i>narrow waist</i>, following the TCP/IP example (see the <a href="https://www.hyperhyperspace.org/whitepaper">White Paper</a> for details).</p>
+
+    <h6 id="data-structures">Data structures</h6>
+
+    The idea of using a Merkle-DAG as an operational log, and implementing CRDTs over it is by now well established (see <a href="https://martin.kleppmann.com/papers/bft-crdt-papoc22.pdf">this paper</a> by M.Kleppmann for details and a comprehensive survey). While it has some drawbacks (difficulty of partial secure replication, no way to verifiably refer to materialized state), at this point we have found no other base structure that enables us to implement the optimistic conflict resultion solution we've decided upon in a Byzantine environment. In the next section, we discuss how the operational log could be complemented with other structures to overcome these limitations.
+
+    <h4 id="new-data-model">New data model</h4>
+
+    <h6 id="introduction">Introduction</h6>
+
+    <p>To overcome some of the shortcomings described above, we've implemented a <a href="">small prototype</a> exploring ideas for a new data model.</p>
+
+    <p>First, we've analyzed ways to provide Merkle proofs of properties of state using Merkle Search Trees (see <a href="https://inria.hal.science/hal-02303490/document">this paper</a> for definitions and applications to state-based CRDTs). This would allow as to add secure <i>partial</i> replication to the sync protocol.</p>
+    
+    <p>Second, we've used a new <a href="https://arxiv.org/pdf/1901.01930">conceptual framework</a> that characterizes exactly the <i>problems</i> that can be solved by coordination-free distributed systems (i.e. those that admit a solution that can be modelled as a monotonic function between its input and outputs). Using this insight, we show an informal technique to generate a <i>relaxed</i> version of a problem that admits a coordination-free solution, even if the original one does not. This relaxed version, that can be implemented using the proposed new data model, sometimes can be used <i>in lieu</i> of the original formulation. In cases where that is not acceptable, it can be wrapped in a coordination mechanism in an elegant fashion.
+    </p>
+    
+    <h6 id="merkle-search-trees">Merkle search trees</h6>
+
+    <p>We analyzed two candidate data structures that would allow Byzantine fault tolerant synchronization of state. The first one, <b>Merkle AVL-trees</b>, guarantees optimally balanced trees, but is not well documented and is not <i>order independent</i>: to obtain the same hashes, the keys need to be inserted in the same order by every peer. Peers would need to somehow synchronize at which points in time they update the tree, and insert the keys following a pre-defined ordering scheme. Given that we're still operating without coordination, this introduces too much complexity and patologic cases. An attacker could time updates to the tree to try to provoke splits in the network, with some peers getting one AVL tree and the rest another. Without coordination, preventing this seems problematic.</p>
+
+    <p>Our second choice, <b>Merkle Search Trees</b> supports order independent insertion, but the resulting trees are only probabilistically balanced. Fortunately, attacking Merkle Search Trees by crafting entries specifically to severly unbalance a tree gets exponentially more expensive (growing by a constant factor with each additional level of the tree - essentially the same property that secures proof-of-work cryptocurrencies).Overall, we found Merkle Search Trees more appropiate for our prototype.</p>
+
+    <p>Since the logical clock mechanism provided by the Merkle-DAG is still necessary for conflict resolution (described in detail in the <a href="#co-transactions">next section</a>), we used a hybrid approach. We kept the operational approach, but attached Merkle search tree roots to each operation. We found two different uses for state materialization:</p>
+
+    <ul class="padding-bottom">
+      <li><p><b>Speed vs. security replication trade-offs</b>. Operational history, cryptographically signed and properly encoded as a Merkle-DAG, has very strong verification properties, even without any prior knowledge except the public part of the key pairs used for authentication. The log may be truncated, but otherwise its integrity can be fully checked, as each operation backwards-checks all its predecessors by hash-linkage. Of course, truncation would be detected with the presence of one honest peer providing the final hashes. We found no straightforward way of preserving the first property (verifyiability under authentication alone) without essentially re-introducing some form of log scheme into the tree. However, if there is just one honest peer that will provide faithful root hashes for the trees used for state materialization, the properties are essentially the same. Therefore, it may be useful to replicate all or parts of the state using Merkle Search Trees. If more stringent verification is necessary, the full operational log may be synchronized and veryfied after obtaining the state.</p>
+        
+        <p>Getting a read-only replica is where the speed benefits could be greatest, since all the metadata used for CRDT convergence could be omitted. For example, in an observed-removed set, a Merkle search tree conaining the current elements could be transferred, and by checking that its hash matches those attached to the last operations its integrity could be verified (but if <i>all</i> the other peers in the network collude, the entire tree could be fabricated). To be able to modify the set, it'd be necessary to replicate the sets of active and deleted tokens (tombstones) as well. </p></li>
+      <li><b>Secure partial replication</b>. Additional search trees could be added to the state to enable verifiable partial replication, much like indexes are created in traditional DBMSs to speed up access paths. For example, if paragraphs for a large document are held in a replicable growable array CRDT, they could be indexed by section, authors, etc. to enable replicating subsets of the document whose integrity can still be verified w.r.t. the final state of the operational log. In general, these secondary trees would hold redundant information that could help the application become operational much faster by being able to securely replicate state that is needed urgently first, while retaining the ability to verify the replicated data.</li>
+      
+    </ul>
+
+    <h6 id="conflict-resolution">Coordination-free conflict resolution</h6>
+
+    <p>Hyper Hyper Space's current state synchronization protocol works by replicating operational logs, and replaying them in each peer to re-create the latest state. Direct state sync (for example by using the trees discussed above) has slightly weaker verification properties. However, there's a second reason for using a log: <b>conflict resolution</b>.</p>
+
+    <p>As operations are appended to the log, they are disseminated by epidemic gossip, and should eventually reach all the peers participating in sync. The log defines a partial ordering of operations: an operation is greater than all the other operations that were present <i>in the local replica at the time it was appended</i>. This is sometimes called a <i>causal ordering</i>, and provides an effective form of a logical clock.</p>
+
+    <p>Operations are guaranteed to be processed according to this causal ordering, but if they are appended concurrently (in different replicas), they will be processed in the order in which they arrive (they are not <i>comparable</i> according to the causal ordering). Depending on network latency, proximity, etc., this may result in different orderings for different peers. When the state is composed solely by a collection of independent CRDTs, this can never result in a state conflict (i.e. two peers ending up in different states after processing the same operational log, albeit in two different causality-respecting orders). Our system does allow for such dependencies, though, and therefore is open to the classic race condition problems. They are solved by a coordination-free conflict resolution mechanism that works by detecting races and resolving them in a deterministic way.</p>
+
+    <p>Before we continue, it's worthwhile to discuss why these state inter-dependencies (that can lead to conflicts), are necessary. We'll be following the approach used in the <a href="https://arxiv.org/pdf/1901.01930">CALM paper</a>. As observed there, the class of problems that can be solved by coordination-free distributed algorithms corresponds exactly to those that admit a solution that maps inputs to outputs monotonically. The most common way to go about this is by using sets. Let's see some examples:</p>
+
+    <ul class="margin-bottom">
+      <li>
+        <b>Distributed maze solving</b>. Imagine a huge maze that is distributed among several computing nodes, that collaborate to find all the paths from the start to the end by sharing information over the network. We can model each node as a process that gradually learns the topology of the maze, and outputs paths as it discovers them. As the portion of the maze that it has discovered only grows, so will the set of discovered paths - this mapping is indeed monotonic, and therefore the problem admits a coordination-free solution.
+      </li>
+      <li>
+        <b>Distributed network reachability</b>. Imagine a similar setting, but now the topology of a large computer network is distributed among a set of computing nodes. Their goal is to detect reachability issues - to find pairs of devices that cannot be connected through the network. As each node receives more information about the entire network from its peers, it can detect pairs of devices that are disconnected <i>up to that point</i>, but would have to discard them if it later discovers other devices linking them. When viewed from a single node, this process is non-monotonic. Coordination will be necessary to establish that no nodes that form such a path are still to arrive. 
+      </li>
+    </ul>
+    
+    <p>A formal treatment of this correspondence can be found in <a href="https://dl.acm.org/doi/10.1145/2809784">these</a> <a href="https://arxiv.org/abs/1012.2858">papers</a> by Ameloot et al. We'll see a few more examples to strengthen our intuiton. A capability system where capabilities can only be granted is monotonic, and therefore acepts a coordination-free solution. However, if capabilities can be granted and revoked, then it is not. In the capability systems used on Hyper Hyper Space-based apps (e.g. this <a href="https://github.com/hyperhyperspace/wiki-collab">wiki with per-user read & write permissions</a>), whenever a capability is revoked and used concurrently (as per the causal ordering), whatever it was used for (and any other operations depending on that, transitively) are automatically rolled back.</p>
+
+    <p>Another interesting example is <a href="https://martin.kleppmann.com/papers/move-op.pdf">this analysis of tree move operations</a> (such as those found when moving folders in filesystems) by Kleppmann et al. This problem is non-monotonic, as replicas can diverge if concurrent moves are processed in different orders. Even worse, some orderings may produce invalid states (i.e. states where cycles are formed, and are therefore no longer trees!). The paper proposes a coordination-free solution, where a subset of the move operations is selected deterministically, guaranteeing both convergence and consistency. The other operations are ignored (undone, if necessary).</p>
+    
+    <p>As we can see, in practical terms what we have been doing is finding <i>relaxed</i> versions of the original problems, where conflicting behaviour is rejected after the fact. <b>The key insight we got from building the prototype is a new mechanism to implement this behaviour</b>, described below.</p>
+    
+    <p>A <i>replica</i> will be composed by a fixed collection of operational-CRDTs, that we will refer to as <i>objects</i>, each using the secure operational log described before. Optionally, operations will have a precondition, a predicate that must be evaluated against the state other CRDTs in the replica before the operation is applied. This will be done initially as soon as the operation arrives, and application will be conditional to the precondition being satisfied.</p>
+
+    <p>As part of its state, each CRDT in the replica will have pointers to the positions in the operational logs of the CRDTs it depends upon for precondition evaluation. This pointers will be moved forward by operations (whenever new foreign state is detected), as they are part of the state of the object as well.</p>
+    
+    <p>When a pointer is moved forward, any concurrent operations (per the causal ordering) will generate non-determinism in the state observed by the rest of the system (depending on whether the operation moving the pointer is received before or after the others). To remediate this, <b>Rule 1</b> will be applied:</p> 
+
+    <ul class="margin-bottom">
+      <li><b>Rule 1</b>: <i>Precondition determinism.</i> If an object <b>B</b> depends on the state of <b>A</b>, and an operation <i>o</i> is applied on <b>B</b> moving forward the state pointer for <b>A</b> to <i>S</i>, any operation <i>q</i> concurrent with <i>o</i> must have their preconditions re-evaluated using the CRDT-join <i>S</i> &#8744; <i>T</i>, where <i>T</i> is the original state of <b>A</b> according to <b>B</b>'s pointer at <i>q</i>.</li>
+    </ul>
+    
+    <p>While this will restore the eventual convergence of <b>B</b> in all replicas, <b>Rule 1</b> alone is not enough, for if an object <b>C</b> has moved its state pointer to <i>q</i> before <i>p</i> has arrived (this would be admissible, since they are causally concurrent), then operations on <b>C</b> may have had their preconditions evaluated on <i>q</i> alone, which is <i>stale</i>. Another way to see this is considering that some of the states that have been merged should be considered intermediate and should not be observable.</p>
+      
+    <p>We'll take more precautions to solve that. First, each of these pointers will always point to a single operation. <i>Forked</i> states, where several operations have been applied concurrently, must be merged before they can be referenced. <b>Whenever this happens, the merge operation will compute a pointer to the position of the log just before the first divergence that is being reconciled occurred</b>. As the pointers used to compute operation preconditions in other objects are moved forward, they will sometimes encounter these merge operations. This will trigger <b>Rule 2</b>:
+
+    <ul class="margin-bottom">
+      <li><b>Rule 2</b>: <i>No stale reads.</i> Whenever an object <b>C</b> moves one of its state pointers forward, and encounters a merge operation <i>m</i>, its state will be restored to the point right before any divergent operations being merged by <i>m</i> where referenced, and apply the operational log again from there on, re-evaluating all preconditions.</li>
+    </ul>
+
+    <p>Finally, observe that <b>Rule 2</b> will generate more internal states that should <i>not</i> be observed by other objects, since they are not stable across replicas. To remediate this, we need to ensure that this conflict resolution process is transitve. Just as we did with merge operations, <b>whenever an operation is moving a state pointer forward and this results in a portion of the log being re-applied (with a potentially different outcome), we will tag the pointer forwarding operation with a refernce the last state in the log that is stable (unaffected by the state pointer advance)</b>. This enables us to formulate our last rule:
+
+      <ul class="margin-bottom">
+        <li><b>Rule 3</b>: <i>Transitivity</i>. Whenever an object <b>C</b> moves its state pointer for objet <b>D</b> forward, and encounters another state pointer update operation <i>u</i> (updating one of <b>D</b>'s foreign state pointers), its state will be restored to the point right before any of the states affected by <i>u</i> were referenced, and apply the oprational log again from there on, re-evaluating all preconditions.</li>
+      </ul>
+    
+    <p>Since we requested that state dependencies within the replica do not contain any cycles, we're confident that <b>Rule 3</b> can be applied in a finite number of steps. The combined application or rules 1-3 as state is synchronized guarantees eventual state convergence in every replica.</p>
+
+    <p>We'll now see a few examples of how state dependencies and preconditions can be used to model <i>(relaxed versions of)</i> non-monotonic problems. The capability system described before can be represented using an observed-removed Set to hold &lt;user, capability&gt; pairs, and other structures whose access is controlled by holding specific capabilities would just use preconditions asserting that the appropiate pair is in the set.</p>
+
+    <p>The permissions system used in the Hyper Hyper Space's wiki would also be straightforward. It uses a fixed set of owners, a set of moderators that can only be changed by the owners (so far the system is monotonic), and a users set. Admissions and removals on the user set (and all moderation activities) must be implemented by operations preconditioned to be authored by identities in the moderators set. Edits on the wiki are preconditioned to be authored by identities on the user set. Here we see an example of the need for the transitivity rule: a moderator can admit a user, the user can perform an edit, and the moderator can be concurrently removed from the moderator set. This will be resolved by removing the user from the users set, and transitively removing its edits from the wiki.</p>
+
+    <p>Finally, we can revisit the <a href="https://martin.kleppmann.com/papers/move-op.pdf">tree move operation</a> analyzed by Kleppmann et al. The proposed solution uses an operational log, and works by timestamping the operations on the tree. When operations are appended concurrently to the log, and arrive out-of-order, they are undone and re-applied according to the timestamps. This linearization ensures eventual convergence of state of the tree, and a consistent application of the rules preventing cycles. Under the proposed model, this could be implemented by using an append-only linear log, where the tree edit operations would be held (an RGA or any CRDT that provides a linear order would do too). Merge operations on the operational log will linearize concurrent additions. A second type would observe the linear log and apply the operations to create the tree. Whenever merges occur on the log object, rules 1-2 will ensure the tree is re-created using the latest ordering. Furthermore, if other parts of the state need to operate conditionally on the state of the tree, rule 3 would guarantee overall convergence.</p>
+
+    <h6 id="co-transactions">Co-transactions</h6>
+
+    <p>Let's sum up the conflict resolution method described above:</p>
+
+    <ul class="margin-bottom">
+      <li>Use with a fixed collection of conflict-free operational objects. Synchronize state by replicating a partially ordered operational log for each.</li>
+      <li>If the state of object <b>A</b> in the replica depends on the state of object <b>B</b>, make this link explicit by adding a pointer to a position in <b>B</b>'s operational log to <b>A</b>. This effectively makes how much of <b>B</b>'s history <b>A</b> has seen <i>a part of <b>A</b>'s state!</i></li>
+      <li>When appending an operation <i>o</i> to <b>A</b>'s log that depends on some property of <b>B</b> that has been observed locally (by inspecting <b>B</b>'s state in the position of the log indicated curently being pointed at by <b>A</b>), attach this property as a precondition to <i>o</i>.</li>
+      <li>Use preconditions to express non-monotonic behaviour that cannot be modelled using CRDTs alone. Incorporate rules 1-3 above to the state management logic to guarantee state convergence.</li>
+    </ul>
+
+    <p>We've explored ways to present this method in a more intuitive way to the application layer. There's a paralell between coordination-free distributed systems and algorithms that operate on infinite data structures, since the absence of coordination prevents the participants in the system from knowing when they have seen all the relevant data. This situation is analogous to operating on an infinite data strucutre. More formally, processing an operational log according to rules 1-3, and projecting only the states where the log was not on a forked state, would yield a bisimulation between any two <i>causally-compatible</i> logs.</p>
+
+    <p>We propose an analogy: just as co-induction is used to reason about infinite structures, we'll define a <b>co-transaction</b> as a notion dual to traditional transactions in systems with strong consistency guarantees. Transactions in traditional databases have straightforward semantics: a transaction makes some assumptions about the state (sometimes implicitly just by reading portions of it), and the system makes assurances about this assumptions being held for the duration of the transaction, that is signalled by issuing a commit statement. If this is not possible, the transaction is aborted by the system to preserve consistency.</p>
+
+    <p>This schema is of course impossible in a coordination-free system, there is no way to somehow <i>lock</i> the state being read to provent concurrent edits. If, on the other hand, reads to state could be detected automatically, like in the traditional database example, preconditions asserting the observed state could be <b>generated by the system</b>, thus making the ensuing modifications conditional to these parts of the state not being modified concurrently. The next step is obvious: use operational replication (with rules 1-3), and reason co-inductively to assert consistency properties of the sequence of generated states. Transactions would be aborted transitively whenever they intefere with each other. How this works in practice needs to be investigated.</p>
+
+    <h4 id="conclusions">Conclusions and recommendations</h4>
+
+    <ul>
+      <li><b>Operational logs + conflict resultion are a powerful idea</b>. Despite the original concepts being very old (dating at least as far back to the notion of <i>messages</i> and <i>antimessages</i> in Jefferson's 1985 paper <a href="https://cobweb.cs.uga.edu/~maria/pads/papers/p404-jefferson.pdf">Virtual Time</a>), there are practically no such coordination-free systems in widespread use today. The ideas developed around our new prototype, recent literature and other similar systems need to be engineered into well tested and well understood systems. In particular, we're very enthusiastic about Hyper Hyper Space proposed new data model.
+        
+      <li><b>Focus on sync</b>. Our recommendation is to decouple the sync component of the system as much as possible, relegating other concerns to plug-ins or modules (browser-based sync, synchronization of live program state, etc.). The goal would be to have a small and portable software component to do coordination-free sync with advanced conflict resolution. This would broaden the potential audience of this library, and facilitate collaboration or merging with other synchronization efforts. The sync protocol should be specified and interoperability at the sync level, encouraged.</li>
+      
+      <li><b>Performance is a big challenge</b>. Since conflict resolution appears to require state materialization at arbitrary points in operational history, considerable work on performant algorithms will likely be necessary. In the context of the prototype, Merkle Search Trees where used for this purpose, but other immutable data sructures, checkpointing, etc. could be explored (since they would be used locally). </li> 
+    
+      <li><b>Explore a layered approach to Byzantine fault tolerance</b>. Having settled on operational logs as the main data structure, consider approaching Byzantine fault tolerance as the problem of replicating logs, independently of their purpose. Merkle DAGs offer a very robust solution, and this hardened apporach could be implemented as just another transport layer for the sync engine component described above. Explore using Merkle Search Trees as a secondary structure for faster startup, partial sync, etc.</li>
+    </ul>
+
+    <h4 id="feedback">Feedback</h4>
+
+    <p>This report has been archived in <a href="https://github.com/hyperhyperspace/blackpaper">this github repo</a>. Discussion in the issues is welcome.</p>
+
+    <p>You're welcome to join Hyper Hyper Space's <a href="https://discord.gg/9epr3XrRnW">Discord instance</a>.</p>
+
+    <p>The author may be reached at <a href="mailto:santi@hyperhyperspace.org">santi@hyperhyperspace.org</a></p>
+
+    <h4 id="references">References</h4>
+    
+    <h6>Hyper Hyper Space</h6>
+
+    <ul>
+      <li>
+        <b>White Paper</b>, by S.Bazerque<br>
+        <a href="https://www.hyperhyperspace.org/whitepaper/">https://www.hyperhyperspace.org/whitepaper/</a>
+      </li>
+      <li>
+        <b>Hyper Hyper Space demo</b>, by HHS contributors<br>
+        <a href="https://hyperhyper.space">hyperhyper.space</a>
+      </li>
+      <li>
+        <b>Hyper Hyper Space core library</b>, by HHS contributors<br>
+        <a href="https://github.com/hyperhyperspace/hyperhyperspace-core">https://github.com/hyperhyperspace/hyperhyperspace-core</a>
+      </li>
+      <li>
+        <b>2022 Year in Review</b>, by S.Bazerque<br>
+        <a href="https://www.hyperhyperspace.org/2022-year-in-review.html">https://www.hyperhyperspace.org/2022-year-in-review.html</a>
+      </li>
+    </ul>
+
+    <h6>Byzantine fault tolerance and replicated data types</h6>
+
+    <ul>
+      <li>
+        <b>Making CRDTs Byzantine Fault Tolerant</b>, by M.Kleppmann<br>
+        <a href="https://martin.kleppmann.com/papers/bft-crdt-papoc22.pdf">https://martin.kleppmann.com/papers/bft-crdt-papoc22.pdf</a></p>
+      </li>
+      <li>
+        <b>Logical Clocks and Monotonicity for Byzantine-Tolerant Replicated Data Types</b>, by F.Jacob & H.Hartenstein<br>
+        <a href="https://dl.acm.org/doi/pdf/10.1145/3642976.3653034">https://dl.acm.org/doi/pdf/10.1145/3642976.3653034</a>
+      </li>
+      <li>
+        <b>Merkle Search Trees: Efficient State-Based CRDTs in Open Networks</b>, by A.Auvolat & F.Taïani<br>
+        <a href="https://inria.hal.science/hal-02303490/document">https://inria.hal.science/hal-02303490/document</a>
+      </li>
+    </ul>
+
+    <h6>Consistency in coordination-free systems</h6>
+
+    <ul>
+      <li>
+        <b>Keeping CALM: When Distributed Consistency is Easy</b>, by J.M.Hellerstein & P.Alvaro<br>
+        <a href="https://arxiv.org/pdf/1901.01930">https://arxiv.org/pdf/1901.01930</a>
+      </li>
+      <li>
+        <b>A highly-available move operation for replicated trees</b>, by M.Kleppmann, D.P.Mulligan, V.B.F.Gomes, & A.R.Beresford<br>
+        <a href="https://martin.kleppmann.com/papers/move-op.pdf">https://martin.kleppmann.com/papers/move-op.pdf</a>
+      </li>
+      <li>
+        <b>Virtual Time</b>, by D.R.Jefferson<br>
+        <a href="https://cobweb.cs.uga.edu/~maria/pads/papers/p404-jefferson.pdf">https://cobweb.cs.uga.edu/~maria/pads/papers/p404-jefferson.pdf</a>
+      </li>
+      <li>
+        <b>Weaker Forms of Monotonicity for Declarative Networking: A More Fine-Grained Answer to the CALM-Conjecture</b>, by T.J.Ameloot, B.Ketsman, F.Neven & D.Zinn<br>
+        <a href="https://dl.acm.org/doi/10.1145/2809784">https://dl.acm.org/doi/10.1145/2809784</a>
+      </li>
+      <li>
+        <b>Relational transducers for declarative networking</b>, by T.J.Ameloot, F.Neven & J.Van den Bussche<br>
+        <a href="https://arxiv.org/abs/1012.2858">https://arxiv.org/abs/1012.2858</a>
+      </li>
+    </ul>
+	</div>
+	
+	<div class="bar inner-feature-width gutter-top border-top">
+    <div class="inner-page-width padding no-padding-top no-padding-bottom text-right">
+      <span class="padding monospace small">Designed using <a target="_blank" href="https://cavepaint.github.io/cavepaintcss/">Cavepaint</a>.</span>
+    </div>
+		
+	</div>
+</html>
